@@ -1,5 +1,11 @@
 import React from "react";
+import Register from "./register";
 
-function Welcome(props) {
-    return <h1>Welcome to our social network</h1>;
+export default function Welcome() {
+    return (
+        <div>
+            <h1>Welcome to our social network</h1>
+            <Register />
+        </div>
+    );
 }

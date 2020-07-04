@@ -3,10 +3,9 @@ const app = express();
 const compression = require("compression");
 const { addUser } = require("./db");
 const cookieSession = require("cookie-session");
-const csurf = require("csurf");
 const { hash, compare } = require("./bc.js");
 
-app.use(express.static("./src"));
+app.use(express.static(__dirname + "/public"));
 app.use(compression());
 
 app.use(
@@ -22,15 +21,7 @@ app.use(
     })
 );
 
-app.use(csurf());
-
-app.use((req, res, next) => {
-    res.setHeader("x-frame-option", "deny");
-    res.locals.csrfToken = req.csrfToken(); //////for csurf
-    next();
-});
-
-// app.use(makeCookiesSafe);
+app.use(express.json());
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -43,19 +34,53 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-// app.get("/welcome", (req, res) => {
-//     if (req.session.userId) {
-//         res.redirect("/");
-//     } else {
-//         res.sendFile(__dirname + "/index.html");
-//     }
-// });
+app.get("/welcome", (req, res) => {
+    if (req.session.userId) {
+        res.redirect("/");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
+});
 
 app.get("*", function (req, res) {
-    // if (!req.session.userId) {
-    //     res.redirect("/welcome");
-    // }
-    res.sendFile(__dirname + "/index.html");
+    if (!req.session.userId) {
+        res.redirect("/welcome");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
+});
+
+app.post("/register", (req, res) => {
+    if (
+        req.body.password != "" &&
+        req.body.firstname != "" &&
+        req.body.lastname != "" &&
+        req.body.email != ""
+    ) {
+        return hash(req.body.password)
+            .then((hashedPw) => {
+                addUser(
+                    req.body.firstname,
+                    req.body.lastname,
+                    req.body.email,
+                    hashedPw
+                )
+                    .then((result) => {
+                        console.log("RESULT: ", result);
+                        req.session.userId = result.rows[0].id;
+                        res.json();
+                    })
+                    .catch((err) => {
+                        res.json();
+                        console.log("TERROR: ", err);
+                    });
+            })
+            .catch((err) => {
+                console.log("CHE SUCCEDE? :", err);
+            });
+    } else {
+        res.json(err);
+    }
 });
 
 app.listen(8080, function () {

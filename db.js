@@ -1,4 +1,5 @@
 const spicedPg = require("spiced-pg");
+const { NamedModulesPlugin } = require("webpack");
 
 let db;
 if (process.env.DATABASE_URL) {
