@@ -51,36 +51,27 @@ app.get("*", function (req, res) {
 });
 
 app.post("/register", (req, res) => {
-    if (
-        req.body.password != "" &&
-        req.body.firstname != "" &&
-        req.body.lastname != "" &&
-        req.body.email != ""
-    ) {
-        return hash(req.body.password)
-            .then((hashedPw) => {
-                addUser(
-                    req.body.firstname,
-                    req.body.lastname,
-                    req.body.email,
-                    hashedPw
-                )
-                    .then((result) => {
-                        console.log("RESULT: ", result);
-                        req.session.userId = result.rows[0].id;
-                        res.json();
-                    })
-                    .catch((err) => {
-                        res.json();
-                        console.log("TERROR: ", err);
-                    });
-            })
-            .catch((err) => {
-                console.log("CHE SUCCEDE? :", err);
-            });
-    } else {
-        res.json(err);
-    }
+    hash(req.body.password)
+        .then((hashedPw) => {
+            addUser(
+                req.body.firstname,
+                req.body.lastname,
+                req.body.email,
+                hashedPw
+            )
+                .then((result) => {
+                    console.log("RESULT: ", result);
+                    req.session.userId = result.rows[0].id;
+                    res.json();
+                })
+                .catch((err) => {
+                    res.sendStatus(500);
+                    console.log("TERROR: ", err);
+                });
+        })
+        .catch((err) => {
+            console.log("CHE SUCCEDE? :", err);
+        });
 });
 
 app.listen(8080, function () {

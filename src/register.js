@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-export default class Register extends React.Component {
+export default class Registration extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -9,8 +9,9 @@ export default class Register extends React.Component {
             lastname: "",
             email: "",
             password: "",
-            error: false,
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
@@ -23,12 +24,7 @@ export default class Register extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         axios
-            .post("/register", {
-                firstname: this.state.firstname,
-                lastname: this.state.lastname,
-                email: this.state.email,
-                password: this.state.password,
-            })
+            .post("/register", this.state)
             .then((response) => {
                 location.replace("/");
             })
@@ -36,45 +32,39 @@ export default class Register extends React.Component {
                 this.setState({
                     error: true,
                 });
-                console.log("ERROR: ", err);
+                console.log("error: ", err);
             });
     }
 
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={(event) => this.handleSubmit(event)}>
                     <input
                         type="text"
                         name="firstname"
                         onChange={(event) => this.handleChange(event)}
                         placeholder="First Name"
-                        value={this.state.value}
                     />
                     <input
                         type="text"
                         name="lastname"
                         onChange={(event) => this.handleChange(event)}
                         placeholder="Last Name"
-                        value={this.state.value}
                     />
                     <input
                         type="email"
                         name="email"
                         onChange={(event) => this.handleChange(event)}
                         placeholder="Email"
-                        value={this.state.value}
                     />
                     <input
                         type="password"
                         name="password"
                         onChange={(event) => this.handleChange(event)}
                         placeholder="Password"
-                        value={this.state.value}
                     />
-                    <button onClick={(event) => this.handleSubmit(event)}>
-                        Register
-                    </button>
+                    <button>Register</button>
                 </form>
                 {this.state.error && (
                     <p>Something went wrong,please try again</p>
