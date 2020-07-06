@@ -10,7 +10,12 @@ if (process.env.DATABASE_URL) {
 }
 
 exports.addUser = (firstname, lastname, email, password) => {
-    if (firstname.trim() === "") {
+    if (
+        firstname.trim() === "" ||
+        lastname.trim() === "" ||
+        email.trim() === "" ||
+        password.trim() === ""
+    ) {
         return;
     }
     return db.query(
