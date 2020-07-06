@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const compression = require("compression");
-const { addUser } = require("./db");
+const { addUser, getPassword } = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
+const csurf = require("csurf");
 
 app.use(express.static(__dirname + "/public"));
 app.use(compression());
@@ -22,6 +23,13 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use(csurf());
+
+app.use(function (req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -70,7 +78,29 @@ app.post("/register", (req, res) => {
                 });
         })
         .catch((err) => {
+            res.sendStatus(500);
             console.log("CHE SUCCEDE? :", err);
+        });
+});
+
+app.post("/login", (req, res) => {
+    getPassword(req.body.email)
+        .then((result) => {
+            compare(req.body.password, result.rows[0].password).then(
+                (checked) => {
+                    if (checked) {
+                        console.log("CHECK PASSED: ", result.rows[0]);
+                        req.session.userId = result.rows[0].id;
+                        res.json();
+                    } else {
+                        res.sendStatus(500);
+                    }
+                }
+            );
+        })
+        .catch((err) => {
+            console.log("terror: ", err);
+            res.sendStatus(500);
         });
 });
 

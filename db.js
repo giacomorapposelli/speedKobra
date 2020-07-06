@@ -10,8 +10,15 @@ if (process.env.DATABASE_URL) {
 }
 
 exports.addUser = (firstname, lastname, email, password) => {
+    if (firstname.trim() === "") {
+        return;
+    }
     return db.query(
         `INSERT INTO users (first, last, email, password) VALUES ($1, $2, $3, $4) RETURNING id`,
         [firstname, lastname, email, password]
     );
+};
+
+exports.getPassword = (email) => {
+    return db.query(`SELECT password, id FROM users WHERE email = $1`, [email]);
 };
