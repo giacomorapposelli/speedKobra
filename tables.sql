@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS reset_codes CASCADE;
 
 CREATE TABLE users(
   id SERIAL PRIMARY KEY,
@@ -6,5 +7,12 @@ CREATE TABLE users(
   last VARCHAR(255) NOT NULL CHECK (last != ''),
   email VARCHAR(255) NOT NULL UNIQUE CHECK (email != ''),
   password VARCHAR(255) NOT NULL CHECK (password != ''),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE reset_codes(
+  id SERIAL PRIMARY KEY,
+  email VARCHAR NOT NULL CHECK (email != ''),
+  code VARCHAR NOT NULL CHECK (code != ''),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

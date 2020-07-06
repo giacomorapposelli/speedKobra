@@ -14,7 +14,7 @@ exports.addUser = (firstname, lastname, email, password) => {
         firstname.trim() === "" ||
         lastname.trim() === "" ||
         email.trim() === "" ||
-        password.trim() === ""
+        password.trim() === "'"
     ) {
         return;
     }
@@ -24,6 +24,35 @@ exports.addUser = (firstname, lastname, email, password) => {
     );
 };
 
-exports.getPassword = (email) => {
+exports.getEmail = (email) => {
     return db.query(`SELECT password, id FROM users WHERE email = $1`, [email]);
+};
+
+exports.insertCode = (email, code) => {
+    return db.query(
+        `
+        INSERT INTO reset_codes (email, code) VALUES ($1, $2) 
+        `,
+        [email, code]
+    );
+};
+
+exports.checkCode = (email) => {
+    return db.query(
+        `
+        SELECT * FROM reset_codes
+        WHERE email=$1 AND CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'
+        `,
+        [email]
+    );
+};
+
+exports.updatePassword = (email, pass) => {
+    return db.query(
+        `
+        UPDATE users SET password=$2
+        WHERE email=$1
+        `,
+        [email, pass]
+    );
 };

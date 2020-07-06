@@ -1,10 +1,18 @@
 const express = require("express");
 const app = express();
 const compression = require("compression");
-const { addUser, getPassword } = require("./db");
+const {
+    addUser,
+    getEmail,
+    checkCode,
+    insertCode,
+    updatePassword,
+} = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
 const csurf = require("csurf");
+const { sendEmail } = require("./ses.js");
+const cryptoRandomString = require("crypto-random-string");
 
 app.use(express.static(__dirname + "/public"));
 app.use(compression());
@@ -84,7 +92,7 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-    getPassword(req.body.email)
+    getEmail(req.body.email)
         .then((result) => {
             compare(req.body.password, result.rows[0].password).then(
                 (checked) => {
@@ -101,6 +109,66 @@ app.post("/login", (req, res) => {
         .catch((err) => {
             console.log("terror: ", err);
             res.sendStatus(500);
+        });
+});
+
+app.post("/password/reset/start", (req, res) => {
+    getEmail(req.body.email)
+        .then((result) => {
+            if (result.rows[0]) {
+                const secretCode = cryptoRandomString({
+                    length: 6,
+                });
+                insertCode(req.body.email, secretCode)
+                    .then(() => {
+                        sendEmail(
+                            req.body.email,
+                            "Password Reset",
+                            `Here's the code that allows you to reset your password: ${secretCode}`
+                        );
+                        res.json();
+                    })
+                    .catch((err) => {
+                        res.sendStatus(500);
+                        console.log("NO CODE: ", err);
+                    });
+            } else {
+                res.sendStatus(500);
+            }
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.log("NOT FOUND: ", err);
+        });
+});
+
+app.post("/password/reset/verify", (req, res) => {
+    checkCode(req.body.email)
+        .then((result) => {
+            if (result.rows[0]) {
+                console.log("CHECK PASSED: ", result.rows[0]);
+                hash(req.body.password)
+                    .then((hashedPw) => {
+                        updatePassword(req.body.email, hashedPw)
+                            .then(() => {
+                                res.json();
+                            })
+                            .catch((err) => {
+                                res.sendStatus(500);
+                                console.log("UPDATING HORROR:", err);
+                            });
+                    })
+                    .catch((err) => {
+                        res.sendStatus(500);
+                        console.log(err);
+                    });
+            } else {
+                res.sendStatus(500);
+            }
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.log("CODE NOT MATCHING: ", err);
         });
 });
 
