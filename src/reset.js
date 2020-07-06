@@ -8,7 +8,7 @@ export default class ResetPassword extends React.Component {
         this.state = {
             email: "",
             code: "",
-            password: "",
+            newPassword: "",
             error: false,
             count: 0,
         };
@@ -63,7 +63,7 @@ export default class ResetPassword extends React.Component {
             });
     }
 
-    getCurrentDisplay(count) {
+    getCurrentDisplay() {
         if (this.state.count === 0) {
             return (
                 <div>
@@ -90,6 +90,7 @@ export default class ResetPassword extends React.Component {
                         <input
                             type="text"
                             name="code"
+                            value={this.state.code}
                             onChange={(event) => this.handleChange(event)}
                             placeholder="Your Code"
                             required
@@ -97,7 +98,7 @@ export default class ResetPassword extends React.Component {
                         />
                         <input
                             type="password"
-                            name="password"
+                            name="newPassword"
                             onChange={(event) => this.handleChange(event)}
                             placeholder="Your New Password"
                             required
@@ -111,7 +112,7 @@ export default class ResetPassword extends React.Component {
         } else {
             return (
                 <div>
-                    <h3>Success!</h3>;
+                    <h3>Success!</h3>
                     <p>
                         you can now <Link to="/login">Log in </Link>with your
                         new password

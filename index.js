@@ -145,9 +145,10 @@ app.post("/password/reset/start", (req, res) => {
 app.post("/password/reset/verify", (req, res) => {
     checkCode(req.body.email)
         .then((result) => {
+            console.log("CODE: ", req.body.code);
             if (result.rows[0]) {
                 console.log("CHECK PASSED: ", result.rows[0]);
-                hash(req.body.password)
+                hash(req.body.newPassword)
                     .then((hashedPw) => {
                         updatePassword(req.body.email, hashedPw)
                             .then(() => {
@@ -160,10 +161,12 @@ app.post("/password/reset/verify", (req, res) => {
                     })
                     .catch((err) => {
                         res.sendStatus(500);
-                        console.log(err);
+                        console.log("BOIADIO:", err);
+                        console.log("???: ", req.body.password);
                     });
             } else {
                 res.sendStatus(500);
+                console.log("BOIADIO: ", err);
             }
         })
         .catch((err) => {
