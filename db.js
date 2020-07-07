@@ -25,7 +25,13 @@ exports.addUser = (firstname, lastname, email, password) => {
 };
 
 exports.getEmail = (email) => {
-    return db.query(`SELECT password, id FROM users WHERE email = $1`, [email]);
+    return db.query(
+        `
+        SELECT * FROM users
+        WHERE email = $1
+        `,
+        [email]
+    );
 };
 
 exports.insertCode = (email, code) => {

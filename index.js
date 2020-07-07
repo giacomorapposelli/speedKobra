@@ -146,8 +146,8 @@ app.post("/password/reset/verify", (req, res) => {
     checkCode(req.body.email)
         .then((result) => {
             console.log("CODE: ", req.body.code);
-            if (result.rows[0]) {
-                console.log("CHECK PASSED: ", result.rows[0]);
+            console.log("ROW: ", result.rows[0]);
+            if (req.body.code === result.rows[0].code) {
                 hash(req.body.newPassword)
                     .then((hashedPw) => {
                         updatePassword(req.body.email, hashedPw)
@@ -161,12 +161,11 @@ app.post("/password/reset/verify", (req, res) => {
                     })
                     .catch((err) => {
                         res.sendStatus(500);
-                        console.log("BOIADIO:", err);
-                        console.log("???: ", req.body.password);
+                        console.log("???:", err);
                     });
             } else {
                 res.sendStatus(500);
-                console.log("BOIADIO: ", err);
+                console.log("NO MATCH: ", err);
             }
         })
         .catch((err) => {
