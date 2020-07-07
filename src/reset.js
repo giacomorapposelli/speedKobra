@@ -15,6 +15,7 @@ export default class ResetPassword extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitEmail = this.handleSubmitEmail.bind(this);
         this.handleSubmitCode = this.handleSubmitCode.bind(this);
+        this.handleSubmit = this.resetError.bind(this);
     }
 
     handleChange(event) {
@@ -68,14 +69,14 @@ export default class ResetPassword extends React.Component {
             return (
                 <div>
                     <h3>Enter your Email</h3>
-                    <form onSubmit={(event) => this.handleSubmitEmail(event)}>
+                    <form onSubmit={this.handleSubmitEmail}>
                         <input
                             type="email"
                             name="email"
-                            onChange={(event) => this.handleChange(event)}
+                            onChange={this.handleChange}
                             placeholder="Email"
                             required
-                            onFocus={(event) => this.resetError(event)}
+                            onFocus={this.resetError}
                         />
                         <button>Submit</button>
                     </form>
@@ -86,23 +87,23 @@ export default class ResetPassword extends React.Component {
             return (
                 <div>
                     <h1>Enter the code and reset your Password</h1>
-                    <form onSubmit={(event) => this.handleSubmitCode(event)}>
+                    <form onSubmit={this.handleSubmitCode}>
                         <input
                             type="text"
                             name="code"
                             value={this.state.code}
-                            onChange={(event) => this.handleChange(event)}
+                            onChange={this.handleChange}
                             placeholder="Your Code"
                             required
-                            onFocus={(event) => this.resetError(event)}
+                            onFocus={this.resetError}
                         />
                         <input
                             type="password"
                             name="newPassword"
-                            onChange={(event) => this.handleChange(event)}
+                            onChange={this.handleChange}
                             placeholder="Your New Password"
                             required
-                            onFocus={(event) => this.resetError(event)}
+                            onFocus={this.resetError}
                         />
                         <button>Submit</button>
                         {this.state.error && <p>Wrong Code</p>}

@@ -53,12 +53,34 @@ exports.checkCode = (email) => {
     );
 };
 
-exports.updatePassword = (email, pass) => {
+exports.updatePassword = (email, password) => {
     return db.query(
         `
         UPDATE users SET password=$2
         WHERE email=$1
         `,
-        [email, pass]
+        [email, password]
+    );
+};
+
+exports.getUser = (id) => {
+    return db.query(
+        `
+        SELECT * FROM users
+        WHERE id=$1
+        `,
+        [id]
+    );
+};
+
+exports.updateImg = (id, imgurl) => {
+    return db.query(
+        `
+        UPDATE users 
+        SET imgurl=$2
+        WHERE id=$1
+        RETURNING imgurl
+        `,
+        [id, imgurl]
     );
 };

@@ -7,6 +7,8 @@ const {
     checkCode,
     insertCode,
     updatePassword,
+    getUser,
+    updateImg,
 } = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
@@ -16,6 +18,33 @@ const cryptoRandomString = require("crypto-random-string");
 
 app.use(express.static(__dirname + "/public"));
 app.use(compression());
+
+/////BOILERPLATE //////////
+const multer = require("multer");
+const uidSafe = require("uid-safe");
+const path = require("path");
+const s3 = require("./s3");
+const { s3Url } = require("./config.json");
+
+const diskStorage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, __dirname + "/uploads");
+    },
+    filename: function (req, file, callback) {
+        uidSafe(24).then(function (uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    },
+});
+
+const uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 2097152,
+    },
+});
+
+/////////////////////////////
 
 app.use(
     cookieSession({
@@ -58,6 +87,22 @@ app.get("/welcome", (req, res) => {
     }
 });
 
+app.get("/user", (req, res) => {
+    getUser(req.session.userId)
+        .then((result) => {
+            console.log("RISULTATO: ", result);
+            res.json({
+                firstname: result.rows[0].first,
+                lastname: result.rows[0].last,
+                profilePic: result.rows[0].imgurl,
+            });
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.log("BIG PROBLEMA: ", err);
+        });
+});
+
 app.get("*", function (req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");
@@ -94,8 +139,8 @@ app.post("/register", (req, res) => {
 app.post("/login", (req, res) => {
     getEmail(req.body.email)
         .then((result) => {
-            compare(req.body.password, result.rows[0].password).then(
-                (checked) => {
+            compare(req.body.password, result.rows[0].password)
+                .then((checked) => {
                     if (checked) {
                         console.log("CHECK PASSED: ", result.rows[0]);
                         req.session.userId = result.rows[0].id;
@@ -103,12 +148,15 @@ app.post("/login", (req, res) => {
                     } else {
                         res.sendStatus(500);
                     }
-                }
-            );
+                })
+                .catch((err) => {
+                    res.sendStatus(500);
+                    console.log("NO PW MATCH: ", err);
+                });
         })
         .catch((err) => {
-            console.log("terror: ", err);
             res.sendStatus(500);
+            console.log("terror: ", err);
         });
 });
 
@@ -165,12 +213,27 @@ app.post("/password/reset/verify", (req, res) => {
                     });
             } else {
                 res.sendStatus(500);
-                console.log("NO MATCH: ", err);
+                console.log("NO CODE MATCH: ", err);
             }
         })
         .catch((err) => {
             res.sendStatus(500);
-            console.log("CODE NOT MATCHING: ", err);
+            console.log("EMAIL NOT MATCHING: ", err);
+        });
+});
+
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+    console.log("FILE:", req.file);
+    const imageUrl = `${s3Url}${req.file.filename}`;
+    console.log("IMG_URL: ", imageUrl);
+    updateImg(req.session.userId, imageUrl)
+        .then((result) => {
+            console.log("RESULT: ", result);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.log("IMG ERROR: ", err);
         });
 });
 

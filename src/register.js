@@ -14,12 +14,14 @@ export default class Registration extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.resetError = this.resetError.bind(this);
     }
 
     handleChange(event) {
+        const self = this;
         let name = event.target.name;
         let val = event.target.value;
-        this.setState({ [name]: val });
+        self.setState({ [name]: val });
         console.log("IMPUTS CHANGING: ", this.state);
     }
 
@@ -49,38 +51,38 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={(event) => this.handleSubmit(event)}>
+                <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"
                         name="firstname"
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={this.handleChange}
                         placeholder="First Name"
                         required
-                        onFocus={(event) => this.resetError(event)}
+                        onFocus={this.resetError}
                     />
                     <input
                         type="text"
                         name="lastname"
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={this.handleChange}
                         placeholder="Last Name"
                         required
-                        onFocus={(event) => this.resetError(event)}
+                        onFocus={this.resetError}
                     />
                     <input
                         type="email"
                         name="email"
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={this.handleChange}
                         placeholder="Email"
                         required
-                        onFocus={(event) => this.resetError(event)}
+                        onFocus={this.resetError}
                     />
                     <input
                         type="password"
                         name="password"
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={this.handleChange}
                         placeholder="Password"
                         required
-                        onFocus={(event) => this.resetError(event)}
+                        onFocus={this.resetError}
                     />
                     <button>Register</button>
                 </form>

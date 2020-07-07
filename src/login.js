@@ -12,6 +12,7 @@ export default class Login extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.resetError = this.resetError.bind(this);
     }
     handleChange(event) {
         let name = event.target.name;
@@ -47,22 +48,22 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={(event) => this.handleSubmit(event)}>
+                <form onSubmit={this.handleSubmit}>
                     <input
                         type="email"
                         name="email"
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={this.handleChange}
                         placeholder="Email"
                         required
-                        onFocus={(event) => this.resetError(event)}
+                        onFocus={this.resetError}
                     />
                     <input
                         type="password"
                         name="password"
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={this.handleChange}
                         placeholder="Password"
                         required
-                        onFocus={(event) => this.resetError(event)}
+                        onFocus={this.resetError}
                     />
                     <button>Log in</button>
                 </form>
