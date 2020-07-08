@@ -195,7 +195,7 @@ app.post("/password/reset/verify", (req, res) => {
         .then((result) => {
             console.log("CODE: ", req.body.code);
             console.log("ROW: ", result.rows[0]);
-            if (req.body.code === result.rows[0].code) {
+            if (req.body.code === result.rows[result.rows.length - 1].code) {
                 hash(req.body.newPassword)
                     .then((hashedPw) => {
                         updatePassword(req.body.email, hashedPw)

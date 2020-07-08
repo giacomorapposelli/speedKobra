@@ -3,6 +3,8 @@ import axios from "./axios";
 
 import ProfilePic from "./profilePic";
 import Uploader from "./upload";
+import Profile from "./profile";
+import { Link } from "react-router-dom";
 
 export default class App extends React.Component {
     constructor() {
@@ -19,14 +21,10 @@ export default class App extends React.Component {
     componentDidMount() {
         axios.get("/user").then((response) => {
             console.log("RESP: ", response);
-            if (response.data.profilePic === undefined) {
+            if (!response.data.profilePic) {
                 response.data.profilePic = "/notyet.png";
             }
-            this.setState({
-                firstname: response.data.firstname,
-                lastname: response.data.lastname,
-                profilePic: response.data.profilePic,
-            });
+            this.setState(response.data);
         });
     }
 
@@ -52,14 +50,24 @@ export default class App extends React.Component {
         console.log("this.state: ", this.state);
         return (
             <div>
+                <img className="logo" src="/palm.jpg" />
                 <h1>App</h1>
-                <ProfilePic
+
+                <Profile
                     firstname={this.state.firstname}
                     lastname={this.state.lastname}
                     profilePic={this.state.profilePic}
                     openModal={this.openModal}
                     setImage={this.setImage}
                 />
+
+                {/* <ProfilePic
+                    firstname={this.state.firstname}
+                    lastname={this.state.lastname}
+                    profilePic={this.state.profilePic}
+                    openModal={this.openModal}
+                    setImage={this.setImage}
+                /> */}
                 {this.state.uploaderIsVisible && (
                     <Uploader
                         setImage={this.setImage}

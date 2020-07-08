@@ -2,7 +2,14 @@ body {
     background-color: rgb(116, 49, 49);
 }
 
-img {
+.avatar {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    float: right;
+}
+
+.logo {
     height: 100px;
     width: 100px;
     object-fit: cover;
