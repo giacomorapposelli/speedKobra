@@ -47,11 +47,10 @@ export default class Uploader extends React.Component {
     render() {
         return (
             <div className="modal">
-                <p id="x-modal" onClick={this.props.closeModal}>
+                <h2 className="modal-title">Update your Profile picture!</h2>
+                <a id="x-modal" onClick={this.props.closeModal}>
                     X
-                </p>
-
-                <h3>Update your Profile picture!</h3>
+                </a>
                 <form onSubmit={this.uploadImg}>
                     <input
                         type="file"

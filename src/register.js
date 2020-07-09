@@ -85,14 +85,14 @@ export default class Registration extends React.Component {
                         onFocus={this.resetError}
                     />
                     <button>Register</button>
+                    <p>
+                        Already a member?
+                        <Link to="/login">Log in</Link>
+                    </p>
                 </form>
                 {this.state.error && (
                     <p>Something went wrong,please try again</p>
                 )}
-                <p>
-                    Already a member?
-                    <Link to="/login">Log in</Link>
-                </p>
             </div>
         );
     }

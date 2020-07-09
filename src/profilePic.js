@@ -5,13 +5,10 @@ export default function ProfilePic(props) {
     return (
         <div>
             <img
-                className="avatar"
+                className="profile-pic"
                 src={props.profilePic}
                 onClick={props.openModal}
             />
-            <p>
-                Name: {props.firstname} Last name: {props.lastname}
-            </p>
         </div>
     );
 }

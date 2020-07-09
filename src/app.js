@@ -1,10 +1,7 @@
 import React from "react";
 import axios from "./axios";
-
-import ProfilePic from "./profilePic";
 import Uploader from "./upload";
 import Profile from "./profile";
-import { Link } from "react-router-dom";
 
 export default class App extends React.Component {
     constructor() {
@@ -16,11 +13,12 @@ export default class App extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.setImage = this.setImage.bind(this);
+        this.setBio = this.setBio.bind(this);
     }
 
     componentDidMount() {
         axios.get("/user").then((response) => {
-            console.log("RESP: ", response);
+            console.log("RESP: ", response.data);
             if (!response.data.profilePic) {
                 response.data.profilePic = "/notyet.png";
             }
@@ -46,34 +44,41 @@ export default class App extends React.Component {
         });
     }
 
+    setBio(newBio) {
+        this.setState({
+            draftBio: newBio,
+        });
+    }
+
     render() {
         console.log("this.state: ", this.state);
         return (
             <div>
-                <img className="logo" src="/palm.jpg" />
-                <h1>App</h1>
-
-                <Profile
-                    firstname={this.state.firstname}
-                    lastname={this.state.lastname}
-                    profilePic={this.state.profilePic}
-                    openModal={this.openModal}
-                    setImage={this.setImage}
-                />
-
-                {/* <ProfilePic
-                    firstname={this.state.firstname}
-                    lastname={this.state.lastname}
-                    profilePic={this.state.profilePic}
-                    openModal={this.openModal}
-                    setImage={this.setImage}
-                /> */}
-                {this.state.uploaderIsVisible && (
-                    <Uploader
-                        setImage={this.setImage}
-                        closeModal={this.closeModal}
+                <header className="head">
+                    <img className="logo" src="/palm.jpg" />
+                    <img
+                        className="avatar"
+                        src={this.state.profilePic}
+                        onClick={this.openModal}
                     />
-                )}
+                </header>
+                <div className="container">
+                    <Profile
+                        firstname={this.state.firstname}
+                        lastname={this.state.lastname}
+                        profilePic={this.state.profilePic}
+                        bio={this.state.draftBio}
+                        openModal={this.openModal}
+                        setImage={this.setImage}
+                        setBio={this.setBio}
+                    />
+                    {this.state.uploaderIsVisible && (
+                        <Uploader
+                            setImage={this.setImage}
+                            closeModal={this.closeModal}
+                        />
+                    )}
+                </div>
             </div>
         );
     }

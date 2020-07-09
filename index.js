@@ -9,6 +9,7 @@ const {
     updatePassword,
     getUser,
     updateImg,
+    updateBio,
 } = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
@@ -95,6 +96,7 @@ app.get("/user", (req, res) => {
                 firstname: result.rows[0].first,
                 lastname: result.rows[0].last,
                 profilePic: result.rows[0].imgurl,
+                draftBio: result.rows[0].bio,
             });
         })
         .catch((err) => {
@@ -235,6 +237,18 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             res.sendStatus(500);
             console.log("IMG ERROR: ", err);
         });
+});
+
+app.post("/bio", (req, res) => {
+    if (req.body.bio.trim() == "") {
+        res.sendStatus(500);
+    }
+    updateBio(req.session.userId, req.body.bio)
+        .then((result) => {
+            console.log("UPDATED BIO: ", result);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => console.log("ERROR IN UPDATE BIO: ", err));
 });
 
 app.listen(8080, function () {
