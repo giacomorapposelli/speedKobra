@@ -97,6 +97,28 @@ app.get("/user", (req, res) => {
                 lastname: result.rows[0].last,
                 profilePic: result.rows[0].imgurl,
                 draftBio: result.rows[0].bio,
+                id: result.rows[0].id,
+            });
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.log("BIG PROBLEMA: ", err);
+        });
+});
+
+app.get("/user/:id.json", (req, res) => {
+    if (req.session.userId == req.params.id) {
+        res.json({ match: true });
+    }
+    getUser(req.params.id)
+        .then((result) => {
+            console.log("RISULTATO: ", result);
+            res.json({
+                firstname: result.rows[0].first,
+                lastname: result.rows[0].last,
+                profilePic: result.rows[0].imgurl,
+                draftBio: result.rows[0].bio,
+                id: result.rows[0].id,
             });
         })
         .catch((err) => {
