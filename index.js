@@ -10,6 +10,8 @@ const {
     getUser,
     updateImg,
     updateBio,
+    findUsers,
+    recentUsers,
 } = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
@@ -124,6 +126,28 @@ app.get("/user/:id.json", (req, res) => {
         .catch((err) => {
             res.sendStatus(500);
             console.log("BIG PROBLEMA: ", err);
+        });
+});
+
+app.get("/users", (req, res) => {
+    recentUsers()
+        .then((result) => {
+            console.log("USERS FOUND: ", result.rows);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("ERR IN FINDING PEOPLE: ", err);
+        });
+});
+
+app.get("/results/:search.json", (req, res) => {
+    findUsers(req.params.search)
+        .then((result) => {
+            console.log("SEARCH: ", result.rows);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("ERR", err);
         });
 });
 

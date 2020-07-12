@@ -96,3 +96,22 @@ exports.updateBio = (id, bio) => {
         [id, bio]
     );
 };
+
+exports.recentUsers = () => {
+    return db.query(
+        `
+        SELECT * FROM users ORDER BY id DESC LIMIT 3
+        `
+    );
+};
+
+exports.findUsers = (val) => {
+    return db.query(
+        `
+        SELECT * FROM users 
+        WHERE first ILIKE $1
+        OR last ILIKE $1;
+        `,
+        [val + "%"]
+    );
+};

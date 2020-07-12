@@ -5,6 +5,7 @@ import Profile from "./profile";
 import OtherProfile from "./otherprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import FindPeople from "./findpeople";
 
 export default class App extends React.Component {
     constructor() {
@@ -56,36 +57,35 @@ export default class App extends React.Component {
     render() {
         console.log("this.state: ", this.state);
         return (
-            <div>
+            <BrowserRouter>
                 <header className="head">
                     <img className="logo" src="/palm.jpg" />
-                    <img
-                        className="avatar"
-                        src={this.state.profilePic}
-                        onClick={this.openModal}
-                    />
+                    <Link to="/find" className="find" className="find">
+                        Find People
+                    </Link>
+                    <Link to="/">
+                        <img className="avatar" src={this.state.profilePic} />
+                    </Link>
                 </header>
                 <div className="container">
-                    <BrowserRouter>
-                        <div>
-                            <Route
-                                exact
-                                path="/"
-                                render={() => (
-                                    <Profile
-                                        id={this.state.id}
-                                        firstname={this.state.firstname}
-                                        lastname={this.state.lastname}
-                                        profilePic={this.state.profilePic}
-                                        openModal={this.openModal}
-                                        bio={this.state.draftBio}
-                                        setBio={this.setBio}
-                                    />
-                                )}
+                    <Route
+                        exact
+                        path="/"
+                        render={() => (
+                            <Profile
+                                id={this.state.id}
+                                firstname={this.state.firstname}
+                                lastname={this.state.lastname}
+                                profilePic={this.state.profilePic}
+                                openModal={this.openModal}
+                                bio={this.state.draftBio}
+                                setBio={this.setBio}
                             />
-                            <Route path="/user/:id" component={OtherProfile} />
-                        </div>
-                    </BrowserRouter>
+                        )}
+                    />
+                    <Route path="/user/:id" component={OtherProfile} />
+                    <Route exact path="/find" component={FindPeople} />
+
                     {this.state.uploaderIsVisible && (
                         <Uploader
                             setImage={this.setImage}
@@ -93,7 +93,7 @@ export default class App extends React.Component {
                         />
                     )}
                 </div>
-            </div>
+            </BrowserRouter>
         );
     }
 }

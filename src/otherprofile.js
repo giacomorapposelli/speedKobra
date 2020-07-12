@@ -9,7 +9,6 @@ export default class OtherProfile extends React.Component {
 
     componentDidMount() {
         let id = this.props.match.params.id;
-        console.log("PROPS:", this.props);
         axios
             .get(`/user/${id}.json`)
             .then((response) => {

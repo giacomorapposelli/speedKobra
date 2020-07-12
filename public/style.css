@@ -6,6 +6,18 @@ body {
     font-family: "Righteous";
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.find {
+    text-decoration: none;
+    color: rgb(185, 185, 185);
+    padding-bottom: 15px;
+}
+
 .profile-pic {
     height: 300px;
     width: 300px;
@@ -13,22 +25,65 @@ body {
     cursor: pointer;
 }
 
+.users-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: scroll;
+    max-height: 300px;
+    z-index: 4;
+    flex-grow: 1;
+    height: 250px;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
 .logo,
-.avatar {
+.avatar,
+.res-avatar {
     height: 60px;
     width: 60px;
     object-fit: cover;
-    margin-top: 10px;
     cursor: pointer;
 }
 
 .avatar {
+    margin-top: 10px;
     float: right;
     margin-right: 10px;
 }
 
 .logo {
+    margin-top: 10px;
     margin-left: 10px;
+}
+
+.res-avatar {
+    margin-right: 15px;
+}
+
+.name {
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+.find {
+    display: inline-block;
+    position: absolute;
+    margin-top: 31px;
+    font-size: 18px;
+    margin-left: 12px;
 }
 
 .head {
@@ -43,12 +98,30 @@ body {
 }
 
 .container {
-    margin-top: 80px;
-    overflow: auto;
+    width: 100%;
+    margin-top: 90px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
+}
+
+.find-people {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.search {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 footer {
