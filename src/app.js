@@ -59,6 +59,7 @@ export default class App extends React.Component {
         return (
             <BrowserRouter>
                 <header className="head">
+                    <a className="hello">Hello, {this.state.firstname}</a>
                     <img className="logo" src="/palm.jpg" />
                     <Link to="/find" className="find" className="find">
                         Find People

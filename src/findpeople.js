@@ -70,23 +70,41 @@ export default function FindPeople(props) {
             <div>
                 <div className="find-people">
                     <h1>Find People</h1>
-                    <h3>Your search results for "{search}"</h3>
+                    {(results.length > 0 && (
+                        <h3>Your search results for "{search}"</h3>
+                    )) ||
+                        (!results.length && (
+                            <h3 className="no-results">
+                                No matching results for "{search}"
+                            </h3>
+                        ))}
                 </div>
-                <div className="users-container">
-                    {results.map((each, index) => (
-                        <Link key={index} to={`/user/${each.id}`}>
-                            <div className="user">
-                                <p className="name">
-                                    {each.first} {each.last}
-                                </p>
-                                <img
-                                    src={each.imgurl || "/notyet.png"}
-                                    className="res-avatar"
-                                />
-                            </div>
-                        </Link>
+                {(results.length != 0 && (
+                    <div className="results-container">
+                        {results.map((each, index) => (
+                            <Link key={index} to={`/user/${each.id}`}>
+                                <div className="user">
+                                    <p className="name">
+                                        {each.first} {each.last}
+                                    </p>
+                                    <img
+                                        src={each.imgurl || "/notyet.png"}
+                                        className="res-avatar"
+                                    />
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )) ||
+                    (!results.length && (
+                        <div className="results-container">
+                            <img
+                                className="no-results-img   "
+                                src="/nojobsfound.png"
+                            />
+                        </div>
                     ))}
-                </div>
+
                 <div className="search">
                     <h3>Are you looking for someone in particular?</h3>
                     <input

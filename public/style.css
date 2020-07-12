@@ -13,9 +13,6 @@ main {
     align-items: center;
 }
 .find {
-    text-decoration: none;
-    color: rgb(185, 185, 185);
-    padding-bottom: 15px;
 }
 
 .profile-pic {
@@ -25,15 +22,31 @@ main {
     cursor: pointer;
 }
 
-.users-container {
+.users-container,
+.results-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: scroll;
     max-height: 300px;
     z-index: 4;
     flex-grow: 1;
-    height: 250px;
+    height: 280px;
+}
+
+.no-results {
+    color: rgb(151, 40, 20);
+    text-align: center;
+}
+
+.no-results-img {
+    height: 200px;
+    margin-top: 40px;
+}
+
+.results-container {
+    min-height: 280px;
+    max-height: 280px;
 }
 
 .user {
@@ -78,12 +91,22 @@ a {
     text-decoration: none;
 }
 
-.find {
+.find,
+.hello {
+    text-decoration: none;
+    color: rgb(185, 185, 185);
+    padding-bottom: 16px;
     display: inline-block;
     position: absolute;
     margin-top: 31px;
     font-size: 18px;
     margin-left: 12px;
+}
+
+.hello {
+    position: absolute;
+    float: right;
+    right: 90px;
 }
 
 .head {
@@ -113,13 +136,12 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .search {
     height: 150px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
 }
