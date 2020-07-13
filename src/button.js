@@ -40,8 +40,7 @@ export default function Button(props) {
                 .catch((err) => {
                     console.log("ERROR", err);
                 });
-        }
-        if (
+        } else if (
             buttonText == "Cancel Friend Request" ||
             buttonText == "End Friendship"
         ) {
@@ -52,8 +51,7 @@ export default function Button(props) {
                     setButtonText("Make Friend Request");
                 })
                 .catch((err) => console.log("FAILED TO CANCEL: ", err));
-        }
-        if (buttonText == "Accept Friend Request") {
+        } else {
             axios
                 .post("/accept-friend-request/" + props.id)
                 .then((response) => {
