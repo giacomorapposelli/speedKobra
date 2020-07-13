@@ -12,6 +12,10 @@ const {
     updateBio,
     findUsers,
     recentUsers,
+    getInitialStatus,
+    cancelRequest,
+    updatingRequest,
+    sendFrinedRequest,
 } = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
@@ -148,6 +152,29 @@ app.get("/results/:search.json", (req, res) => {
         })
         .catch((err) => {
             console.log("ERR", err);
+        });
+});
+
+app.get("/get-initial-status/:id", (req, res) => {
+    getInitialStatus(req.session.userId, req.params.id)
+        .then((result) => {
+            console.log("INITIAL STATUS: ", result.rows[0]);
+            if (result.rows[0]) {
+                if (result.rows[0].accepted) {
+                    res.json({ friends: true });
+                } else {
+                    if (req.session.userId == result.rows[0].receiver_id) {
+                        res.json({ accept: true });
+                    } else {
+                        res.json({ pending: true });
+                    }
+                }
+            } else {
+                res.json({ friends: false });
+            }
+        })
+        .catch((err) => {
+            console.log("ERROR INITIAL STATUS: ", err);
         });
 });
 
@@ -295,6 +322,42 @@ app.post("/bio", (req, res) => {
             res.json(result.rows[0]);
         })
         .catch((err) => console.log("ERROR IN UPDATE BIO: ", err));
+});
+
+app.post("/make-friend-request/:id", (req, res) => {
+    sendFrinedRequest(req.session.userId, req.params.id)
+        .then((result) => {
+            console.log("RESULT FRIEND REQ: ", result.rows);
+            res.json({ pending: true });
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.log("FRIEND REQUEST ERROR: ", err);
+        });
+});
+
+app.post("/accept-friend-request/:id", (req, res) => {
+    updatingRequest(req.params.id, req.session.userId)
+        .then((result) => {
+            console.log("RESULT FRIEND REQ: ", result.rows[0].accepted);
+            res.json({ friends: true });
+        })
+        .catch((err) => {
+            console.log("NO ACCEPT: ", err);
+            res.sendStatus(500);
+        });
+});
+
+app.post("/end-friendship/:id", (req, res) => {
+    cancelRequest(req.session.userId, req.params.id)
+        .then((result) => {
+            console.log("RESULT SHOULD BE UNDEFINED: ", result.rows[0]);
+            res.json({ friends: false });
+        })
+        .catch((err) => {
+            console.log("UNFRIEND ERROR: ", err);
+            res.sendStatus(500);
+        });
 });
 
 app.listen(8080, function () {

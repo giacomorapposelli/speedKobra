@@ -68,7 +68,9 @@ export default class Login extends React.Component {
                     <button>Log in</button>
                 </form>
                 <Link to="/reset">Forgot password?</Link>
-                {this.state.error && <p>Email or Password aren't correct</p>}
+                {this.state.error && (
+                    <h3 className="error">Email or Password aren't correct</h3>
+                )}
             </div>
         );
     }

@@ -15,7 +15,6 @@ export default class App extends React.Component {
         };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
         this.setImage = this.setImage.bind(this);
         this.setBio = this.setBio.bind(this);
     }
@@ -84,9 +83,17 @@ export default class App extends React.Component {
                             />
                         )}
                     />
-                    <Route path="/user/:id" component={OtherProfile} />
+                    <Route
+                        exact
+                        path="/user/:id"
+                        render={(props) => (
+                            <OtherProfile
+                                id={props.match.params.id}
+                                match={props.match}
+                            />
+                        )}
+                    />
                     <Route exact path="/find" component={FindPeople} />
-
                     {this.state.uploaderIsVisible && (
                         <Uploader
                             setImage={this.setImage}
@@ -94,6 +101,9 @@ export default class App extends React.Component {
                         />
                     )}
                 </div>
+                <footer>
+                    <p className="elrappo">© 2020 El Rappo</p>
+                </footer>
             </BrowserRouter>
         );
     }

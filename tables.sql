@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS reset_codes CASCADE;
+DROP TABLE IF EXISTS friendships CASCADE;
 
 CREATE TABLE users(
   id SERIAL PRIMARY KEY,
@@ -16,5 +17,13 @@ CREATE TABLE reset_codes(
   id SERIAL PRIMARY KEY,
   email VARCHAR NOT NULL CHECK (email != ''),
   code VARCHAR NOT NULL CHECK (code != ''),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE friendships(
+  id SERIAL PRIMARY KEY,
+  sender_id INT NOT NULL REFERENCES users(id),
+  receiver_id INT NOT NULL REFERENCES users(id),
+  accepted BOOLEAN DEFAULT false,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

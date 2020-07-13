@@ -115,3 +115,42 @@ exports.findUsers = (val) => {
         [val + "%"]
     );
 };
+
+exports.getInitialStatus = (myId, otherId) => {
+    return db.query(
+        `
+         SELECT * FROM friendships
+         WHERE (receiver_id = $1 AND sender_id = $2)
+         OR (receiver_id = $2 AND sender_id = $1);
+         `,
+        [myId, otherId]
+    );
+};
+
+exports.sendFrinedRequest = (myId, otherId) => {
+    return db.query(
+        `
+        INSERT INTO friendships
+        (sender_id, receiver_id) VALUES ($1, $2)
+        RETURNING *
+    `,
+        [myId, otherId]
+    );
+};
+
+exports.updatingRequest = (myId, otherId) => {
+    return db.query(
+        `UPDATE friendships SET accepted=true WHERE receiver_id=$1 AND sender_id=$2 RETURNING *`,
+        [otherId, myId]
+    );
+};
+
+exports.cancelRequest = (myId, otherId) => {
+    return db.query(
+        `DELETE FROM friendships 
+        WHERE (receiver_id = $1 AND sender_id = $2)
+        OR (receiver_id = $2 AND sender_id = $1);
+        `,
+        [myId, otherId]
+    );
+};

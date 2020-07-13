@@ -100,7 +100,9 @@ export default class Bioeditor extends React.Component {
             <div>
                 {this.getCurrentDisplay()}
                 {this.state.error && (
-                    <p>Something went wrong,please try again</p>
+                    <p className="error">
+                        Something went wrong,please try again
+                    </p>
                 )}
             </div>
         );

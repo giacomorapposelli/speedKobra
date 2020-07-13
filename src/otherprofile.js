@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "./axios";
+import Button from "./button";
 
 export default class OtherProfile extends React.Component {
     constructor(props) {
@@ -8,6 +9,7 @@ export default class OtherProfile extends React.Component {
     }
 
     componentDidMount() {
+        console.log("props in OtherProfile: ", this.props);
         let id = this.props.match.params.id;
         axios
             .get(`/user/${id}.json`)
@@ -39,6 +41,7 @@ export default class OtherProfile extends React.Component {
                     {!this.state.draftBio && <p>No bio yet</p>}
                     <p>{this.state.draftBio}</p>
                 </div>
+                <Button id={this.props.id}></Button>
             </div>
         );
     }

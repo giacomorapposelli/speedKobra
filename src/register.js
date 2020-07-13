@@ -91,7 +91,9 @@ export default class Registration extends React.Component {
                     </p>
                 </form>
                 {this.state.error && (
-                    <p>Something went wrong,please try again</p>
+                    <p className="error">
+                        Something went wrong,please try again
+                    </p>
                 )}
             </div>
         );

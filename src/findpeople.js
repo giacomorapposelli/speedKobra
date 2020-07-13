@@ -7,7 +7,7 @@ export default function FindPeople(props) {
     const [results, setResults] = useState("");
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
+    useEffect((event) => {
         axios.get("/users").then((response) => {
             console.log("RECENT USERS: ", response.data);
             setUsers(response.data);
@@ -25,8 +25,6 @@ export default function FindPeople(props) {
                     console.log("SEARCH: ", search);
                 }
             })();
-        } else {
-            setResults([]);
         }
         return () => {
             abort = true;
@@ -74,7 +72,7 @@ export default function FindPeople(props) {
                         <h3>Your search results for "{search}"</h3>
                     )) ||
                         (!results.length && (
-                            <h3 className="no-results">
+                            <h3 className="error">
                                 No matching results for "{search}"
                             </h3>
                         ))}
@@ -99,7 +97,7 @@ export default function FindPeople(props) {
                     (!results.length && (
                         <div className="results-container">
                             <img
-                                className="no-results-img   "
+                                className="no-results-img"
                                 src="/nojobsfound.png"
                             />
                         </div>

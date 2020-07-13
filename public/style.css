@@ -12,8 +12,6 @@ main {
     justify-content: center;
     align-items: center;
 }
-.find {
-}
 
 .profile-pic {
     height: 300px;
@@ -28,13 +26,14 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     overflow: scroll;
+    overflow-x: hidden;
     max-height: 300px;
     z-index: 4;
     flex-grow: 1;
     height: 280px;
 }
 
-.no-results {
+.error {
     color: rgb(151, 40, 20);
     text-align: center;
 }
@@ -92,15 +91,20 @@ a {
 }
 
 .find,
-.hello {
+.hello,
+.logout {
     text-decoration: none;
     color: rgb(185, 185, 185);
-    padding-bottom: 16px;
+    margin-bottom: 16px;
     display: inline-block;
     position: absolute;
-    margin-top: 31px;
+    margin-top: 30px;
     font-size: 18px;
     margin-left: 12px;
+}
+
+.logout {
+    margin-top: 55px;
 }
 
 .hello {
@@ -122,7 +126,7 @@ a {
 
 .container {
     width: 100%;
-    margin-top: 90px;
+    margin-top: 80px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -139,7 +143,7 @@ a {
 }
 
 .search {
-    height: 150px;
+    height: 138px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -190,4 +194,39 @@ footer {
 
 button {
     cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    border: 1px solid #d5d5d5;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 2px;
+    background: #eeeeee;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: rgb(26, 26, 26);
+}
+
+/* Up */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    border-width: 0 8px 8px 8px;
+    border-color: transparent transparent #555555 transparent;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+    border-color: transparent transparent #777777 transparent;
+}
+/* Down */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    border-width: 8px 8px 0 8px;
+    border-color: #555555 transparent transparent transparent;
+}
+
+::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+    border-color: #777777 transparent transparent transparent;
 }

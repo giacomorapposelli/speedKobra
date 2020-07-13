@@ -62,7 +62,9 @@ export default class Uploader extends React.Component {
 
                     <button>Submit</button>
                 </form>
-                {this.state.error && <p>You must insert a picture</p>}
+                {this.state.error && (
+                    <p className="error">You must insert a picture</p>
+                )}
             </div>
         );
     }
