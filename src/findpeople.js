@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function FindPeople(props) {
     const [search, setSearch] = useState("");
-    const [results, setResults] = useState("");
+    const [results, setResults] = useState();
     const [users, setUsers] = useState([]);
 
     useEffect((event) => {
@@ -68,16 +68,16 @@ export default function FindPeople(props) {
             <div>
                 <div className="find-people">
                     <h1>Find People</h1>
-                    {(results.length > 0 && (
+                    {(results && results.length > 0 && (
                         <h3>Your search results for "{search}"</h3>
                     )) ||
-                        (!results.length && (
+                        (results && !results.length && (
                             <h3 className="error">
                                 No matching results for "{search}"
                             </h3>
                         ))}
                 </div>
-                {(results.length > 0 && (
+                {(results && results.length > 0 && (
                     <div className="results-container">
                         {results.map((each, index) => (
                             <Link key={index} to={`/user/${each.id}`}>
@@ -94,7 +94,7 @@ export default function FindPeople(props) {
                         ))}
                     </div>
                 )) ||
-                    (!results.length && (
+                    (results && !results.length && (
                         <div className="results-container">
                             <img
                                 className="no-results-img"
