@@ -161,6 +161,27 @@ footer {
     background-color: rgb(26, 26, 26);
 }
 
+button {
+    border-radius: 10px;
+    font-family: "Righteous";
+    background-color: rgb(185, 185, 185);
+    border: 2px solid black;
+    outline: none;
+    cursor: pointer;
+    height: 30px;
+    font-size: 18px;
+}
+
+.red {
+    color: rgb(126, 10, 10);
+    border: 2px solid rgb(126, 10, 10);
+}
+
+.green {
+    color: rgb(22, 99, 45);
+    border: 2px solid rgb(22, 99, 45);
+}
+
 .elrappo {
     margin-left: 10px;
     color: rgb(185, 185, 185);
@@ -190,10 +211,6 @@ footer {
     font-size: 30px;
     cursor: pointer;
     font-family: "Righteous";
-}
-
-button {
-    cursor: pointer;
 }
 
 ::-webkit-scrollbar {

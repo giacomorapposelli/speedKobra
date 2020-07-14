@@ -15,7 +15,7 @@ export default class ResetPassword extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitEmail = this.handleSubmitEmail.bind(this);
         this.handleSubmitCode = this.handleSubmitCode.bind(this);
-        this.handleSubmit = this.resetError.bind(this);
+        this.resetError = this.resetError.bind(this);
     }
 
     handleChange(event) {

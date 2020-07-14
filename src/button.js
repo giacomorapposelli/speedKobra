@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
-import { Discovery } from "aws-sdk";
 
 export default function Button(props) {
     // console.log("ID: ", props.id);
 
     const [buttonText, setButtonText] = useState("");
     const [error, setError] = useState("");
+    const [className, setClassName] = useState("");
 
     useEffect(() => {
         axios
@@ -15,12 +15,16 @@ export default function Button(props) {
                 console.log("RESP: ", response.data);
                 if (response.data.friends) {
                     setButtonText("End Friendship");
+                    setClassName("red");
                 } else if (response.data.accept) {
                     setButtonText("Accept Friend Request");
+                    setClassName("green");
                 } else if (response.data.pending) {
                     setButtonText("Cancel Friend Request");
+                    setClassName("red");
                 } else {
                     setButtonText("Make Friend Request");
+                    setClassName("green");
                 }
             })
             .catch((err) => {
@@ -35,6 +39,7 @@ export default function Button(props) {
                 .post("/make-friend-request/" + props.id)
                 .then((response) => {
                     setButtonText("Cancel Friend Request");
+                    setClassName("red");
                     console.log("FRIEND REQ: ", response.data);
                 })
                 .catch((err) => {
@@ -49,6 +54,7 @@ export default function Button(props) {
                 .then((response) => {
                     console.log("DELETED: ", response.data);
                     setButtonText("Make Friend Request");
+                    setClassName("green");
                 })
                 .catch((err) => console.log("FAILED TO CANCEL: ", err));
         } else {
@@ -60,6 +66,7 @@ export default function Button(props) {
                         setError("Something went wrong,please try again");
                     }
                     setButtonText("End Friendship");
+                    setClassName("red");
                 })
                 .catch((err) => console.log("ERRORE: ", err));
         }
@@ -67,7 +74,9 @@ export default function Button(props) {
 
     return (
         <div>
-            <button onClick={handleClick}>{buttonText}</button>
+            <button onClick={handleClick} className={className}>
+                {buttonText}
+            </button>
             <p className="error">{error}</p>
         </div>
     );
