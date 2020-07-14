@@ -60,7 +60,7 @@ export default class App extends React.Component {
                 <header className="head">
                     <a className="hello">Hello, {this.state.firstname}</a>
                     <img className="logo" src="/palm.jpg" />
-                    <Link to="/find" className="find" className="find">
+                    <Link to="/find" className="find">
                         Find People
                     </Link>
                     <Link to="/">

@@ -344,6 +344,7 @@ app.post("/accept-friend-request/:id", (req, res) => {
         })
         .catch((err) => {
             console.log("NO ACCEPT: ", err);
+            res.json({ error: true });
             res.sendStatus(500);
         });
 });

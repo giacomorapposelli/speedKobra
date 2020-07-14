@@ -77,7 +77,7 @@ export default function FindPeople(props) {
                             </h3>
                         ))}
                 </div>
-                {(results.length != 0 && (
+                {(results.length > 0 && (
                     <div className="results-container">
                         {results.map((each, index) => (
                             <Link key={index} to={`/user/${each.id}`}>

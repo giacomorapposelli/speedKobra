@@ -1,10 +1,12 @@
-import React, { handleClick, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "./axios";
+import { Discovery } from "aws-sdk";
 
 export default function Button(props) {
-    console.log("ID: ", props.id);
+    // console.log("ID: ", props.id);
 
     const [buttonText, setButtonText] = useState("");
+    const [error, setError] = useState("");
 
     useEffect(() => {
         axios
@@ -15,12 +17,10 @@ export default function Button(props) {
                     setButtonText("End Friendship");
                 } else if (response.data.accept) {
                     setButtonText("Accept Friend Request");
+                } else if (response.data.pending) {
+                    setButtonText("Cancel Friend Request");
                 } else {
-                    if (response.data.pending) {
-                        setButtonText("Cancel Friend Request");
-                    } else {
-                        setButtonText("Make Friend Request");
-                    }
+                    setButtonText("Make Friend Request");
                 }
             })
             .catch((err) => {
@@ -56,11 +56,19 @@ export default function Button(props) {
                 .post("/accept-friend-request/" + props.id)
                 .then((response) => {
                     console.log("FRIEND REQUEST ACCEPTED: ", response.data);
+                    if (response.data.error) {
+                        setError("Something went wrong,please try again");
+                    }
                     setButtonText("End Friendship");
                 })
                 .catch((err) => console.log("ERRORE: ", err));
         }
     };
 
-    return <button onClick={handleClick}>{buttonText}</button>;
+    return (
+        <div>
+            <button onClick={handleClick}>{buttonText}</button>
+            <p className="error">{error}</p>
+        </div>
+    );
 }
