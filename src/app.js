@@ -6,6 +6,7 @@ import OtherProfile from "./otherprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import FindPeople from "./findpeople";
+import Friends from "./friends";
 
 export default class App extends React.Component {
     constructor() {
@@ -66,41 +67,49 @@ export default class App extends React.Component {
                     <Link to="/">
                         <img className="avatar" src={this.state.profilePic} />
                     </Link>
+                    <Link to="/friends" className="friends-link">
+                        Friends
+                    </Link>
                 </header>
-                <div className="container">
-                    <Route
-                        exact
-                        path="/"
-                        render={() => (
-                            <Profile
-                                id={this.state.id}
-                                firstname={this.state.firstname}
-                                lastname={this.state.lastname}
-                                profilePic={this.state.profilePic}
-                                openModal={this.openModal}
-                                bio={this.state.draftBio}
-                                setBio={this.setBio}
-                            />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/user/:id"
-                        render={(props) => (
-                            <OtherProfile
-                                id={props.match.params.id}
-                                match={props.match}
-                            />
-                        )}
-                    />
-                    <Route exact path="/find" component={FindPeople} />
-                    {this.state.uploaderIsVisible && (
-                        <Uploader
-                            setImage={this.setImage}
-                            closeModal={this.closeModal}
+
+                <Route
+                    exact
+                    path="/"
+                    render={() => (
+                        <Profile
+                            id={this.state.id}
+                            firstname={this.state.firstname}
+                            lastname={this.state.lastname}
+                            profilePic={this.state.profilePic}
+                            openModal={this.openModal}
+                            bio={this.state.draftBio}
+                            setBio={this.setBio}
                         />
                     )}
-                </div>
+                />
+                <Route
+                    exact
+                    path="/user/:id"
+                    render={(props) => (
+                        <OtherProfile
+                            id={props.match.params.id}
+                            match={props.match}
+                        />
+                    )}
+                />
+                <Route exact path="/find" component={FindPeople} />
+                {this.state.uploaderIsVisible && (
+                    <Uploader
+                        setImage={this.setImage}
+                        closeModal={this.closeModal}
+                    />
+                )}
+                <Route
+                    exact
+                    path="/friends"
+                    render={(props) => <Friends id={props.match.params.id} />}
+                />
+
                 <footer>
                     <p className="elrappo">© 2020 El Rappo</p>
                 </footer>

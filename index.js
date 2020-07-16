@@ -16,6 +16,7 @@ const {
     cancelRequest,
     updatingRequest,
     sendFrinedRequest,
+    getFriends,
 } = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
@@ -175,6 +176,18 @@ app.get("/get-initial-status/:id", (req, res) => {
         })
         .catch((err) => {
             console.log("ERROR INITIAL STATUS: ", err);
+        });
+});
+
+app.get("/friends-wannabes", (req, res) => {
+    getFriends(req.session.userId)
+        .then((result) => {
+            console.log("FRIENDS AND WANNABES: ", result.rows);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("NO FRIENDS: ", err);
+            res.json({ error: true });
         });
 });
 

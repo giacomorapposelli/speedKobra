@@ -6,7 +6,7 @@ export default function ProfilePic(props) {
         <div>
             <img
                 className="profile-pic"
-                src={props.profilePic}
+                src={props.profilePic || "notyet.png"}
                 onClick={props.openModal}
             />
         </div>
