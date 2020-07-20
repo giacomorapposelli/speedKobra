@@ -58,7 +58,7 @@ export default function Friends() {
                     ))) ||
                     (friends && !friends.length && (
                         <h3 className="friends-error">
-                            You have fo friends, you should make some requests!
+                            You have no friends, you should make some requests!
                         </h3>
                     ))}
             </div>

@@ -201,3 +201,30 @@ exports.getSendersInfo = (id) => {
         [id]
     );
 };
+
+exports.deleteChatHistory = (id) => {
+    return db.query(
+        `
+        DELETE FROM chat WHERE (sender_id = $1);
+        `,
+        [id]
+    );
+};
+
+exports.deleteFriendsList = (id) => {
+    return db.query(
+        `
+        DELETE FROM friendships WHERE (sender_id = $1);
+        `,
+        [id]
+    );
+};
+
+exports.deleteAccount = (id) => {
+    return db.query(
+        `
+        DELETE FROM users WHERE (id = $1);
+        `,
+        [id]
+    );
+};

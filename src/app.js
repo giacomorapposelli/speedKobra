@@ -62,21 +62,23 @@ export default class App extends React.Component {
                 <header className="head">
                     <a className="hello">Hello, {this.state.firstname}</a>
                     <img className="logo" src="/palm.jpg" />
+
                     <Link to="/find" className="find">
                         Find People
                     </Link>
                     <Link to="/chat" className="chat-link">
                         Chat
                     </Link>
+                    <Link to="/friends" className="friends-link">
+                        Friends
+                    </Link>
+
                     <Link to="/">
                         <img
                             className="avatar"
                             src={this.state.profilePic}
                             onClick={this.openModal}
                         />
-                    </Link>
-                    <Link to="/friends" className="friends-link">
-                        Friends
                     </Link>
                     <a href="/logout" className="logout">
                         Log out
@@ -112,6 +114,7 @@ export default class App extends React.Component {
                     <Uploader
                         setImage={this.setImage}
                         closeModal={this.closeModal}
+                        profilePic={this.state.profilePic}
                     />
                 )}
                 <Route

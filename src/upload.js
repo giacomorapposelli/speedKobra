@@ -19,7 +19,7 @@ export default class Uploader extends React.Component {
         });
     }
 
-    resetError(event) {
+    resetError() {
         this.setState({
             error: false,
         });
@@ -51,6 +51,7 @@ export default class Uploader extends React.Component {
                 <a id="x-modal" onClick={this.props.closeModal}>
                     X
                 </a>
+                <img src={this.props.profilePic} alt="" className="img-modal" />
                 <form onSubmit={this.uploadImg}>
                     <input
                         type="file"

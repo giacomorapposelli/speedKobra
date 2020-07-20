@@ -69,6 +69,8 @@ main {
     margin-top: 10px;
     float: right;
     margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid rgb(185, 185, 185);
 }
 
 .logo {
@@ -99,30 +101,30 @@ a {
     color: rgb(185, 185, 185);
     display: inline-block;
     position: absolute;
-    font-size: 20px;
-    margin-top: 15px;
+    font-size: 15px;
+    margin-top: 8px;
     margin-left: 12px;
 }
 
 .friends-link {
-    position: absolute;
-    margin-top: 45px;
+    margin-top: 32px;
 }
 
 .chat-link {
-    margin-top: 45px;
-    right: 180px;
+    margin-top: 54px;
 }
 
 .logout {
     margin-top: 45px;
     right: 90px;
+    font-size: 20px;
 }
 
 .hello {
     position: absolute;
     float: right;
     right: 90px;
+    font-size: 20px;
 }
 
 .head {
@@ -152,6 +154,7 @@ a {
 
 .find-people {
     height: 150px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -213,15 +216,24 @@ button {
 }
 
 .modal {
-    width: 50%;
+    width: 45%;
     height: 40%;
     z-index: 2;
     border: 3px solid black;
     border-radius: 15px;
     position: absolute;
+    top: 25%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     background-color: rgb(126, 10, 10);
+}
+
+.img-modal {
+    height: 150px;
+    width: 200px;
+    object-fit: cover;
 }
 
 #x-modal {
@@ -293,8 +305,10 @@ button {
     position: absolute;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     top: 100px;
-    margin-left: 5%;
+    width: 100%;
 }
 
 .user {

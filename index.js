@@ -22,6 +22,9 @@ const {
     getLastTenMsgs,
     sendMessage,
     getSendersInfo,
+    deleteAccount,
+    deleteChatHistory,
+    deleteFriendsList,
 } = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
@@ -394,6 +397,21 @@ app.post("/end-friendship/:id", (req, res) => {
         });
 });
 
+app.post("/delete-account/:id", (req, res) => {
+    deleteChatHistory(req.session.userId)
+        .then(() => {
+            deleteFriendsList(req.session.userId).then(() => {
+                deleteAccount(req.session.userId).then(() => {
+                    req.session.userId = null;
+                    res.json();
+                });
+            });
+        })
+        .catch((err) => {
+            console.log("ERROR IN DELETING ACCOUNT: ", err);
+        });
+});
+
 server.listen(8080, function () {
     console.log("I'm listening.");
 });
@@ -406,18 +424,30 @@ io.on("connection", async (socket) => {
         return socket.disconnect(true);
     }
 
-    getLastTenMsgs().then((result) => {
-        io.sockets.emit("chatMessages", result.rows);
-        console.log("LAST 10 MSGS: ", result.rows);
-    });
+    getLastTenMsgs()
+        .then((result) => {
+            io.sockets.emit("chatMessages", result.rows);
+            console.log("LAST 10 MSGS: ", result.rows);
+        })
+        .catch((err) => {
+            console.log("ERROR IN RECEIVING MSGS:", err);
+        });
 
     socket.on("My amazing chat message", (newMsg) => {
-        sendMessage(newMsg, userId).then((result) => {
-            console.log("MESSAGE SENT: ", result.rows[0]);
-            getSendersInfo(userId).then((result) => {
-                console.log("SENDERER: ", result.rows[0]);
-                io.sockets.emit("chatMessage", result.rows[0]);
+        sendMessage(newMsg, userId)
+            .then((result) => {
+                console.log("MESSAGE SENT: ", result.rows[0]);
+                getSendersInfo(userId)
+                    .then((result) => {
+                        console.log("SENDER: ", result.rows[0]);
+                        io.sockets.emit("chatMessage", result.rows[0]);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            })
+            .catch((err) => {
+                console.log("NO MSGS SENT: ", err);
             });
-        });
     });
 });
