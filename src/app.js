@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import FindPeople from "./findpeople";
 import Friends from "./friends";
+import Chat from "./chat";
 
 export default class App extends React.Component {
     constructor() {
@@ -64,14 +65,23 @@ export default class App extends React.Component {
                     <Link to="/find" className="find">
                         Find People
                     </Link>
+                    <Link to="/chat" className="chat-link">
+                        Chat
+                    </Link>
                     <Link to="/">
-                        <img className="avatar" src={this.state.profilePic} />
+                        <img
+                            className="avatar"
+                            src={this.state.profilePic}
+                            onClick={this.openModal}
+                        />
                     </Link>
                     <Link to="/friends" className="friends-link">
                         Friends
                     </Link>
+                    <a href="/logout" className="logout">
+                        Log out
+                    </a>
                 </header>
-
                 <Route
                     exact
                     path="/"
@@ -109,7 +119,7 @@ export default class App extends React.Component {
                     path="/friends"
                     render={(props) => <Friends id={props.match.params.id} />}
                 />
-
+                <Route path="/chat" component={Chat} />
                 <footer>
                     <p className="elrappo">© 2020 El Rappo</p>
                 </footer>

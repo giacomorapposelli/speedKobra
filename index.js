@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const compression = require("compression");
+const server = require("http").Server(app);
+const io = require("socket.io")(server, { origins: "localhost:8080" });
 const {
     addUser,
     getEmail,
@@ -17,6 +19,9 @@ const {
     updatingRequest,
     sendFrinedRequest,
     getFriends,
+    getLastTenMsgs,
+    sendMessage,
+    getSendersInfo,
 } = require("./db");
 const cookieSession = require("cookie-session");
 const { hash, compare } = require("./bc.js");
@@ -54,12 +59,22 @@ const uploader = multer({
 
 /////////////////////////////
 
-app.use(
-    cookieSession({
-        secret: `I'm always angry.`,
-        maxAge: 1000 * 60 * 60 * 24 * 14,
-    })
-);
+// app.use(
+//     cookieSession({
+//         secret: `I'm always angry.`,
+//         maxAge: 1000 * 60 * 60 * 24 * 14,
+//     })
+// );
+
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 90,
+});
+
+app.use(cookieSessionMiddleware);
+io.use(function (socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
 
 app.use(
     express.urlencoded({
@@ -189,6 +204,11 @@ app.get("/friends-wannabes", (req, res) => {
             console.log("NO FRIENDS: ", err);
             res.json({ error: true });
         });
+});
+
+app.get("/logout", (req, res) => {
+    req.session.userId = null;
+    res.redirect("/");
 });
 
 app.get("*", function (req, res) {
@@ -374,6 +394,30 @@ app.post("/end-friendship/:id", (req, res) => {
         });
 });
 
-app.listen(8080, function () {
+server.listen(8080, function () {
     console.log("I'm listening.");
+});
+
+io.on("connection", async (socket) => {
+    console.log(`socket with id ${socket.id} just CONNECTED!`);
+    const userId = socket.request.session.userId;
+
+    if (!userId) {
+        return socket.disconnect(true);
+    }
+
+    getLastTenMsgs().then((result) => {
+        io.sockets.emit("chatMessages", result.rows);
+        console.log("LAST 10 MSGS: ", result.rows);
+    });
+
+    socket.on("My amazing chat message", (newMsg) => {
+        sendMessage(newMsg, userId).then((result) => {
+            console.log("MESSAGE SENT: ", result.rows[0]);
+            getSendersInfo(userId).then((result) => {
+                console.log("SENDERER: ", result.rows[0]);
+                io.sockets.emit("chatMessage", result.rows[0]);
+            });
+        });
+    });
 });

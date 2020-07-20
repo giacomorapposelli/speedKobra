@@ -23,6 +23,16 @@ export default function (state = {}, action) {
             }),
         });
     }
+    if (action.type === "SEE_MESSAGES") {
+        state = Object.assign({}, state, {
+            chatMessages: action.msgs.reverse(),
+        });
+    }
+    if (action.type === "SEND_MESSAGE") {
+        state = Object.assign({}, state, {
+            chatMessages: state.chatMessages.concat(action.msg),
+        });
+    }
 
     return state;
 }

@@ -168,3 +168,36 @@ exports.getFriends = (myId) => {
         [myId]
     );
 };
+
+exports.getLastTenMsgs = () => {
+    return db.query(
+        `
+        SELECT users.id, chat.id AS message_id, first, last, imgurl, message, chat.created_at
+        FROM chat
+        JOIN users ON (sender_id = users.id)
+        ORDER BY chat.created_at DESC
+        LIMIT 10
+        `
+    );
+};
+
+exports.sendMessage = (msg, myId) => {
+    return db.query(
+        `
+        INSERT INTO chat (message,sender_id) VALUES ($1, $2) RETURNING *
+        `,
+        [msg, myId]
+    );
+};
+
+exports.getSendersInfo = (id) => {
+    return db.query(
+        `
+        SELECT users.id, chat.id AS message_id, first, last, imgurl, message, chat.created_at
+        FROM chat
+        JOIN users on (sender_id = users.id AND sender_id = $1)
+        ORDER BY chat.created_at DESC
+        `,
+        [id]
+    );
+};

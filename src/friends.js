@@ -43,9 +43,11 @@ export default function Friends() {
                                     className="friend-avatar"
                                 />
                             </Link>
-                            <p className="name">
-                                {each.first} {each.last}
-                            </p>
+                            <Link to={`/user/${each.id}`}>
+                                <p className="name">
+                                    {each.first} {each.last}
+                                </p>
+                            </Link>
                             <button
                                 className="red friend-btn"
                                 onClick={() => dispatch(unfriend(each.id))}
@@ -72,9 +74,11 @@ export default function Friends() {
                                     className="friend-avatar"
                                 />
                             </Link>
-                            <p className="name">
-                                {each.first} {each.last}
-                            </p>
+                            <Link to={`/user/${each.id}`}>
+                                <p className="name">
+                                    {each.first} {each.last}
+                                </p>
+                            </Link>
                             <button
                                 className="green friend-btn"
                                 onClick={() =>

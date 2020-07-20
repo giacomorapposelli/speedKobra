@@ -93,8 +93,7 @@ a {
 .find,
 .hello,
 .logout,
-.friends-link,
-.chat-link {
+.friends-link {
     text-decoration: none;
     color: rgb(185, 185, 185);
     display: inline-block;
@@ -107,11 +106,6 @@ a {
 .friends-link {
     position: absolute;
     margin-top: 45px;
-}
-
-.chat-link {
-    margin-top: 45px;
-    right: 180px;
 }
 
 .logout {
@@ -290,11 +284,8 @@ button {
 }
 
 .profile-container {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 100px;
-    margin-left: 5%;
+    width: 100%;
+    height: 100%;
 }
 
 .user {
@@ -320,11 +311,4 @@ button {
 .friends-error {
     margin-left: 30px;
     color: rgb(126, 10, 10);
-}
-
-.chat-container {
-    height: 300px;
-    width: 600px;
-    overflow-y: scroll;
-    margin-top: 200px;
 }

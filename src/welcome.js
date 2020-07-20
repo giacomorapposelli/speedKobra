@@ -3,7 +3,6 @@ import Register from "./register";
 import Login from "./login";
 import { HashRouter, Route } from "react-router-dom";
 import ResetPassword from "./reset";
-import App from "./app";
 
 export default function Welcome() {
     return (
