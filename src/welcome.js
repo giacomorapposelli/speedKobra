@@ -6,14 +6,15 @@ import ResetPassword from "./reset";
 
 export default function Welcome() {
     return (
-        <div id="welcome">
-            <h1>Welcome to our social network!</h1>
+        <div className="welcome">
+            <div className="palm">
+                <h1 className="title">Welcome to Palmbook!</h1>
+                <img src="palmbook.png" className="main-img" />
+            </div>
             <HashRouter>
-                <div>
-                    <Route exact path="/" component={Register} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/reset" component={ResetPassword} />
-                </div>
+                <Route exact path="/" component={Register} />
+                <Route path="/login" component={Login} />
+                <Route path="/reset" component={ResetPassword} />
             </HashRouter>
         </div>
     );

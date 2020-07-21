@@ -67,13 +67,17 @@ export default class Bioeditor extends React.Component {
     getCurrentDisplay() {
         if (this.state.bioEditorIsVisible) {
             return (
-                <div>
+                <div className="bio-form">
                     <textarea
                         onChange={this.handleChange}
                         onFocus={this.resetError}
                     ></textarea>
-                    <button onClick={this.hideEditor}>Cancel</button>
-                    <button onClick={this.uploadBio}>Save</button>
+                    <button onClick={this.hideEditor} className="editbio-btn">
+                        Cancel
+                    </button>
+                    <button onClick={this.uploadBio} className="editbio-btn">
+                        Save
+                    </button>
                 </div>
             );
         } else {

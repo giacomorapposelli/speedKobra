@@ -36,7 +36,7 @@ export default function Friends() {
                 {(friends &&
                     friends.length > 0 &&
                     friends.map((each) => (
-                        <div key={each.id} className="user">
+                        <div key={each.id} className="friend-card">
                             <Link to={`/user/${each.id}`}>
                                 <img
                                     src={each.imgurl || "/notyet.png"}
@@ -67,7 +67,7 @@ export default function Friends() {
                 {(wannabes &&
                     wannabes.length > 0 &&
                     wannabes.map((each) => (
-                        <div key={each.id} className="user">
+                        <div key={each.id} className="friend-card">
                             <Link to={`/user/${each.id}`}>
                                 <img
                                     src={each.imgurl || "/notyet.png"}

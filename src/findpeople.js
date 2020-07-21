@@ -7,7 +7,7 @@ export default function FindPeople(props) {
     const [results, setResults] = useState();
     const [users, setUsers] = useState([]);
 
-    useEffect((event) => {
+    useEffect(() => {
         axios.get("/users").then((response) => {
             console.log("RECENT USERS: ", response.data);
             setUsers(response.data);

@@ -72,7 +72,6 @@ export default class App extends React.Component {
                     <Link to="/friends" className="friends-link">
                         Friends
                     </Link>
-
                     <Link to="/">
                         <img
                             className="avatar"

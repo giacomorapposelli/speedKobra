@@ -47,8 +47,9 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <div className="login-form">
+                <h2>Log in:</h2>
+                <form onSubmit={this.handleSubmit} className="input-fields">
                     <input
                         type="email"
                         name="email"
@@ -67,9 +68,13 @@ export default class Login extends React.Component {
                     />
                     <button>Log in</button>
                 </form>
-                <Link to="/reset">Forgot password?</Link>
-                {this.state.error && (
-                    <h3 className="error">Email or Password aren't correct</h3>
+                <p>
+                    <Link to="/reset">Forgot password?</Link>
+                </p>
+                {(this.state.error && (
+                    <p className="error">Email or Password aren't correct</p>
+                )) || (
+                    <p className="no-error">Email or Password aren't correct</p>
                 )}
             </div>
         );

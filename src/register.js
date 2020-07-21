@@ -51,50 +51,57 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        name="firstname"
-                        onChange={this.handleChange}
-                        placeholder="First Name"
-                        required
-                        onFocus={this.resetError}
-                    />
-                    <input
-                        type="text"
-                        name="lastname"
-                        onChange={this.handleChange}
-                        placeholder="Last Name"
-                        required
-                        onFocus={this.resetError}
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={this.handleChange}
-                        placeholder="Email"
-                        required
-                        onFocus={this.resetError}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={this.handleChange}
-                        placeholder="Password"
-                        required
-                        onFocus={this.resetError}
-                    />
-                    <button>Register</button>
+                <div className="reg-form">
+                    <h2>Register here:</h2>
+                    <form onSubmit={this.handleSubmit} className="input-fields">
+                        <input
+                            type="text"
+                            name="firstname"
+                            onChange={this.handleChange}
+                            placeholder="First Name"
+                            required
+                            onFocus={this.resetError}
+                        />
+                        <input
+                            type="text"
+                            name="lastname"
+                            onChange={this.handleChange}
+                            placeholder="Last Name"
+                            required
+                            onFocus={this.resetError}
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            onChange={this.handleChange}
+                            placeholder="Email"
+                            required
+                            onFocus={this.resetError}
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            onChange={this.handleChange}
+                            placeholder="Password"
+                            required
+                            onFocus={this.resetError}
+                        />
+                        <button>Register</button>
+                    </form>
                     <p>
                         Already a member?
-                        <Link to="/login">Log in</Link>
+                        <Link to="/login"> Log in</Link>
                     </p>
-                </form>
-                {this.state.error && (
-                    <p className="error">
-                        Something went wrong,please try again
-                    </p>
-                )}
+                    {(this.state.error && (
+                        <p className="error">
+                            Something went wrong,please try again
+                        </p>
+                    )) || (
+                        <p className="no-error">
+                            Something went wrong,please try again
+                        </p>
+                    )}
+                </div>
             </div>
         );
     }

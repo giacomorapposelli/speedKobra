@@ -53,18 +53,20 @@ export default class Uploader extends React.Component {
                 </a>
                 <img src={this.props.profilePic} alt="" className="img-modal" />
                 <form onSubmit={this.uploadImg}>
+                    <label for="file">Choose a file</label>
                     <input
                         type="file"
                         name="file"
+                        id="file"
+                        className="inputfile"
                         accept="image/*"
                         onChange={this.handleChange}
                         onFocus={this.resetError}
                     />
-
-                    <button>Submit</button>
+                    <button className="modal-btn">Submit</button>
                 </form>
-                {this.state.error && (
-                    <p className="error">You must insert a picture</p>
+                {(this.state.error && <p>You must insert a picture</p>) || (
+                    <p className="no-error">You should choose a picture</p>
                 )}
             </div>
         );

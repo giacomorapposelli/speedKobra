@@ -13,11 +13,96 @@ main {
     align-items: center;
 }
 
+.welcome {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20%;
+    height: 425px;
+}
+
+.bio-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 350px;
+    width: 200px;
+}
+
+.reset-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 350px;
+    width: 300px;
+}
+
+.editbio-btn {
+    margin-top: 10px;
+}
+
+input,
+textarea {
+    border: none;
+    border-bottom: 2px solid rgb(31, 31, 31);
+    background-color: rgb(185, 185, 185);
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    outline: none;
+}
+
+textarea {
+    width: 250px;
+}
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 350px;
+    width: 300px;
+}
+
+.palm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 300%;
+}
+
 .profile-pic {
     height: 300px;
     width: 300px;
     object-fit: cover;
     cursor: pointer;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .users-container,
@@ -33,9 +118,14 @@ main {
     height: 280px;
 }
 
-.error {
-    color: rgb(151, 40, 20);
+.error,
+.no-error {
+    color: rgb(126, 10, 10);
     text-align: center;
+}
+
+.no-error {
+    visibility: hidden;
 }
 
 .no-results-img {
@@ -106,8 +196,24 @@ a {
     margin-left: 12px;
 }
 
+.find:hover {
+    color: grey;
+}
+
+.friends-link:hover {
+    color: grey;
+}
+
+.chat-link:hover {
+    color: grey;
+}
+
+.logout:hover {
+    color: grey;
+}
+
 .friends-link {
-    margin-top: 32px;
+    margin-top: 31px;
 }
 
 .chat-link {
@@ -149,7 +255,15 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-grow: 1;
+}
+
+.friend-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    width: 200px;
 }
 
 .find-people {
@@ -215,25 +329,47 @@ button {
     text-align: center;
 }
 
+.main-img {
+    height: 500px;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
 .modal {
     width: 45%;
-    height: 40%;
+    height: 60%;
     z-index: 2;
     border: 3px solid black;
     border-radius: 15px;
     position: absolute;
-    top: 25%;
+    top: 20%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     background-color: rgb(126, 10, 10);
 }
 
+.modal-btn {
+    background-color: rgb(126, 10, 10);
+    margin-left: 5px;
+}
+
 .img-modal {
-    height: 150px;
-    width: 200px;
+    height: 250px;
+    width: 400px;
     object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid black;
 }
 
 #x-modal {
@@ -249,12 +385,12 @@ button {
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
-    border: 1px solid #d5d5d5;
+    border: 1px solid rgb(185, 185, 185);
 }
 
 ::-webkit-scrollbar-track {
     border-radius: 2px;
-    background: #eeeeee;
+    background: rgb(185, 185, 185);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -307,16 +443,22 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    top: 100px;
+    top: 70px;
     width: 100%;
 }
 
+.delete-btn {
+    margin-top: 40px;
+    color: rgb(126, 10, 10);
+    border: 2px solid rgb(126, 10, 10);
+}
+
 .user {
-    height: 200px;
-    width: 20%;
+    height: 70px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -324,6 +466,7 @@ button {
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .heading {
@@ -337,8 +480,72 @@ button {
 }
 
 .chat-container {
-    height: 300px;
+    height: 400px;
     width: 600px;
     overflow-y: scroll;
-    margin-top: 200px;
+    margin-top: 50px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-title {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.chat {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.msg-container {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+
+.text {
+    margin-left: 10px;
+}
+
+.date {
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.chat-textarea {
+    width: 500px;
+    height: 50px;
+    margin-top: 70px;
+}
+
+.sure-modal {
+    width: 30%;
+    height: 40%;
+    z-index: 2;
+    border: 3px solid black;
+    border-radius: 15px;
+    position: absolute;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(126, 10, 10);
+}
+
+.sure-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
 }

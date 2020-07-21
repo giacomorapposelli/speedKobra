@@ -67,9 +67,12 @@ export default class ResetPassword extends React.Component {
     getCurrentDisplay() {
         if (this.state.count === 0) {
             return (
-                <div>
-                    <h3>Enter your Email</h3>
-                    <form onSubmit={this.handleSubmitEmail}>
+                <div className="reset-form">
+                    <h2>Enter your Email</h2>
+                    <form
+                        onSubmit={this.handleSubmitEmail}
+                        className="input-fields"
+                    >
                         <input
                             type="email"
                             name="email"
@@ -80,14 +83,19 @@ export default class ResetPassword extends React.Component {
                         />
                         <button>Submit</button>
                     </form>
-                    {this.state.error && <p>Email does not exist</p>}
+                    {(this.state.error && (
+                        <p className="error">Email does not exist</p>
+                    )) || <p className="no-error">Email does not exist</p>}
                 </div>
             );
         } else if (this.state.count === 1) {
             return (
-                <div>
-                    <h1>Enter the code and reset your Password</h1>
-                    <form onSubmit={this.handleSubmitCode}>
+                <div className="reset-form">
+                    <h2>Enter the code and reset your Password</h2>
+                    <form
+                        onSubmit={this.handleSubmitCode}
+                        className="input-fields"
+                    >
                         <input
                             type="text"
                             name="code"
@@ -106,14 +114,16 @@ export default class ResetPassword extends React.Component {
                             onFocus={this.resetError}
                         />
                         <button>Submit</button>
-                        {this.state.error && <p>Wrong Code</p>}
+                        {(this.state.error && (
+                            <p className="error">Wrong Code</p>
+                        )) || <p className="no-error">Wrong Code</p>}
                     </form>
                 </div>
             );
         } else {
             return (
                 <div>
-                    <h3>Success!</h3>
+                    <h2>Success!</h2>
                     <p>
                         you can now <Link to="/login">Log in </Link>with your
                         new password
