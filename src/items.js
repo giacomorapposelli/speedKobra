@@ -8,7 +8,7 @@ export default function Items() {
     const [tshirt2, setTshirt2] = useState([]);
     const [vinyl, setVinyl] = useState([]);
     const [order, setOrder] = useState([]);
-    const [error, setError] = useState("");
+    let total;
 
     const addTshirt1 = (event) => {
         event.preventDefault();
@@ -17,7 +17,6 @@ export default function Items() {
             .then((response) => {
                 setTshirt1(response.data);
                 console.log("TSHIRT 1: ", response.data);
-                setError("");
             })
             .catch((err) => console.log("ERRORE: ", err));
     };
@@ -68,41 +67,33 @@ export default function Items() {
             .catch((err) => console.log("VINYL NOT REMOVED"));
     };
 
-    useEffect(() => {
-        console.log(size);
-        console.log(color);
-        console.log(order);
-    });
-
     const submitOrder = (event) => {
         event.preventDefault();
         axios
             .get("/order")
             .then((response) => {
-                console.log("DATA ORDER: ", response.data);
                 setOrder(response.data);
-                if (response.data.error) {
-                    setError("Something went wrong,please try again");
-                }
-                setError("");
             })
             .catch((err) => {
                 console.log("ERROR IN ORDER: ", err);
             });
     };
+    useEffect(() => {
+        console.log(size);
+        console.log(color);
+        console.log("ORDER: ", order);
+    });
     return (
         <div className="shop-general">
             <div className="row">
                 <div className="merch-card">
                     <p className="diocane">tshirt1</p>
                     <form>
-                        <label htmlFor="size" className="success">
-                            Size:
-                        </label>
                         <select
                             name="size"
                             onChange={(event) => setSize(event.target.value)}
                         >
+                            <option value="-">Size</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
@@ -115,13 +106,11 @@ export default function Items() {
                 <div className="merch-card">
                     <p className="diocane">tshrt2</p>
                     <form>
-                        <label htmlFor="size" className="success">
-                            Size:
-                        </label>
                         <select
                             name="size"
                             onChange={(event) => setSize(event.target.value)}
                         >
+                            <option value="-">Size</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
@@ -135,17 +124,15 @@ export default function Items() {
                 <div className="merch-card">
                     <p className="diocane">Vynil</p>
                     <form>
-                        <label htmlFor="sizes" className="success">
-                            Color:
-                        </label>
                         <select
                             name="color"
                             onChange={(event) => setColor(event.target.value)}
                         >
-                            <option value="Clear Red">Clear Red</option>
-                            <option value="Clear Green">Clear Green</option>
-                            <option value="Blue">Blue</option>
-                            <option value="Light Blue">Light Blue</option>
+                            <option value="-">Color</option>
+                            <option value="Clear Red">CLEAR RED</option>
+                            <option value="Clear Green">CLEAR GREEN</option>
+                            <option value="Blue">BLUE</option>
+                            <option value="Light Blue">LIGHT BLUE</option>
                         </select>
                         <button onClick={addVinyl}>Add to cart</button>
                     </form>
@@ -155,41 +142,60 @@ export default function Items() {
                     <p className="diocane">Sold Out</p>
                 </div>
             </div>
-            {tshirt1 &&
-                !tshirt1.length &&
-                tshirt2 &&
-                !tshirt2.length &&
-                vinyl &&
-                !vinyl.length && (
+            <div className="cart">
+                {(!tshirt1.length && !tshirt2.length && !vinyl.length && (
                     <h1 className="success">Your Cart is empty</h1>
+                )) ||
+                    (tshirt1.length > 0 && (
+                        <div>
+                            <p className="success">{tshirt1[0].tshirt}</p>
+                            <p className="success">Size: {tshirt1[0].size}</p>
+                            <p className="success">
+                                Price: {tshirt1[0].price}€
+                            </p>
+                            <button onClick={removeTshirt1}>Remove Item</button>
+                        </div>
+                    ))}
+                {tshirt2.length > 0 && (
+                    <div>
+                        <p className="success">{tshirt2[0].tshirt}</p>
+                        <p className="success">Size: {tshirt2[0].size}</p>
+                        <p className="success">Price: {tshirt2[0].price}€</p>
+                        <button onClick={removeTshirt2}>Remove Item</button>
+                    </div>
+                )}
+                {vinyl.length > 0 && (
+                    <div>
+                        <p className="success">{vinyl[0].vinyl}</p>
+                        <p className="success">Color: {vinyl[0].color}</p>
+                        <p className="success">Price: {vinyl[0].price}€</p>
+                        <button onClick={removeVinyl}>Remove Item</button>
+                    </div>
                 )}
 
-            {tshirt1.length > 0 && (
+                <button onClick={submitOrder}>Submit Order</button>
+            </div>
+
+            {order.length > 0 && (
                 <div>
-                    <p className="success">{tshirt1[0].tshirt}</p>
-                    <p className="success">Size: {tshirt1[0].size}</p>
-                    <p className="success">Price: {tshirt1[0].price}€</p>
-                    <button onClick={removeTshirt1}>Remove Item</button>
+                    <h1 className="success">THANK YOU</h1>
+                    <h3 className="success">
+                        We've just received your order,you'll be contacted soon
+                        about shipment and payment methods
+                    </h3>
+                    <h2 className="success">Your Order:</h2>
+                    <div>
+                        {order.map((each) => {
+                            <div
+                                key={each.order_id}
+                                className="resume-container"
+                            >
+                                <h3 className="success">{each}</h3>
+                            </div>;
+                        })}
+                    </div>
                 </div>
             )}
-            {tshirt2.length > 0 && (
-                <div>
-                    <p className="success">{tshirt2[0].tshirt}</p>
-                    <p className="success">Size: {tshirt2[0].size}</p>
-                    <p className="success">Price: {tshirt2[0].price}€</p>
-                    <button onClick={removeTshirt2}>Remove Item</button>
-                </div>
-            )}
-            {vinyl.length > 0 && (
-                <div>
-                    <p className="success">{vinyl[0].vinyl}</p>
-                    <p className="success">Color: {vinyl[0].color}</p>
-                    <p className="success">Price: {vinyl[0].price}€</p>
-                    <button onClick={removeVinyl}>Remove Item</button>
-                </div>
-            )}
-            <button onClick={submitOrder}>Submit Order</button>
-            <p className="success">{error}</p>
         </div>
     );
 }

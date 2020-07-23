@@ -16,6 +16,7 @@ const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
 const { sendEmail } = require("./ses.js");
+const { ElastiCache } = require("aws-sdk");
 
 app.use(express.static(__dirname + "/public"));
 app.use(compression());
@@ -56,18 +57,42 @@ if (process.env.NODE_ENV != "production") {
 app.get("/order", (req, res) => {
     submitOrder(req.session.userId)
         .then((result) => {
-            console.log("ORDER: ", result.rows);
-            if (!result.rows) {
-                res.json({ error: true });
-            }
-            res.json(result.rows);
-        })
-        .then(() => {
+            let items = [];
+            result.rows.map((each) => {
+                if (!each.vinyl) {
+                    delete each.vinyl;
+                }
+                if (!each.color) {
+                    delete each.color;
+                }
+                if (!each.tshirt) {
+                    delete each.tshirt;
+                }
+                if (!each.size) {
+                    delete each.size;
+                }
+                items.push(each.vinyl);
+                items.push(each.color);
+                items.push(each.tshirt);
+                items.push(each.size);
+                items.push(each.price + "€  ");
+                return items;
+            });
+
             sendEmail(
                 "rapposelli.giacomo@gmail.com",
                 "We have a new Order!",
-                `Hey`
-            ).catch((err) => console.log("ERR IN SENDING EMAIL: ", err));
+                `
+                    ${result.rows[0].first} ${result.rows[0].last} has submitted an Order:
+                    ${result.rows[0].email}
+                    ${items}                                       
+                    ${result.rows[0].address}
+                    ${result.rows[0].zip},${result.rows[0].city}
+                    ${result.rows[0].country}`
+            );
+
+            console.log("ORDER: ", result.rows);
+            res.json(result.rows);
         })
         .catch((err) => console.log("ERR IN ORDER: ", err));
 });

@@ -11,11 +11,9 @@ export default function Store() {
             <h1 className="headlines">OUR MERCHANDISE</h1>
             <div className="store-container">
                 <HashRouter>
-                    <div className="form-container">
-                        <Route path="/store" component={Register} />
-                        <Route path="/log" component={Login} />
-                        <Route path="/cart" component={Items} />
-                    </div>
+                    <Route path="/store" component={Register} />
+                    <Route path="/log" component={Login} />
+                    <Route path="/cart" component={Items} />
                 </HashRouter>
             </div>
         </div>

@@ -211,9 +211,8 @@ footer {
     filter: brightness();
 }
 
-.bio,
 .store {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
 }
 
@@ -235,8 +234,8 @@ footer {
     align-items: center;
     justify-content: space-evenly;
     border: 1px solid rgb(235, 235, 235);
-    height: 300px;
-    width: 200px;
+    height: 400px;
+    width: 300px;
 }
 
 .row {
@@ -253,8 +252,8 @@ footer {
 .diocane {
     color: red;
     border: 1px solid rgb(235, 235, 235);
-    height: 100px;
-    width: 75px;
+    height: 150px;
+    width: 118px;
 }
 
 .success {
@@ -269,4 +268,19 @@ p {
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.cart {
+    position: absolute;
+    left: 60%;
+    top: 333%;
+}
+
+.shop-general {
+    height: 60vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+    justify-content: space-between;
 }

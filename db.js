@@ -100,7 +100,7 @@ exports.submitOrder = (userId) => {
         `
         SELECT users.id, orders.id AS order_id, first, last, email,address,zip,city,country,vinyl,color,price,tshirt,size, orders.created_at
         FROM users
-        JOIN orders ON (user_id = users.id AND user_id = $1);
+        JOIN orders ON (user_id = users.id AND user_id = $1 AND CURRENT_TIMESTAMP - orders.created_at < INTERVAL '2 minutes');
         `,
         [userId]
     );
