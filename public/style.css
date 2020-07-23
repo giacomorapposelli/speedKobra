@@ -1,0 +1,268 @@
+body {
+    margin: 0;
+    font-family: AA_typewriter;
+    min-height: 100vh;
+}
+@font-face {
+    font-family: AA_typewriter;
+    src: url("/AA_typewriter.ttf");
+}
+
+.container {
+    background-image: url("image.jpg");
+    background-size: cover;
+}
+
+header {
+    height: 9%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.899);
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 2;
+    justify-content: space-evenly;
+}
+.home {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+.head-links {
+    color: rgb(235, 235, 235);
+    display: block;
+    font-size: 120%;
+    text-decoration: none;
+}
+
+.head-links:hover {
+    color: grey;
+}
+
+footer {
+    height: 6%;
+    width: 100%;
+    color: rgb(235, 235, 235);
+    background-color: rgba(0, 0, 0, 0.899);
+    position: fixed;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright {
+    margin-left: 20px;
+}
+
+.logos {
+    margin-right: 20px;
+    margin-top: 2px;
+}
+
+.social-logo {
+    margin-right: 10px;
+    height: 30px;
+}
+
+.social-logo:hover {
+    filter: brightness(0.5);
+}
+
+.album {
+    height: 55%;
+    overflow: hidden;
+    border: 2px solid rgba(20, 20, 20, 0.842);
+}
+
+.message {
+    color: rgb(235, 235, 235);
+    height: 250px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.days {
+    font-size: 320%;
+    margin-top: 1%;
+    padding-top: 1%;
+    margin-bottom: 1%;
+}
+
+.listen {
+    text-decoration: none;
+    color: rgb(235, 235, 235);
+    border: 2px solid rgb(235, 235, 235);
+    border-radius: 2px;
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listen:hover {
+    color: grey;
+    border: 2px solid grey;
+}
+
+.headlines {
+    color: rgb(235, 235, 235);
+    padding-top: 6%;
+    text-align: center;
+    font-size: 320%;
+}
+.tour-headline {
+    color: rgb(235, 235, 235);
+    padding-top: 3%;
+    text-align: center;
+    font-size: 320%;
+}
+
+.tour {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.show-container {
+    height: 10%;
+    width: 60%;
+    border-bottom: 1px solid rgb(104, 104, 104);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.column-title {
+    width: 15%;
+    color: grey;
+}
+
+.column {
+    width: 15%;
+    color: rgb(235, 235, 235);
+}
+
+.card {
+    height: 350px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-view {
+    height: 250px;
+    width: 250px;
+    border: 2px solid rgba(20, 20, 20, 0.842);
+    object-fit: cover;
+    filter: grayscale();
+    cursor: pointer;
+}
+
+.card-desc {
+    color: rgb(235, 235, 235);
+    cursor: pointer;
+}
+
+.card-desc:hover {
+    color: grey;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 7%;
+}
+
+.gallery {
+    width: 100%;
+    height: 100vh;
+}
+
+.img-view:hover {
+    filter: brightness();
+}
+
+.bio,
+.store {
+    height: 100vh;
+    width: 100%;
+}
+
+.store-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.shop {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.merch-card  {
+    border: 1px solid rgb(235, 235, 235);
+    height: 300px;
+    width: 200px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.form-container {
+    width: 50%;
+}
+
+.diocane {
+    color: red;
+    border: 1px solid rgb(235, 235, 235);
+    height: 200px;
+    width: 150px;
+}
+
+.success {
+    color: rgb(235, 235, 235);
+}
+
+p {
+    color: rgb(235, 235, 235);
+}
+
+.shop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
