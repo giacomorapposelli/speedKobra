@@ -1,7 +1,16 @@
 const express = require("express");
 const app = express();
 const compression = require("compression");
-const { addUser, getEmail, addTshirt1, addTshirt2, addVinyl } = require("./db");
+const {
+    addUser,
+    getEmail,
+    addTshirt1,
+    addTshirt2,
+    addVinyl,
+    removeTshirt1,
+    removeTshirt2,
+    removeVinyl,
+} = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
@@ -102,10 +111,10 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/addthsirt1", (req, res) => {
-    console.log(req.body);
+    console.log("REQ BODY: ", req.body);
     addTshirt1(req.body.size, req.session.userId)
         .then((result) => {
-            console.log("DAI: ", result.rows);
+            console.log("TSHIRT1: ", result.rows);
             res.json(result.rows);
         })
         .catch((err) => {
@@ -114,10 +123,10 @@ app.post("/addthsirt1", (req, res) => {
 });
 
 app.post("/addthsirt2", (req, res) => {
-    console.log(req.body);
+    console.log("REQ BODY: ", req.body);
     addTshirt2(req.body.size, req.session.userId)
         .then((result) => {
-            console.log("DAI: ", result.rows);
+            console.log("TSHIRT2: ", result.rows);
             res.json(result.rows);
         })
         .catch((err) => {
@@ -126,14 +135,47 @@ app.post("/addthsirt2", (req, res) => {
 });
 
 app.post("/addvinyl", (req, res) => {
-    console.log(req.body);
-    addVinyl(req.body.size, req.session.userId)
+    console.log("REQ BODY: ", req.body);
+    addVinyl(req.body.color, req.session.userId)
         .then((result) => {
-            console.log("DAI: ", result.rows);
+            console.log("VINYL: ", result.rows);
             res.json(result.rows);
         })
         .catch((err) => {
-            console.log("TSHIRT NON INSEITA: ", err);
+            console.log("TSHIRT NOT ADDED: ", err);
+        });
+});
+
+app.post("/removetshirt1", (req, res) => {
+    removeTshirt1(req.session.userId)
+        .then((result) => {
+            console.log("RESULT SHOULD BE EMPTY: ", result.rows);
+            res.json();
+        })
+        .catch((err) => {
+            console.log("TSHIRT NOT REMOVED");
+        });
+});
+
+app.post("/removetshirt2", (req, res) => {
+    removeTshirt2(req.session.userId)
+        .then((result) => {
+            console.log("RESULT SHOULD BE EMPTY: ", result.rows);
+            res.json();
+        })
+        .catch((err) => {
+            console.log("TSHIRT NOT REMOVED");
+        });
+});
+
+app.post("/removevinyl", (req, res) => {
+    removeVinyl(req.session.userId)
+        .then((result) => {
+            console.log("RESULT SHOULD BE EMPTY: ", result.rows);
+            res.json();
+        })
+        .catch((err) => {
+            console.log("VINYL NOT REMOVED");
         });
 });
 

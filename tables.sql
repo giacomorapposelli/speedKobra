@@ -21,7 +21,6 @@ CREATE TABLE orders(
   vinyl VARCHAR(255),
   color VARCHAR(255),
   price INT NOT NULL,
-  imgurl VARCHAR(255),
   user_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

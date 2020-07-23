@@ -230,6 +230,10 @@ footer {
 }
 
 .merch-card  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
     border: 1px solid rgb(235, 235, 235);
     height: 300px;
     width: 200px;
@@ -249,8 +253,8 @@ footer {
 .diocane {
     color: red;
     border: 1px solid rgb(235, 235, 235);
-    height: 200px;
-    width: 150px;
+    height: 100px;
+    width: 75px;
 }
 
 .success {

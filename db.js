@@ -49,21 +49,48 @@ exports.getEmail = (email) => {
 
 exports.addTshirt1 = (size, userId) => {
     return db.query(
-        `INSERT INTO orders (tshirt,size,price,user_id) VALUES ('days',$1,10,$2) RETURNING tshirt,size,price,user_id`,
+        `INSERT INTO orders (tshirt,size,price,user_id) VALUES ('Harvester of Hate T-shirt',$1,10,$2) RETURNING tshirt,size,price,user_id`,
         [size, userId]
     );
 };
 
 exports.addTshirt2 = (size, userId) => {
     return db.query(
-        `INSERT INTO orders (tshirt,size,price,user_id) VALUES ('train',$1,10,$2) RETURNING tshirt,size,price,user_id`,
+        `INSERT INTO orders (tshirt,size,price,user_id) VALUES ('Days Of Madness Longsleeve',$1,10,$2) RETURNING tshirt,size,price,user_id`,
         [size, userId]
     );
 };
 
-exports.addVinyl = (size, userId) => {
+exports.addVinyl = (color, userId) => {
     return db.query(
-        `INSERT INTO orders (vinyl,color,price,user_id) VALUES ('daysofmadness',$1,12,$2) RETURNING vinyl,color,price,user_id`,
-        [size, userId]
+        `INSERT INTO orders (vinyl,color,price,user_id) VALUES ('Days Of Madness LP',$1,12,$2) RETURNING vinyl,color,price,user_id`,
+        [color, userId]
+    );
+};
+
+exports.removeTshirt1 = (userId) => {
+    return db.query(
+        `
+        DELETE FROM orders WHERE (tshirt = 'Harvester of Hate T-shirt' AND user_id = $1);
+        `,
+        [userId]
+    );
+};
+
+exports.removeTshirt2 = (userId) => {
+    return db.query(
+        `
+        DELETE FROM orders WHERE (tshirt = 'Days Of Madness Longsleeve' AND user_id = $1);
+        `,
+        [userId]
+    );
+};
+
+exports.removeVinyl = (userId) => {
+    return db.query(
+        `
+        DELETE FROM orders WHERE (vinyl = 'Days Of Madness LP' AND user_id = $1);
+        `,
+        [userId]
     );
 };
