@@ -7,6 +7,8 @@ export default function Items() {
     const [tshirt1, setTshirt1] = useState([]);
     const [tshirt2, setTshirt2] = useState([]);
     const [vinyl, setVinyl] = useState([]);
+    const [order, setOrder] = useState([]);
+    const [error, setError] = useState("");
 
     const addTshirt1 = (event) => {
         event.preventDefault();
@@ -15,6 +17,7 @@ export default function Items() {
             .then((response) => {
                 setTshirt1(response.data);
                 console.log("TSHIRT 1: ", response.data);
+                setError("");
             })
             .catch((err) => console.log("ERRORE: ", err));
     };
@@ -68,8 +71,25 @@ export default function Items() {
     useEffect(() => {
         console.log(size);
         console.log(color);
+        console.log(order);
     });
 
+    const submitOrder = (event) => {
+        event.preventDefault();
+        axios
+            .get("/order")
+            .then((response) => {
+                console.log("DATA ORDER: ", response.data);
+                setOrder(response.data);
+                if (response.data.error) {
+                    setError("Something went wrong,please try again");
+                }
+                setError("");
+            })
+            .catch((err) => {
+                console.log("ERROR IN ORDER: ", err);
+            });
+    };
     return (
         <div className="shop-general">
             <div className="row">
@@ -135,9 +155,15 @@ export default function Items() {
                     <p className="diocane">Sold Out</p>
                 </div>
             </div>
-            {(tshirt1 && tshirt1.length > 0) ||
-                (tshirt2 && tshirt2.length > 0) ||
-                (vinyl && vinyl.length > 0) || <button>Submit Order</button>}
+            {tshirt1 &&
+                !tshirt1.length &&
+                tshirt2 &&
+                !tshirt2.length &&
+                vinyl &&
+                !vinyl.length && (
+                    <h1 className="success">Your Cart is empty</h1>
+                )}
+
             {tshirt1.length > 0 && (
                 <div>
                     <p className="success">{tshirt1[0].tshirt}</p>
@@ -162,6 +188,8 @@ export default function Items() {
                     <button onClick={removeVinyl}>Remove Item</button>
                 </div>
             )}
+            <button onClick={submitOrder}>Submit Order</button>
+            <p className="success">{error}</p>
         </div>
     );
 }

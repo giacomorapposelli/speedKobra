@@ -94,3 +94,14 @@ exports.removeVinyl = (userId) => {
         [userId]
     );
 };
+
+exports.submitOrder = (userId) => {
+    return db.query(
+        `
+        SELECT users.id, orders.id AS order_id, first, last, email,address,zip,city,country,vinyl,color,price,tshirt,size, orders.created_at
+        FROM users
+        JOIN orders ON (user_id = users.id AND user_id = $1);
+        `,
+        [userId]
+    );
+};

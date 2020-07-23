@@ -10,10 +10,12 @@ const {
     removeTshirt1,
     removeTshirt2,
     removeVinyl,
+    submitOrder,
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
+const { sendEmail } = require("./ses.js");
 
 app.use(express.static(__dirname + "/public"));
 app.use(compression());
@@ -50,6 +52,25 @@ if (process.env.NODE_ENV != "production") {
 } else {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
+
+app.get("/order", (req, res) => {
+    submitOrder(req.session.userId)
+        .then((result) => {
+            console.log("ORDER: ", result.rows);
+            if (!result.rows) {
+                res.json({ error: true });
+            }
+            res.json(result.rows);
+        })
+        .then(() => {
+            sendEmail(
+                "rapposelli.giacomo@gmail.com",
+                "We have a new Order!",
+                `Hey`
+            ).catch((err) => console.log("ERR IN SENDING EMAIL: ", err));
+        })
+        .catch((err) => console.log("ERR IN ORDER: ", err));
+});
 
 app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
