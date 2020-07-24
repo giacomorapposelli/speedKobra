@@ -47,28 +47,28 @@ exports.getEmail = (email) => {
     );
 };
 
-exports.addTshirt1 = (size, userId) => {
+exports.addTshirt = (size, userId) => {
     return db.query(
-        `INSERT INTO orders (tshirt,size,price,user_id) VALUES ('Harvester of Hate T-shirt',$1,10,$2) RETURNING tshirt,size,price,user_id`,
+        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Harvester of Hate T-shirt',$1,10,'tshirt.jpg',$2) RETURNING tshirt,size,price,user_id`,
         [size, userId]
     );
 };
 
-exports.addTshirt2 = (size, userId) => {
+exports.addLongsleeve = (size, userId) => {
     return db.query(
-        `INSERT INTO orders (tshirt,size,price,user_id) VALUES ('Days Of Madness Longsleeve',$1,10,$2) RETURNING tshirt,size,price,user_id`,
+        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Days Of Madness Longsleeve',$1,10,'longsleeve.jpg',$2) RETURNING tshirt,size,price,user_id`,
         [size, userId]
     );
 };
 
 exports.addVinyl = (color, userId) => {
     return db.query(
-        `INSERT INTO orders (vinyl,color,price,user_id) VALUES ('Days Of Madness LP',$1,12,$2) RETURNING vinyl,color,price,user_id`,
+        `INSERT INTO orders (vinyl,color,price,imgurl,user_id) VALUES ('Days Of Madness LP',$1,12,'vinyl-red.jpg',$2) RETURNING vinyl,color,price,user_id`,
         [color, userId]
     );
 };
 
-exports.removeTshirt1 = (userId) => {
+exports.removeTshirt = (userId) => {
     return db.query(
         `
         DELETE FROM orders WHERE (tshirt = 'Harvester of Hate T-shirt' AND user_id = $1);
@@ -77,7 +77,7 @@ exports.removeTshirt1 = (userId) => {
     );
 };
 
-exports.removeTshirt2 = (userId) => {
+exports.removeLongsleeve = (userId) => {
     return db.query(
         `
         DELETE FROM orders WHERE (tshirt = 'Days Of Madness Longsleeve' AND user_id = $1);
@@ -98,9 +98,9 @@ exports.removeVinyl = (userId) => {
 exports.submitOrder = (userId) => {
     return db.query(
         `
-        SELECT users.id, orders.id AS order_id, first, last, email,address,zip,city,country,vinyl,color,price,tshirt,size, orders.created_at
+        SELECT users.id, orders.id AS order_id, first, last, email,address,zip,city,country,vinyl,color,price,tshirt,size,imgurl, orders.created_at
         FROM users
-        JOIN orders ON (user_id = users.id AND user_id = $1 AND CURRENT_TIMESTAMP - orders.created_at < INTERVAL '2 minutes');
+        JOIN orders ON (user_id = users.id AND user_id = $1 AND CURRENT_TIMESTAMP - orders.created_at < INTERVAL '1 minute');
         `,
         [userId]
     );

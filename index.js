@@ -4,11 +4,11 @@ const compression = require("compression");
 const {
     addUser,
     getEmail,
-    addTshirt1,
-    addTshirt2,
+    addTshirt,
+    addLongsleeve,
     addVinyl,
-    removeTshirt1,
-    removeTshirt2,
+    removeTshirt,
+    removeLongsleeve,
     removeVinyl,
     submitOrder,
 } = require("./db");
@@ -83,9 +83,11 @@ app.get("/order", (req, res) => {
                 "rapposelli.giacomo@gmail.com",
                 "We have a new Order!",
                 `
-                    ${result.rows[0].first} ${result.rows[0].last} has submitted an Order:
+                    ${result.rows[0].first} ${
+                    result.rows[0].last
+                } has submitted an Order:
                     ${result.rows[0].email}
-                    ${items}                                       
+                    ${items.join(" ")}                                       
                     ${result.rows[0].address}
                     ${result.rows[0].zip},${result.rows[0].city}
                     ${result.rows[0].country}`
@@ -102,7 +104,6 @@ app.get("*", function (req, res) {
 });
 
 app.post("/register", (req, res) => {
-    console.log(req.body);
     hash(req.body.password)
         .then((hashedPw) => {
             addUser(
@@ -156,9 +157,9 @@ app.post("/login", (req, res) => {
         });
 });
 
-app.post("/addthsirt1", (req, res) => {
+app.post("/addthsirt", (req, res) => {
     console.log("REQ BODY: ", req.body);
-    addTshirt1(req.body.size, req.session.userId)
+    addTshirt(req.body.size, req.session.userId)
         .then((result) => {
             console.log("TSHIRT1: ", result.rows);
             res.json(result.rows);
@@ -168,9 +169,9 @@ app.post("/addthsirt1", (req, res) => {
         });
 });
 
-app.post("/addthsirt2", (req, res) => {
+app.post("/addlongsleeve", (req, res) => {
     console.log("REQ BODY: ", req.body);
-    addTshirt2(req.body.size, req.session.userId)
+    addLongsleeve(req.body.size, req.session.userId)
         .then((result) => {
             console.log("TSHIRT2: ", result.rows);
             res.json(result.rows);
@@ -192,8 +193,8 @@ app.post("/addvinyl", (req, res) => {
         });
 });
 
-app.post("/removetshirt1", (req, res) => {
-    removeTshirt1(req.session.userId)
+app.post("/removetshirt", (req, res) => {
+    removeTshirt(req.session.userId)
         .then((result) => {
             console.log("RESULT SHOULD BE EMPTY: ", result.rows);
             res.json();
@@ -203,8 +204,8 @@ app.post("/removetshirt1", (req, res) => {
         });
 });
 
-app.post("/removetshirt2", (req, res) => {
-    removeTshirt2(req.session.userId)
+app.post("/removelongsleeve", (req, res) => {
+    removeLongsleeve(req.session.userId)
         .then((result) => {
             console.log("RESULT SHOULD BE EMPTY: ", result.rows);
             res.json();
