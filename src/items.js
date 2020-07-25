@@ -10,6 +10,8 @@ export default function Items() {
     const [order, setOrder] = useState([]);
     const [modal, setModal] = useState("hidden");
     const [total, setTotal] = useState();
+    const [className, setClassName] = useState();
+    const [soldOut, setSoldOut] = useState("");
     let sum = 0;
 
     const addTshirt = (event) => {
@@ -73,10 +75,30 @@ export default function Items() {
             .then((response) => {
                 setOrder(response.data);
                 setModal("visible");
+                setClassName("overlay");
+                setTshirt([]);
+                setLongsleeve([]);
+                setVinyl([]);
+                document.body.style.overflowY = "hidden";
             })
             .catch((err) => {
                 console.log("ERROR IN ORDER: ", err);
             });
+    };
+
+    const closeModal = (event) => {
+        event.preventDefault();
+        setModal("hidden");
+        setClassName("");
+        document.body.style.overflowY = "";
+    };
+
+    const soldOutError = (event) => {
+        event.preventDefault();
+        setSoldOut("This item is sold out");
+        setTimeout(function () {
+            setSoldOut("");
+        }, 3000);
     };
 
     useEffect(() => {
@@ -87,9 +109,11 @@ export default function Items() {
     }, [order]);
     return (
         <div className="shop-general">
+            <div className={className} onClick={closeModal}></div>
             <div className="row">
                 <div className="merch-card">
-                    <img src="tshirt.jpg" className="diocane" />
+                    <img src="tshirt.jpg" className="item-img" />
+
                     <form>
                         <select
                             name="size"
@@ -104,9 +128,14 @@ export default function Items() {
                         <button onClick={addTshirt}>Add to cart</button>
                     </form>
                 </div>
+                <div className="description">
+                    <p className="item-name">"Harvester Of Hate"</p>
+                    <p className="item-name">T-Shirt</p>
+                    <p className="item-name">Price 10€</p>
+                </div>
 
                 <div className="merch-card">
-                    <img src="longsleeve.jpg" className="diocane" />
+                    <img src="longsleeve.jpg" className="item-img" />
                     <form>
                         <select
                             name="size"
@@ -121,27 +150,49 @@ export default function Items() {
                         <button onClick={addLongsleeve}>Add to cart</button>
                     </form>
                 </div>
+                <div className="description">
+                    <p className="item-name">"Dehumanized"</p>
+                    <p className="item-name">Longsleeve</p>
+                    <p className="item-name">Price 15€</p>
+                </div>
             </div>
             <div className="row">
                 <div className="merch-card">
-                    <img src="vinyl-red.jpg" className="diocane" />
+                    <img src="vinyl-red.jpg" className="item-img" />
                     <form>
                         <select
                             name="color"
                             onChange={(event) => setColor(event.target.value)}
                         >
                             <option value="-">Color</option>
-                            <option value="Clear Red">CLEAR RED</option>
-                            <option value="Clear Green">CLEAR GREEN</option>
+                            <option value="Clear Red">RED</option>
+                            <option value="Clear Green">GREEN</option>
                             <option value="Blue">BLUE</option>
                             <option value="Light Blue">LIGHT BLUE</option>
                         </select>
                         <button onClick={addVinyl}>Add to cart</button>
                     </form>
                 </div>
+                <div className="description">
+                    <p className="item-name">Days Of Madness</p>
+                    <p className="item-name">LP 12"</p>
+                    <p className="item-name">Price 12€</p>
+                </div>
 
                 <div className="merch-card">
-                    <img src="tape.jpg" className="diocane" />
+                    <img src="tape.jpg" className="item-img" />
+                    <form>
+                        <select>
+                            <option value="-">--</option>
+                        </select>
+                        <button onClick={soldOutError}>Add to cart</button>
+                    </form>
+                </div>
+                <div className="description">
+                    <p className="item-name">Split w/ Moratory</p>
+                    <p className="item-name">Tape</p>
+                    <p className="sold-out">Sold Out</p>
+                    {soldOut && <p className="error">{soldOut}</p>}
                 </div>
             </div>
             <div className="cart">
@@ -155,7 +206,11 @@ export default function Items() {
                         <p className="success">{tshirt[0].tshirt}</p>
                         <p className="success">Size: {tshirt[0].size}</p>
                         <p className="success">Price: {tshirt[0].price}€</p>
-                        <button onClick={removeTshirt}>Remove Item</button>
+                        <img
+                            src="/delete.png"
+                            className="social-logo"
+                            onClick={removeTshirt}
+                        />
                     </div>
                 )}
                 ||
@@ -165,7 +220,11 @@ export default function Items() {
                         <p className="success">{longsleeve[0].tshirt}</p>
                         <p className="success">Size: {longsleeve[0].size}</p>
                         <p className="success">Price: {longsleeve[0].price}€</p>
-                        <button onClick={removeLongsleeve}>Remove Item</button>
+                        <img
+                            src="/delete.png"
+                            className="social-logo"
+                            onClick={removeLongsleeve}
+                        />
                     </div>
                 )}
                 ||
@@ -175,7 +234,11 @@ export default function Items() {
                         <p className="success">{vinyl[0].vinyl}</p>
                         <p className="success">Color: {vinyl[0].color}</p>
                         <p className="success">Price: {vinyl[0].price}€</p>
-                        <button onClick={removeVinyl}>Remove Item</button>
+                        <img
+                            src="/delete.png"
+                            className="social-logo"
+                            onClick={removeVinyl}
+                        />
                     </div>
                 )}
                 {tshirt.length > 0 && !longsleeve.length && !vinyl.length && (
@@ -223,37 +286,49 @@ export default function Items() {
             </div>
 
             {modal == "visible" && (
-                <div>
-                    <h1 className="success">THANK YOU</h1>
-                    <h3 className="success">
-                        We've just received your order,you'll be contacted soon
-                        about shipment and payment methods
-                    </h3>
-                    <h2 className="success">Your Order:</h2>
-                    <div>
-                        {order.map((each) => (
-                            <div key={each.order_id} className="item-container">
-                                <img src={each.imgurl} className="small-pic" />
-                                <p className="success">{each.tshirt || ""}</p>
-                                <p className="success">{each.vinyl || ""}</p>
-                                <p className="success">
-                                    Size: {each.size || ""}
-                                </p>
-                                <p className="success">
-                                    Color: {each.color || ""}
-                                </p>
-                                <p className="success">{each.price}€</p>
-                            </div>
-                        ))}
-                        <p className="success">Total: {total}€</p>
-                        <p className="success">
-                            {order[0].first} {order[0].last}
-                        </p>
-                        <p className="success">{order[0].address}</p>
-                        <p className="success">
-                            {order[0].zip},{order[0].city}
-                        </p>
-                        <p className="success">{order[0].country}</p>
+                <div className="thankyou-modal">
+                    <a id="x-modal" onClick={closeModal}>
+                        X
+                    </a>
+                    <div className="modal-container">
+                        <h1 className="thanks">THANK YOU!</h1>
+                        <h3 className="thanks">
+                            We've just received your order,you'll be contacted
+                            in a few days about shipment and payment methods
+                        </h3>
+                        <div className="order-container">
+                            <h2 className="success">Your Order:</h2>
+                            {order.map((each) => (
+                                <div
+                                    key={each.order_id}
+                                    className="item-container"
+                                >
+                                    <img
+                                        src={each.imgurl}
+                                        className="small-pic"
+                                    />
+                                    <p className="success">
+                                        {each.vinyl || each.tshirt}
+                                    </p>
+
+                                    <p className="success">
+                                        {each.size || each.color}
+                                    </p>
+                                    <p className="success">
+                                        Price: {each.price}€
+                                    </p>
+                                </div>
+                            ))}
+                            <p className="success total">Total: {total}€</p>
+                            <p className="address">
+                                {order[0].first} {order[0].last}
+                            </p>
+                            <p className="address">{order[0].address}</p>
+                            <p className="address">
+                                {order[0].zip},{order[0].city}
+                            </p>
+                            <p className="address">{order[0].country}</p>
+                        </div>
                     </div>
                 </div>
             )}

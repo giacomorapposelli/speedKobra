@@ -56,7 +56,7 @@ exports.addTshirt = (size, userId) => {
 
 exports.addLongsleeve = (size, userId) => {
     return db.query(
-        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Days Of Madness Longsleeve',$1,10,'longsleeve.jpg',$2) RETURNING tshirt,size,price,user_id`,
+        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Days Of Madness Longsleeve',$1,15,'longsleeve.jpg',$2) RETURNING tshirt,size,price,user_id`,
         [size, userId]
     );
 };

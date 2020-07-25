@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: AA_typewriter;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 @font-face {
     font-family: AA_typewriter;
@@ -24,7 +25,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    z-index: 2;
+    z-index: 1;
     justify-content: space-evenly;
 }
 .home {
@@ -230,12 +231,9 @@ footer {
 
 .merch-card  {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
     border: 1px solid rgb(235, 235, 235);
-    height: 400px;
-    width: 300px;
+    height: 200px;
+    max-height: 240px;
 }
 
 .row {
@@ -243,15 +241,16 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    width: 50%;
+    margin-bottom: 5%;
 }
 
 .form-container {
     width: 50%;
 }
 
-.diocane {
-    color: red;
-    border: 1px solid rgb(235, 235, 235);
+.item-img {
+    border: 1px solid grey;
     height: 150px;
     width: 118px;
     object-fit: cover;
@@ -271,19 +270,39 @@ p {
     flex-direction: column;
 }
 
-.cart {
+.cart,
+.registration,
+.login {
     position: absolute;
     left: 50%;
     top: 333%;
     width: 50%;
 }
 
+.registration {
+    top: 332%;
+}
+
+.login-title {
+    text-align: center;
+    color: rgb(235, 235, 235);
+}
+
+.login-form {
+    margin-left: 33%;
+    margin-top: 10%;
+}
+
+.reg-form {
+    margin-left: 25%;
+}
+
 .shop-general {
     height: 60vh;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: space-evenly;
+    align-items: space-between;
     justify-content: space-between;
 }
 
@@ -291,14 +310,118 @@ p {
     height: 75px;
     width: 60px;
     object-fit: cover;
+    border: 1px solid grey;
 }
 
-.item-container {
-    border-bottom: 2px solid grey;
+.item-container,
+.resume-container {
+    border-bottom: 2px solid #808080;
     width: 90%;
     height: 15%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 1%;
+    padding-top: 1%;
+}
+
+.resume-container {
+    padding-left: 5%;
+}
+
+.address {
+    color: grey;
+    font-size: 14px;
+}
+
+.thankyou-modal {
+    width: 80%;
+    border: 3px solid rgb(235, 235, 235);
+    background-color: black;
+    border-radius: 15px;
+    position: absolute;
+    top: 318%;
+    left: 10%;
+    z-index: 3;
+}
+
+.total {
+    float: right;
+    margin-right: 10%;
+}
+
+.thanks {
+    text-align: center;
+    color: rgb(235, 235, 235);
+}
+
+.order-container {
+    margin-left: 9%;
+}
+
+#x-modal {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    color: gray;
+    font-size: 30px;
+    cursor: pointer;
+    font-family: "Righteous";
+}
+
+#x-modal:hover {
+    color: rgb(77, 77, 77);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(196, 196, 196, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+button {
+    display: block;
+}
+
+.sold-out {
+    color: grey;
+}
+
+.description {
+    height: 200px;
+    width: 140px;
+}
+
+.item-name {
+    width: 150px;
+}
+
+.error {
+    font-size: 14px;
+    color: rgb(122, 27, 27);
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid rgb(82, 82, 82);
+    background-color: transparent;
+    width: 50%;
+    height: 40px;
+    font-size: 20px;
+    outline: none;
+    display: block;
+    font-family: AA_typewriter;
+    color: rgb(235, 235, 235);
+}
+
+.reg-title {
+    color: rgb(235, 235, 235);
 }
