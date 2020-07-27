@@ -94,8 +94,7 @@ app.get("/order", (req, res) => {
 
                 ${result.rows[0].email}
 
-                ${items.join(" ")}
-                    
+                ${items.join(" ")}                    
                 Ship to:
                 ${result.rows[0].first} ${
                     result.rows[0].last
@@ -126,7 +125,6 @@ app.get("*", function (req, res) {
 
 app.post("/register", (req, res) => {
     if (req.body.password1 == req.body.password2) {
-        console.log();
         hash(req.body.password1)
             .then((hashedPw) => {
                 addUser(
