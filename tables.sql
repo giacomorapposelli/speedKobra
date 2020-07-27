@@ -1,6 +1,7 @@
 -- DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 
+
 -- CREATE TABLE users(
 --   id SERIAL PRIMARY KEY,
 --   first VARCHAR(255) NOT NULL CHECK (first != ''),
@@ -17,9 +18,9 @@ DROP TABLE IF EXISTS orders CASCADE;
 CREATE TABLE orders(
   id SERIAL PRIMARY KEY,
   tshirt VARCHAR(255),
-  size VARCHAR(255),
+  size VARCHAR(255) CHECK (size != ''),
   vinyl VARCHAR(255),
-  color VARCHAR(255),
+  color VARCHAR(255) CHECK (color != ''),
   price INT NOT NULL,
   imgurl VARCHAR(255),
   user_id INT NOT NULL,

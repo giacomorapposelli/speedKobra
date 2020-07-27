@@ -2,7 +2,6 @@ import React from "react";
 import Items from "./items";
 import Register from "./register";
 import Login from "./login";
-// import Cart from "./cart";
 import { HashRouter, Route } from "react-router-dom";
 
 export default function Store() {

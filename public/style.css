@@ -3,6 +3,7 @@ body {
     font-family: AA_typewriter;
     min-height: 100vh;
     box-sizing: border-box;
+    overflow-y: hidden;
 }
 @font-face {
     font-family: AA_typewriter;
@@ -81,8 +82,14 @@ footer {
     height: 30px;
 }
 
+.empty-icon {
+    margin-right: 10px;
+    height: 30px;
+}
+
 .social-logo:hover {
     filter: brightness(0.5);
+    cursor: pointer;
 }
 
 .album {
@@ -242,7 +249,7 @@ footer {
     align-items: center;
     justify-content: space-evenly;
     width: 50%;
-    margin-bottom: 5%;
+    margin-bottom: 4%;
 }
 
 .form-container {
@@ -254,6 +261,11 @@ footer {
     height: 150px;
     width: 118px;
     object-fit: cover;
+}
+
+.item-img:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
 }
 
 .success {
@@ -283,7 +295,8 @@ p {
     top: 332%;
 }
 
-.login-title {
+.login-title,
+.cart-title {
     text-align: center;
     color: rgb(235, 235, 235);
 }
@@ -334,15 +347,39 @@ p {
     font-size: 14px;
 }
 
-.thankyou-modal {
+.thankyou-modal,
+.tshirt-modal,
+.longsleeve-modal,
+.tape-modal {
     width: 80%;
-    border: 3px solid rgb(235, 235, 235);
-    background-color: black;
+    border: 3px solid black;
+    background-image: url("image.jpg");
+    background-size: cover;
     border-radius: 15px;
     position: absolute;
-    top: 318%;
+    top: 315%;
     left: 10%;
     z-index: 3;
+    max-height: 90%;
+    overflow-y: scroll;
+}
+
+.thankyou-modal {
+    border: 3px solid grey;
+}
+
+.vinyl-modal {
+    width: 80%;
+    border: 3px solid rgb(235, 235, 235);
+    background-image: url("image.jpg");
+    background-size: cover;
+    border-radius: 15px;
+    position: absolute;
+    top: 315%;
+    left: 10%;
+    z-index: 3;
+    max-height: 90%;
+    overflow: hidden;
 }
 
 .total {
@@ -379,7 +416,7 @@ p {
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(196, 196, 196, 0.7);
+    background-color: rgba(196, 196, 196, 0.842);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -425,3 +462,86 @@ input {
 .reg-title {
     color: rgb(235, 235, 235);
 }
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+}
+
+/*////////////////////////////////// SLIDERS //////////////////////////////////*/
+
+.livephoto,
+.otrphoto,
+.tapephto,
+.tshirtphoto,
+.vinylphoto,
+.longsleevephoto {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.vinylphoto {
+    height: 100%;
+    width: 100%;
+}
+
+.live-modal,
+.otr-modal {
+    object-fit: cover;
+    height: 80%;
+    width: 90%;
+    position: absolute;
+    border: 3px solid black;
+    border-radius: 5px;
+    overflow: hidden;
+    top: 214%;
+    left: 5%;
+    z-index: 3;
+}
+
+.images-slide,
+.otr-slide {
+    width: 100%;
+    display: flex;
+    object-fit: cover;
+}
+
+.prev-btn {
+    position: absolute;
+    top: 47%;
+    left: 2%;
+    z-index: 4;
+    height: 30px;
+}
+
+.next-btn {
+    position: absolute;
+    top: 47%;
+    right: 2%;
+    z-index: 4;
+    height: 30px;
+}
+
+.next-btn:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
+}
+
+.prev-btn:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
+}
+
+/* .images-slide img.onscreen {
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out;
+}
+
+.images-slide img.offscreen-left {
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in-out;
+} */

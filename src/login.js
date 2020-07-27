@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "./axios";
+import VinylSlider from "./vinylslider";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -7,6 +8,11 @@ export default class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
+            overlay: "",
+            setVinylModal: "hidden",
+            tapeModal: "hidden",
+            tshirtModal: "hidden",
+            longsleeveModal: "hidden",
             error: false,
         };
         this.handleChange = this.handleChange.bind(this);
@@ -16,6 +22,11 @@ export default class Login extends React.Component {
         this.setError2 = this.setError2.bind(this);
         this.setError3 = this.setError3.bind(this);
         this.setError4 = this.setError4.bind(this);
+        this.setVinylModal = this.setVinylModal.bind(this);
+        this.setTapeModal = this.setTapeModal.bind(this);
+        this.setTshirtModal = this.setTshirtModal.bind(this);
+        this.setLongsleeveModal = this.setLongsleeveModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -71,12 +82,63 @@ export default class Login extends React.Component {
         });
     }
 
+    setVinylModal(event) {
+        event.preventDefault();
+        this.setState({
+            vinylSlider: "visible",
+            overlay: "overlay",
+        });
+    }
+
+    setTapeModal(event) {
+        event.preventDefault();
+        this.setState({
+            tapeModal: "visible",
+            overlay: "overlay",
+        });
+    }
+
+    closeModal(event) {
+        event.preventDefault();
+        this.setState({
+            vinylSlider: "hidden",
+            tapeModal: "hidden",
+            tshirtModal: "hidden",
+            longsleeveModal: "hidden",
+            overlay: "",
+        });
+    }
+
+    setTshirtModal(event) {
+        event.preventDefault();
+        this.setState({
+            tshirtModal: "visible",
+            overlay: "overlay",
+        });
+    }
+
+    setLongsleeveModal(event) {
+        event.preventDefault();
+        this.setState({
+            longsleeveModal: "visible",
+            overlay: "overlay",
+        });
+    }
+
     render() {
         return (
             <div className="shop-general">
+                <div
+                    className={this.state.overlay}
+                    onClick={this.closeModal}
+                ></div>
                 <div className="row">
                     <div className="merch-card">
-                        <img src="tshirt.jpg" className="item-img" />
+                        <img
+                            src="tshirt.jpg"
+                            className="item-img"
+                            onClick={this.setTshirtModal}
+                        />
 
                         <form>
                             <select name="size">
@@ -104,7 +166,11 @@ export default class Login extends React.Component {
                     </div>
 
                     <div className="merch-card">
-                        <img src="longsleeve.jpg" className="item-img" />
+                        <img
+                            src="longsleeve.jpg"
+                            className="item-img"
+                            onClick={this.setLongsleeveModal}
+                        />
                         <form>
                             <select name="size">
                                 <option value="-">Size</option>
@@ -132,7 +198,11 @@ export default class Login extends React.Component {
                 </div>
                 <div className="row">
                     <div className="merch-card">
-                        <img src="vinyl-red.jpg" className="item-img" />
+                        <img
+                            src="vinyl-red.jpg"
+                            className="item-img"
+                            onClick={this.setVinylModal}
+                        />
                         <form>
                             <select name="color">
                                 <option value="-">Color</option>
@@ -159,7 +229,11 @@ export default class Login extends React.Component {
                     </div>
 
                     <div className="merch-card">
-                        <img src="tape.jpg" className="item-img" />
+                        <img
+                            src="tape.jpg"
+                            className="item-img"
+                            onClick={this.setTapeModal}
+                        />
                         <form>
                             <select>
                                 <option value="-">--</option>
@@ -208,6 +282,25 @@ export default class Login extends React.Component {
                         )}
                     </form>
                 </div>
+                {this.state.vinylSlider == "visible" && <VinylSlider />}
+                {this.state.tapeModal == "visible" && (
+                    <div className="tape-modal">
+                        <img src="/tape.jpg" className="tapephoto" />
+                    </div>
+                )}
+                {this.state.tshirtModal == "visible" && (
+                    <div className="tshirt-modal">
+                        <img src="/tshirt.jpg" className="tshirtphoto" />
+                    </div>
+                )}
+                {this.state.longsleeveModal == "visible" && (
+                    <div className="longsleeve-modal">
+                        <img
+                            src="/longsleeve.jpg"
+                            className="longsleevephoto"
+                        />
+                    </div>
+                )}
             </div>
         );
     }

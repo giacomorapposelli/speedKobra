@@ -3,8 +3,6 @@ import Tour from "./tour";
 import Home from "./home";
 import Gallery from "./gallery";
 import Store from "./store";
-import { HashRouter, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 export default function App() {
     return (
@@ -44,25 +42,41 @@ export default function App() {
                         href="https://www.instagram.com/speedkobra/"
                         target="_blank"
                     >
-                        <img src="/insta.png" alt="" className="social-logo" />
+                        <img
+                            src="/icons//insta.png"
+                            alt=""
+                            className="social-logo"
+                        />
                     </a>
                     <a
                         href="https://www.facebook.com/speedkobra666"
                         target="_blank"
                     >
-                        <img src="/fb.png" alt="" className="social-logo" />
+                        <img
+                            src="/icons//fb.png"
+                            alt=""
+                            className="social-logo"
+                        />
                     </a>
                     <a
                         href="https://www.youtube.com/channel/UC57goUK4nTrwOGdhchCw8TA"
                         target="_blank"
                     >
-                        <img src="/you.png" alt="" className="social-logo" />
+                        <img
+                            src="/icons//you.png"
+                            alt=""
+                            className="social-logo"
+                        />
                     </a>
                     <a
                         href="https://speedkobra666.bandcamp.com/"
                         target="_blank"
                     >
-                        <img src="/bc.png" alt="" className="social-logo bc" />
+                        <img
+                            src="/icons/bc.png"
+                            alt=""
+                            className="social-logo bc"
+                        />
                     </a>
                 </div>
             </footer>

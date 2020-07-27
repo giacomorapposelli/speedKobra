@@ -56,15 +56,15 @@ exports.addTshirt = (size, userId) => {
 
 exports.addLongsleeve = (size, userId) => {
     return db.query(
-        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Days Of Madness Longsleeve',$1,15,'longsleeve.jpg',$2) RETURNING tshirt,size,price,user_id`,
+        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Dehumanize Longsleeve',$1,15,'longsleeve.jpg',$2) RETURNING tshirt,size,price,user_id`,
         [size, userId]
     );
 };
 
-exports.addVinyl = (color, userId) => {
+exports.addVinyl = (color, imgurl, userId) => {
     return db.query(
-        `INSERT INTO orders (vinyl,color,price,imgurl,user_id) VALUES ('Days Of Madness LP',$1,12,'vinyl-red.jpg',$2) RETURNING vinyl,color,price,user_id`,
-        [color, userId]
+        `INSERT INTO orders (vinyl,color,price,imgurl,user_id) VALUES ('Days Of Madness LP',$1,12,$2,$3) RETURNING vinyl,color,price,imgurl,user_id`,
+        [color, imgurl, userId]
     );
 };
 
@@ -80,7 +80,7 @@ exports.removeTshirt = (userId) => {
 exports.removeLongsleeve = (userId) => {
     return db.query(
         `
-        DELETE FROM orders WHERE (tshirt = 'Days Of Madness Longsleeve' AND user_id = $1);
+        DELETE FROM orders WHERE (tshirt = 'Dehumanize Longsleeve' AND user_id = $1);
         `,
         [userId]
     );
@@ -103,5 +103,13 @@ exports.submitOrder = (userId) => {
         JOIN orders ON (user_id = users.id AND user_id = $1 AND CURRENT_TIMESTAMP - orders.created_at < INTERVAL '1 minute');
         `,
         [userId]
+    );
+};
+
+exports.getOnTheRoadPics = () => {
+    return db.query(
+        `
+         SELECT * FROM ontheroad;
+        `
     );
 };

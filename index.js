@@ -11,6 +11,7 @@ const {
     removeLongsleeve,
     removeVinyl,
     submitOrder,
+    getOnTheRoadPics,
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
@@ -161,8 +162,8 @@ app.post("/addthsirt", (req, res) => {
     console.log("REQ BODY: ", req.body);
     addTshirt(req.body.size, req.session.userId)
         .then((result) => {
-            console.log("TSHIRT1: ", result.rows);
             res.json(result.rows);
+            console.log("TSHIRT: ", result.rows);
         })
         .catch((err) => {
             console.log("TSHIRT NON INSEITA: ", err);
@@ -173,7 +174,7 @@ app.post("/addlongsleeve", (req, res) => {
     console.log("REQ BODY: ", req.body);
     addLongsleeve(req.body.size, req.session.userId)
         .then((result) => {
-            console.log("TSHIRT2: ", result.rows);
+            console.log("LONGSLEEVE: ", result.rows);
             res.json(result.rows);
         })
         .catch((err) => {
@@ -183,7 +184,16 @@ app.post("/addlongsleeve", (req, res) => {
 
 app.post("/addvinyl", (req, res) => {
     console.log("REQ BODY: ", req.body);
-    addVinyl(req.body.color, req.session.userId)
+    if (req.body.color == "Clear Red") {
+        req.body.imgurl = "vinyl-red.jpg";
+    } else if (req.body.color == "Clear Green") {
+        req.body.imgurl = "vinyl-green.jpg";
+    } else if (req.body.color == "Blue") {
+        req.body.imgurl = "vinyl-blue.jpg";
+    } else {
+        req.body.imgurl = "vinyl-light.jpg";
+    }
+    addVinyl(req.body.color, req.body.imgurl, req.session.userId)
         .then((result) => {
             console.log("VINYL: ", result.rows);
             res.json(result.rows);
