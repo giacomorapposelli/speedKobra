@@ -285,16 +285,25 @@ export default class Login extends React.Component {
                 {this.state.vinylSlider == "visible" && <VinylSlider />}
                 {this.state.tapeModal == "visible" && (
                     <div className="tape-modal">
+                        <a id="x-modal" onClick={this.closeModal}>
+                            X
+                        </a>
                         <img src="/tape.jpg" className="tapephoto" />
                     </div>
                 )}
                 {this.state.tshirtModal == "visible" && (
                     <div className="tshirt-modal">
+                        <a id="x-modal" onClick={this.closeModal}>
+                            X
+                        </a>
                         <img src="/tshirt.jpg" className="tshirtphoto" />
                     </div>
                 )}
                 {this.state.longsleeveModal == "visible" && (
                     <div className="longsleeve-modal">
+                        <a id="x-modal" onClick={this.closeModal}>
+                            X
+                        </a>
                         <img
                             src="/longsleeve.jpg"
                             className="longsleevephoto"

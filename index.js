@@ -7,17 +7,15 @@ const {
     addTshirt,
     addLongsleeve,
     addVinyl,
-    removeTshirt,
-    removeLongsleeve,
-    removeVinyl,
+    removeItem,
     submitOrder,
-    getOnTheRoadPics,
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
 const { sendEmail } = require("./ses.js");
 const { ElastiCache } = require("aws-sdk");
+const cryptoRandomString = require("crypto-random-string");
 
 app.use(express.static(__dirname + "/public"));
 app.use(compression());
@@ -83,21 +81,35 @@ app.get("/order", (req, res) => {
             sendEmail(
                 "rapposelli.giacomo@gmail.com",
                 "We have a new Order!",
-                `
-                    ${result.rows[0].first} ${
+                ` 
+                Order Code: ${orderCode}
+
+                ${result.rows[0].email}
+
+                ${items.join(" ")}
+                    
+                Ship to:
+                ${result.rows[0].first} ${
                     result.rows[0].last
-                } has submitted an Order:
-                    ${result.rows[0].email}
-                    ${items.join(" ")}                                       
-                    ${result.rows[0].address}
-                    ${result.rows[0].zip},${result.rows[0].city}
-                    ${result.rows[0].country}`
+                }                                       
+                ${result.rows[0].address}
+                ${result.rows[0].zip},${result.rows[0].city}
+                ${result.rows[0].country}`
             );
 
             console.log("ORDER: ", result.rows);
             res.json(result.rows);
         })
         .catch((err) => console.log("ERR IN ORDER: ", err));
+});
+
+const orderCode = cryptoRandomString({
+    length: 6,
+});
+
+app.get("/code", (req, res) => {
+    console.log("ORDER CODE: ", orderCode);
+    res.json({ orderCode });
 });
 
 app.get("*", function (req, res) {
@@ -162,7 +174,7 @@ app.post("/addthsirt", (req, res) => {
     console.log("REQ BODY: ", req.body);
     addTshirt(req.body.size, req.session.userId)
         .then((result) => {
-            res.json(result.rows);
+            res.json(result.rows[0]);
             console.log("TSHIRT: ", result.rows);
         })
         .catch((err) => {
@@ -175,7 +187,7 @@ app.post("/addlongsleeve", (req, res) => {
     addLongsleeve(req.body.size, req.session.userId)
         .then((result) => {
             console.log("LONGSLEEVE: ", result.rows);
-            res.json(result.rows);
+            res.json(result.rows[0]);
         })
         .catch((err) => {
             console.log("TSHIRT NON INSEITA: ", err);
@@ -184,9 +196,9 @@ app.post("/addlongsleeve", (req, res) => {
 
 app.post("/addvinyl", (req, res) => {
     console.log("REQ BODY: ", req.body);
-    if (req.body.color == "Clear Red") {
+    if (req.body.color == "Red") {
         req.body.imgurl = "vinyl-red.jpg";
-    } else if (req.body.color == "Clear Green") {
+    } else if (req.body.color == "Green") {
         req.body.imgurl = "vinyl-green.jpg";
     } else if (req.body.color == "Blue") {
         req.body.imgurl = "vinyl-blue.jpg";
@@ -196,15 +208,16 @@ app.post("/addvinyl", (req, res) => {
     addVinyl(req.body.color, req.body.imgurl, req.session.userId)
         .then((result) => {
             console.log("VINYL: ", result.rows);
-            res.json(result.rows);
+            res.json(result.rows[0]);
         })
         .catch((err) => {
             console.log("TSHIRT NOT ADDED: ", err);
         });
 });
 
-app.post("/removetshirt", (req, res) => {
-    removeTshirt(req.session.userId)
+app.post("/removeitem", (req, res) => {
+    console.log("IDDDDD: ", req.body.itemId);
+    removeItem(req.body.itemId)
         .then((result) => {
             console.log("RESULT SHOULD BE EMPTY: ", result.rows);
             res.json();

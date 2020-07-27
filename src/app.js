@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Tour from "./tour";
 import Home from "./home";
 import Gallery from "./gallery";

@@ -5,9 +5,6 @@ import VinylSlider from "./vinylslider";
 export default function Items() {
     const [size, setSize] = useState("");
     const [color, setColor] = useState("");
-    const [tshirt, setTshirt] = useState([]);
-    const [longsleeve, setLongsleeve] = useState([]);
-    const [vinyl, setVinyl] = useState([]);
     const [order, setOrder] = useState([]);
     const [modal, setModal] = useState("hidden");
     const [vinylSlider, setVinylSlider] = useState("hidden");
@@ -17,17 +14,25 @@ export default function Items() {
     const [total, setTotal] = useState();
     const [className, setClassName] = useState();
     const [soldOut, setSoldOut] = useState("");
-    const [cart, setCart] = useState(false);
     const [error, setError] = useState("");
+    const [code, setCode] = useState("");
+    const [currentCart, setCurrentCart] = useState([]);
+
     let sum = 0;
+    let tempSum = 0;
+
+    currentCart.map((each) => {
+        tempSum += each.price;
+    });
 
     const addTshirt = (event) => {
         event.preventDefault();
         axios
             .post("/addthsirt", { size })
             .then((response) => {
-                setTshirt(response.data);
-                setCart(true);
+                console.log("DATA", response.data);
+                setCurrentCart([...currentCart, response.data]);
+                console.log("CURR:", currentCart);
             })
             .catch((err) => {
                 console.log("TSHIRT NOT ADDED: ", err);
@@ -40,8 +45,7 @@ export default function Items() {
         axios
             .post("/addlongsleeve", { size })
             .then((response) => {
-                setLongsleeve(response.data);
-                setCart(true);
+                setCurrentCart([...currentCart, response.data]);
             })
             .catch((err) => {
                 console.log("TSHIRT NOT ADDED: ", err);
@@ -56,8 +60,7 @@ export default function Items() {
         axios
             .post("/addvinyl", { color })
             .then((response) => {
-                setVinyl(response.data);
-                setCart(true);
+                setCurrentCart([...currentCart, response.data]);
             })
             .catch((err) => {
                 console.log("VINYL NOT ADDED: ", err);
@@ -65,30 +68,6 @@ export default function Items() {
                     setError("Choose a color!");
                 }, 3000);
             });
-    };
-
-    const removeTshirt = (event) => {
-        event.preventDefault();
-        axios
-            .post("/removetshirt")
-            .then(() => setTshirt([]))
-            .catch((err) => console.log("TSHIRT NOT REMOVED: ", err));
-    };
-
-    const removeLongsleeve = (event) => {
-        event.preventDefault();
-        axios
-            .post("/removelongsleeve")
-            .then(() => setLongsleeve([]))
-            .catch((err) => console.log("TSHIRT NOT REMOVED: ", err));
-    };
-
-    const removeVinyl = (event) => {
-        event.preventDefault();
-        axios
-            .post("/removevinyl")
-            .then(() => setVinyl([]))
-            .catch((err) => console.log("VINYL NOT REMOVED: ", err));
     };
 
     const submitOrder = (event) => {
@@ -99,10 +78,7 @@ export default function Items() {
                 setOrder(response.data);
                 setModal("visible");
                 setClassName("overlay");
-                setTshirt([]);
-                setLongsleeve([]);
-                setVinyl([]);
-                setCart(false);
+                setCurrentCart([]);
             })
             .catch((err) => {
                 console.log("ERROR IN ORDER: ", err);
@@ -151,18 +127,33 @@ export default function Items() {
         setClassName("overlay");
     };
 
+    const removeitem = (event) => {
+        console.log(event.target);
+        const itemId = event.target.parentElement.id;
+        const items = currentCart.filter((each) => each.id != itemId);
+        console.log(itemId);
+        setCurrentCart(items);
+        axios.post("/removeitem", { itemId });
+    };
+
     useEffect(() => {
-        if (!tshirt.length && !longsleeve.length && !vinyl.length) {
-            setCart(false);
-        }
+        axios
+            .get("/code")
+            .then((response) => {
+                console.log("RANDOM CODE: ", response);
+                setCode(response.data.orderCode);
+            })
+            .catch((err) => console.log(err));
+
         order.map((each) => {
             sum += each.price;
         });
+
         setTotal(sum);
     }, [order]);
     return (
         <div className="shop-general">
-            <div className={className} onClick={closeModal}></div>
+            <div className={className} onClick={closeModal} id="shop"></div>
             <div className="row">
                 <div className="merch-card">
                     <img
@@ -232,8 +223,8 @@ export default function Items() {
                             onChange={(event) => setColor(event.target.value)}
                         >
                             <option value="">Color</option>
-                            <option value="Clear Red">RED</option>
-                            <option value="Clear Green">GREEN</option>
+                            <option value="Red">RED</option>
+                            <option value="Green">GREEN</option>
                             <option value="Blue">BLUE</option>
                             <option value="Light Blue">LIGHT BLUE</option>
                         </select>
@@ -269,7 +260,7 @@ export default function Items() {
             </div>
             <div className="cart">
                 <h2 className="cart-title">YOUR CART:</h2>
-                {!tshirt.length && !longsleeve.length && !vinyl.length && (
+                {!currentCart.length && (
                     <div className="empty-cart">
                         <h2 className="sold-out ">Your Cart is now empty </h2>
                         <img
@@ -280,104 +271,49 @@ export default function Items() {
                     </div>
                 )}
                 ||
-                {tshirt &&
-                    tshirt.length > 0 &&
-                    tshirt.map((each, index) => {
-                        return (
-                            <div key={index} className="item-container">
-                                <img src="tshirt.jpg" className="small-pic" />
-                                <p className="success">{each.tshirt}</p>
-                                <p className="success">Size: {each.size}</p>
-                                <p className="success">Price: {each.price}€</p>
-                                <img
-                                    src="/icons/delete.png"
-                                    className="social-logo"
-                                    onClick={removeTshirt}
-                                />
-                            </div>
-                        );
-                    })}
-                ||
-                {longsleeve &&
-                    longsleeve.length > 0 &&
-                    longsleeve.map((each, index) => {
-                        return (
-                            <div key={index} className="item-container">
-                                <img
-                                    src="longsleeve.jpg"
-                                    className="small-pic"
-                                />
-                                <p className="success">{each.tshirt}</p>
-                                <p className="success">Size: {each.size}</p>
-                                <p className="success">Price: {each.price}€</p>
-                                <img
-                                    src="/icons/delete.png"
-                                    className="social-logo"
-                                    onClick={removeLongsleeve}
-                                />
-                            </div>
-                        );
-                    })}
-                ||
-                {vinyl &&
-                    vinyl.length > 0 &&
-                    vinyl.map((each, index) => {
-                        return (
-                            <div key={index} className="item-container">
-                                <img src={each.imgurl} className="small-pic" />
-                                <p className="success">{each.vinyl}</p>
-                                <p className="success">Size: {each.size}</p>
-                                <p className="success">Price: {each.price}€</p>
-                                <img
-                                    src="/icons/delete.png"
-                                    className="social-logo"
-                                    onClick={removeVinyl}
-                                />
-                            </div>
-                        );
-                    })}
-                {tshirt.length > 0 && !longsleeve.length && !vinyl.length && (
-                    <p className="success">Total: {tshirt[0].price}€</p>
+                <div className="cart-container">
+                    {currentCart &&
+                        currentCart.length > 0 &&
+                        currentCart.map((each) => {
+                            console.log("EACH: ", each);
+                            return (
+                                <div
+                                    key={each.id}
+                                    className="item-container"
+                                    id={each.id}
+                                >
+                                    <img
+                                        src={each.imgurl}
+                                        className="small-pic"
+                                    />
+                                    <p className="item-name">
+                                        {each.tshirt || each.vinyl}
+                                    </p>
+                                    <p className="success">
+                                        {each.size
+                                            ? "Size: " + each.size
+                                            : "Color: " + each.color}
+                                    </p>
+                                    <p className="success">
+                                        Price: {each.price}€
+                                    </p>
+                                    <img
+                                        src="/icons/delete.png"
+                                        className="social-logo"
+                                        onClick={removeitem}
+                                    />
+                                </div>
+                            );
+                        })}
+                </div>
+                {currentCart.length > 0 && (
+                    <p className="success">Total: {tempSum}€</p>
                 )}
-                {!tshirt.length && longsleeve.length > 0 && !vinyl.length && (
-                    <p className="success">Total: {longsleeve[0].price}€</p>
+                {currentCart.length > 0 && (
+                    <button onClick={submitOrder} id="submit-btn">
+                        Submit Order
+                    </button>
                 )}
-                {!tshirt.length && !longsleeve.length && vinyl.length > 0 && (
-                    <p className="success">Total: {vinyl[0].price}€</p>
-                )}
-                {tshirt.length > 0 &&
-                    longsleeve.length > 0 &&
-                    !vinyl.length && (
-                        <p className="success">
-                            Total: {tshirt[0].price + longsleeve[0].price}€
-                        </p>
-                    )}
-                {tshirt.length > 0 &&
-                    !longsleeve.length &&
-                    vinyl.length > 0 && (
-                        <p className="success">
-                            Total: {tshirt[0].price + vinyl[0].price}€
-                        </p>
-                    )}
-                {!tshirt.length &&
-                    longsleeve.length > 0 &&
-                    vinyl.length > 0 && (
-                        <p className="success">
-                            Total: {longsleeve[0].price + vinyl[0].price}€
-                        </p>
-                    )}
-                {tshirt.length > 0 &&
-                    longsleeve.length > 0 &&
-                    vinyl.length > 0 && (
-                        <p className="success">
-                            Total:
-                            {tshirt[0].price +
-                                longsleeve[0].price +
-                                vinyl[0].price}
-                            €
-                        </p>
-                    )}
-                {cart && <button onClick={submitOrder}>Submit Order</button>}
             </div>
 
             {modal == "visible" && (
@@ -392,7 +328,7 @@ export default function Items() {
                             in a few days about shipment and payment methods
                         </h3>
                         <div className="order-container">
-                            <h2 className="success">Your Order:</h2>
+                            <h2 className="success">Order Code: {code}</h2>
                             {order.map((each) => (
                                 <div
                                     key={each.order_id}
@@ -407,7 +343,9 @@ export default function Items() {
                                     </p>
 
                                     <p className="success">
-                                        {each.size || each.color}
+                                        {each.size
+                                            ? "Size: " + each.size
+                                            : "Color: " + each.color}
                                     </p>
                                     <p className="success">
                                         Price: {each.price}€
