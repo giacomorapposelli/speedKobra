@@ -14,13 +14,15 @@ export default class Register extends React.Component {
             zip: "",
             city: "",
             country: "",
-            password: "",
+            password1: "",
+            password2: "",
             vinylSlider: "hidden",
             tapeModal: "hidden",
             tshirtModal: "hidden",
             longsleeveModal: "hidden",
             overlay: "",
             error: false,
+            noMatch: false,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,8 +50,15 @@ export default class Register extends React.Component {
         axios
             .post("/register", this.state)
             .then((response) => {
-                location.replace("/#/cart");
-                console.log("RISPOSTA: ", response);
+                if (response.data.noMatch) {
+                    this.setState({
+                        noMatch: true,
+                    });
+                    console.log("RISPOSTA: ", response);
+                } else {
+                    location.replace("/#/cart");
+                    console.log("RISPOSTA: ", response);
+                }
             })
             .catch((err) => {
                 this.setState({
@@ -63,6 +72,8 @@ export default class Register extends React.Component {
         event.preventDefault();
         this.setState({
             error: false,
+            noMatch: false,
+            shortPW: false,
         });
     }
 
@@ -329,8 +340,16 @@ export default class Register extends React.Component {
                         />
                         <input
                             type="password"
-                            name="password"
+                            name="password1"
                             placeholder="Password"
+                            required
+                            onChange={this.handleChange}
+                            onFocus={this.resetError}
+                        />
+                        <input
+                            type="password"
+                            name="password2"
+                            placeholder="Confirm Password"
                             required
                             onChange={this.handleChange}
                             onFocus={this.resetError}
@@ -341,9 +360,10 @@ export default class Register extends React.Component {
                             <Link to="/log">Log in</Link>
                         </p>
                         {this.state.error && (
-                            <p className="error">
-                                Something went wrong,please try again
-                            </p>
+                            <p className="error">Email already in use</p>
+                        )}
+                        {this.state.noMatch && (
+                            <p className="error">Passwords don't match</p>
                         )}
                     </form>
                 </div>

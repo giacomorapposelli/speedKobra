@@ -53,6 +53,14 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
+app.get("/#/store", (req, res) => {
+    if (req.session.userId) {
+        res.redirect("/#/cart");
+    } else {
+        res.redirect("/#/store");
+    }
+});
+
 app.get("/order", (req, res) => {
     submitOrder(req.session.userId)
         .then((result) => {
@@ -117,32 +125,37 @@ app.get("*", function (req, res) {
 });
 
 app.post("/register", (req, res) => {
-    hash(req.body.password)
-        .then((hashedPw) => {
-            addUser(
-                req.body.firstname,
-                req.body.lastname,
-                req.body.email,
-                req.body.address,
-                req.body.zip,
-                req.body.city,
-                req.body.country,
-                hashedPw
-            )
-                .then((result) => {
-                    console.log("RESULT: ", result);
-                    req.session.userId = result.rows[0].id;
-                    res.json();
-                })
-                .catch((err) => {
-                    res.sendStatus(500);
-                    console.log("TERROR: ", err);
-                });
-        })
-        .catch((err) => {
-            res.sendStatus(500);
-            console.log("CHE SUCCEDE? :", err);
-        });
+    if (req.body.password1 == req.body.password2) {
+        console.log();
+        hash(req.body.password1)
+            .then((hashedPw) => {
+                addUser(
+                    req.body.firstname,
+                    req.body.lastname,
+                    req.body.email,
+                    req.body.address,
+                    req.body.zip,
+                    req.body.city,
+                    req.body.country,
+                    hashedPw
+                )
+                    .then((result) => {
+                        console.log("RESULT: ", result);
+                        req.session.userId = result.rows[0].id;
+                        res.json();
+                    })
+                    .catch((err) => {
+                        res.sendStatus(500);
+                        console.log("TERROR: ", err);
+                    });
+            })
+            .catch((err) => {
+                res.sendStatus(500);
+                console.log("CHE SUCCEDE? :", err);
+            });
+    } else {
+        res.json({ noMatch: true });
+    }
 });
 
 app.post("/login", (req, res) => {
