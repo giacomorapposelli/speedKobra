@@ -10,6 +10,7 @@ export default function Items() {
     const [vinylSlider, setVinylSlider] = useState("hidden");
     const [tapeModal, setTapeModal] = useState("hidden");
     const [longsleeveModal, setLongsleeveModal] = useState("hidden");
+    const [confirmModal, setConfirmModal] = useState("hidden");
     const [tshirtModal, setTshirtModal] = useState("hidden");
     const [total, setTotal] = useState();
     const [className, setClassName] = useState();
@@ -78,6 +79,7 @@ export default function Items() {
                 setOrder(response.data);
                 setModal("visible");
                 setClassName("overlay");
+                setConfirmModal("hidden");
                 setCurrentCart([]);
             })
             .catch((err) => {
@@ -92,6 +94,7 @@ export default function Items() {
         setTapeModal("hidden");
         setTshirtModal("hidden");
         setLongsleeveModal("hidden");
+        setConfirmModal("hidden");
         setClassName("");
     };
 
@@ -136,6 +139,12 @@ export default function Items() {
         axios.post("/removeitem", { itemId });
     };
 
+    const confirmOrder = (event) => {
+        event.preventDefault();
+        setConfirmModal("visible");
+        setClassName("overlay");
+    };
+
     useEffect(() => {
         axios
             .get("/code")
@@ -167,13 +176,15 @@ export default function Items() {
                             name="size"
                             onChange={(event) => setSize(event.target.value)}
                         >
-                            <option value="">Size</option>
+                            <option value="">Choose a size:</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
                         </select>
-                        <button onClick={addTshirt}>Add to cart</button>
+                        <button onClick={addTshirt} className="addtocart">
+                            Add to cart
+                        </button>
                     </form>
                 </div>
                 <div className="description">
@@ -194,13 +205,15 @@ export default function Items() {
                             name="size"
                             onChange={(event) => setSize(event.target.value)}
                         >
-                            <option value="">Size</option>
+                            <option value="">Choose a size:</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
                         </select>
-                        <button onClick={addLongsleeve}>Add to cart</button>
+                        <button onClick={addLongsleeve} className="addtocart">
+                            Add to cart
+                        </button>
                     </form>
                 </div>
                 <div className="description">
@@ -222,13 +235,15 @@ export default function Items() {
                             name="color"
                             onChange={(event) => setColor(event.target.value)}
                         >
-                            <option value="">Color</option>
+                            <option value="">Choose a color:</option>
                             <option value="Red">RED</option>
                             <option value="Green">GREEN</option>
                             <option value="Blue">BLUE</option>
                             <option value="Light Blue">LIGHT BLUE</option>
                         </select>
-                        <button onClick={addVinyl}>Add to cart</button>
+                        <button onClick={addVinyl} className="addtocart">
+                            Add to cart
+                        </button>
                     </form>
                 </div>
                 <div className="description">
@@ -240,7 +255,7 @@ export default function Items() {
 
                 <div className="merch-card">
                     <img
-                        src="tape.jpg"
+                        src="tape2.jpg"
                         className="item-img"
                         onClick={openTapeModal}
                     />
@@ -248,7 +263,9 @@ export default function Items() {
                         <select>
                             <option value="-">--</option>
                         </select>
-                        <button onClick={soldOutError}>Add to cart</button>
+                        <button onClick={soldOutError} className="addtocart">
+                            Add to cart
+                        </button>
                     </form>
                 </div>
                 <div className="description">
@@ -289,7 +306,7 @@ export default function Items() {
                                     <p className="item-name">
                                         {each.tshirt || each.vinyl}
                                     </p>
-                                    <p className="success">
+                                    <p className="item-desc">
                                         {each.size
                                             ? "Size: " + each.size
                                             : "Color: " + each.color}
@@ -307,10 +324,16 @@ export default function Items() {
                         })}
                 </div>
                 {currentCart.length > 0 && (
-                    <p className="success">Total: {tempSum}€</p>
+                    <p className="success" className="temp-total">
+                        Total: {tempSum}€
+                    </p>
                 )}
                 {currentCart.length > 0 && (
-                    <button onClick={submitOrder} id="submit-btn">
+                    <button
+                        onClick={confirmOrder}
+                        id="submit-btn"
+                        className="submit-btn"
+                    >
                         Submit Order
                     </button>
                 )}
@@ -324,7 +347,7 @@ export default function Items() {
                     <div className="modal-container">
                         <h1 className="thanks">THANK YOU!</h1>
                         <h3 className="thanks">
-                            We've just received your order,you'll be contacted
+                            We've just received your order.You'll be contacted
                             in a few days about shipment and payment methods
                         </h3>
                         <div className="order-container">
@@ -365,19 +388,42 @@ export default function Items() {
                     </div>
                 </div>
             )}
+            {confirmModal == "visible" && (
+                <div className="confirm-modal">
+                    <a id="x-conf-modal" onClick={closeModal}>
+                        X
+                    </a>
+                    <h2 className="thanks">CONFIRM YOUR ORDER</h2>
+                    <button onClick={submitOrder} className="conf-btn">
+                        Confirm
+                    </button>
+                    <button onClick={closeModal} className="conf-btn">
+                        Go back
+                    </button>
+                </div>
+            )}
             {vinylSlider == "visible" && <VinylSlider />}
             {tapeModal == "visible" && (
                 <div className="tape-modal">
+                    <a id="x-modal" onClick={closeModal}>
+                        X
+                    </a>
                     <img src="/tape.jpg" className="tapephoto" />
                 </div>
             )}
             {tshirtModal == "visible" && (
                 <div className="tshirt-modal">
+                    <a id="x-modal" onClick={closeModal}>
+                        X
+                    </a>
                     <img src="/tshirt.jpg" className="tshirtphoto" />
                 </div>
             )}
             {longsleeveModal == "visible" && (
                 <div className="longsleeve-modal">
+                    <a id="x-modal" onClick={closeModal}>
+                        X
+                    </a>
                     <img src="/longsleeve.jpg" className="longsleevephoto" />
                 </div>
             )}

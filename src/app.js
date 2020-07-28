@@ -73,7 +73,7 @@ export default function App() {
                         target="_blank"
                     >
                         <img
-                            src="/icons/bc.png"
+                            src="/icons/spotify.png"
                             alt=""
                             className="social-logo bc"
                         />

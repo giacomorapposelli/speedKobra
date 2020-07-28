@@ -142,13 +142,16 @@ export default class Login extends React.Component {
 
                         <form>
                             <select name="size">
-                                <option value="-">Size</option>
+                                <option value="-">Choose a size:</option>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
                                 <option value="XL">XL</option>
                             </select>
-                            <button onClick={this.setError1}>
+                            <button
+                                onClick={this.setError1}
+                                className="addtocart"
+                            >
                                 Add to cart
                             </button>
                         </form>
@@ -173,13 +176,16 @@ export default class Login extends React.Component {
                         />
                         <form>
                             <select name="size">
-                                <option value="-">Size</option>
+                                <option value="-">Choose a size:</option>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
                                 <option value="XL">XL</option>
                             </select>
-                            <button onClick={this.setError2}>
+                            <button
+                                onClick={this.setError2}
+                                className="addtocart"
+                            >
                                 Add to cart
                             </button>
                         </form>
@@ -205,13 +211,16 @@ export default class Login extends React.Component {
                         />
                         <form>
                             <select name="color">
-                                <option value="-">Color</option>
+                                <option value="-">Choose a color:</option>
                                 <option value="Clear Red">RED</option>
                                 <option value="Clear Green">GREEN</option>
                                 <option value="Blue">BLUE</option>
                                 <option value="Light Blue">LIGHT BLUE</option>
                             </select>
-                            <button onClick={this.setError3}>
+                            <button
+                                onClick={this.setError3}
+                                className="addtocart"
+                            >
                                 Add to cart
                             </button>
                         </form>
@@ -230,7 +239,7 @@ export default class Login extends React.Component {
 
                     <div className="merch-card">
                         <img
-                            src="tape.jpg"
+                            src="tape2.jpg"
                             className="item-img"
                             onClick={this.setTapeModal}
                         />
@@ -238,7 +247,10 @@ export default class Login extends React.Component {
                             <select>
                                 <option value="-">--</option>
                             </select>
-                            <button onClick={this.setError4}>
+                            <button
+                                onClick={this.setError4}
+                                className="addtocart"
+                            >
                                 Add to cart
                             </button>
                         </form>
@@ -274,7 +286,7 @@ export default class Login extends React.Component {
                             required
                             onFocus={this.resetError}
                         />
-                        <button>Log in</button>
+                        <button className="reg-btn">Log in</button>
                         {this.state.error && (
                             <p className="error">
                                 Email or Password aren't correct

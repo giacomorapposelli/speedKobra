@@ -164,13 +164,16 @@ export default class Register extends React.Component {
 
                         <form>
                             <select name="size">
-                                <option value="-">Size</option>
+                                <option value="-">Choose a size:</option>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
                                 <option value="XL">XL</option>
                             </select>
-                            <button onClick={this.setError1}>
+                            <button
+                                onClick={this.setError1}
+                                className="addtocart"
+                            >
                                 Add to cart
                             </button>
                         </form>
@@ -195,13 +198,16 @@ export default class Register extends React.Component {
                         />
                         <form>
                             <select name="size">
-                                <option value="-">Size</option>
+                                <option value="-">Choose a size:</option>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
                                 <option value="XL">XL</option>
                             </select>
-                            <button onClick={this.setError2}>
+                            <button
+                                onClick={this.setError2}
+                                className="addtocart"
+                            >
                                 Add to cart
                             </button>
                         </form>
@@ -227,13 +233,16 @@ export default class Register extends React.Component {
                         />
                         <form>
                             <select name="color">
-                                <option value="-">Color</option>
+                                <option value="-">Choose a color:</option>
                                 <option value="Clear Red">RED</option>
                                 <option value="Clear Green">GREEN</option>
                                 <option value="Blue">BLUE</option>
                                 <option value="Light Blue">LIGHT BLUE</option>
                             </select>
-                            <button onClick={this.setError3}>
+                            <button
+                                onClick={this.setError3}
+                                className="addtocart"
+                            >
                                 Add to cart
                             </button>
                         </form>
@@ -252,7 +261,7 @@ export default class Register extends React.Component {
 
                     <div className="merch-card">
                         <img
-                            src="tape.jpg"
+                            src="tape2.jpg"
                             className="item-img"
                             onClick={this.setTapeModal}
                         />
@@ -260,7 +269,10 @@ export default class Register extends React.Component {
                             <select>
                                 <option value="-">--</option>
                             </select>
-                            <button onClick={this.setError4}>
+                            <button
+                                onClick={this.setError4}
+                                className="addtocart"
+                            >
                                 Add to cart
                             </button>
                         </form>
@@ -354,16 +366,18 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                             onFocus={this.resetError}
                         />
-                        <button>Register</button>
-                        <p>
+                        <button className="reg-btn">Register</button>
+                        <p className="already">
                             Already a member?
-                            <Link to="/log">Log in</Link>
+                            <Link to="/log" className="login-link">
+                                Log in
+                            </Link>
                         </p>
                         {this.state.error && (
-                            <p className="error">Email already in use</p>
+                            <p className="reg-error">Email already in use</p>
                         )}
                         {this.state.noMatch && (
-                            <p className="error">Passwords don't match</p>
+                            <p className="reg-error">Passwords don't match</p>
                         )}
                     </form>
                 </div>
