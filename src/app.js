@@ -42,38 +42,26 @@ export default function App() {
                         href="https://www.instagram.com/speedkobra/"
                         target="_blank"
                     >
-                        <img
-                            src="/icons//insta.png"
-                            alt=""
-                            className="social-logo"
-                        />
+                        <img src="/insta.png" alt="" className="social-logo" />
                     </a>
                     <a
                         href="https://www.facebook.com/speedkobra666"
                         target="_blank"
                     >
-                        <img
-                            src="/icons//fb.png"
-                            alt=""
-                            className="social-logo"
-                        />
+                        <img src="/fb.png" alt="" className="social-logo" />
                     </a>
                     <a
                         href="https://www.youtube.com/channel/UC57goUK4nTrwOGdhchCw8TA"
                         target="_blank"
                     >
-                        <img
-                            src="/icons//you.png"
-                            alt=""
-                            className="social-logo"
-                        />
+                        <img src="/you.png" alt="" className="social-logo" />
                     </a>
                     <a
                         href="https://speedkobra666.bandcamp.com/"
                         target="_blank"
                     >
                         <img
-                            src="/icons/spotify.png"
+                            src="/spotify.png"
                             alt=""
                             className="social-logo bc"
                         />

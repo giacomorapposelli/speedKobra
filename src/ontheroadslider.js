@@ -44,18 +44,15 @@ export default function OnTheRoadSlider() {
 
     return (
         <div className="otr-modal">
-            <img src="/icons/back.png" alt="" className="prev-btn" />
-            <img src="/icons/next.png" alt="" className="next-btn" />
+            <img src="/back.png" alt="" className="prev-btn" />
+            <img src="/next.png" alt="" className="next-btn" />
             <div className="otr-slide">
                 <img
                     src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074gz0yfIV0.jpg"
                     className="otrphoto"
                     id="firstClone"
                 />
-                <img
-                    src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074WjVaXV6s.jpg"
-                    className="otrphoto"
-                />
+                <img src="castle.jpg" className="otrphoto" />
                 <img
                     src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074T3UrqRS2.jpg"
                     className="otrphoto"

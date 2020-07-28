@@ -44,8 +44,8 @@ export default function LiveSlider() {
 
     return (
         <div className="live-modal">
-            <img src="/icons/back.png" alt="" className="prev-btn" />
-            <img src="/icons/next.png" alt="" className="next-btn" />
+            <img src="/back.png" alt="" className="prev-btn" />
+            <img src="/next.png" alt="" className="next-btn" />
             <div className="images-slide">
                 <img
                     src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074gKRtrwC6.jpg"

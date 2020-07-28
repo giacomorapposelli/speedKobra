@@ -281,7 +281,7 @@ export default function Items() {
                     <div className="empty-cart">
                         <h2 className="sold-out ">Your Cart is now empty </h2>
                         <img
-                            src="/icons/empty-cart.png"
+                            src="/empty-cart.png"
                             alt=""
                             className="empty-icon"
                         />
@@ -315,7 +315,7 @@ export default function Items() {
                                         Price: {each.price}€
                                     </p>
                                     <img
-                                        src="/icons/delete.png"
+                                        src="/delete.png"
                                         className="social-logo"
                                         onClick={removeitem}
                                     />

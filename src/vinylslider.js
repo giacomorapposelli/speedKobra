@@ -44,8 +44,8 @@ export default function VinylSlider(props) {
 
     return (
         <div className="vinyl-modal">
-            <img src="/icons/back.png" alt="" className="prev-btn" />
-            <img src="/icons/next.png" alt="" className="next-btn" />
+            <img src="/back.png" alt="" className="prev-btn" />
+            <img src="/next.png" alt="" className="next-btn" />
             <div className="images-slide">
                 <img
                     src="/vinyl-red.jpg"
