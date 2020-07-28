@@ -178,6 +178,7 @@ footer {
 .column {
     width: 15%;
     color: rgb(235, 235, 235);
+    text-decoration: none;
 }
 
 /* GALLERY ////////////////////////////////////// */
@@ -425,6 +426,7 @@ p {
     z-index: 3;
     max-height: 90%;
     overflow-y: scroll;
+    overflow-x: hidden;
     box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.58);
 }
 
@@ -654,7 +656,7 @@ button:hover {
 }
 
 .submit-btn {
-    margin-top: 15px;
+    margin-top: 17px;
 }
 
 .conf-btn {
@@ -695,4 +697,9 @@ button:hover {
 .empty-icon {
     margin-right: 10px;
     height: 30px;
+}
+
+.a {
+    color: tomato;
+    z-index: 10;
 }

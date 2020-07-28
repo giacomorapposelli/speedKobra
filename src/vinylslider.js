@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function VinylSlider(props) {
     useEffect(() => {
@@ -6,13 +6,13 @@ export default function VinylSlider(props) {
         const carouselImages = document.querySelectorAll(".images-slide img");
         const prevBtn = document.querySelector(".prev-btn");
         const nextBtn = document.querySelector(".next-btn");
-        let counter = 1;
+        let counter = 0;
         const size = carouselImages[0].clientWidth;
-
+        prevBtn.style.visibility = "hidden";
         slider.style.transform = "translateX(" + -size * counter + "px)";
 
         nextBtn.addEventListener("click", () => {
-            console.log(carouselImages);
+            prevBtn.style.visibility = "visible";
             if (counter == carouselImages.length - 1) {
                 return;
             }
@@ -22,7 +22,7 @@ export default function VinylSlider(props) {
         });
 
         prevBtn.addEventListener("click", () => {
-            console.log(carouselImages);
+            nextBtn.style.visibility = "visible";
             if (counter <= 0) {
                 return;
             }
@@ -33,16 +33,11 @@ export default function VinylSlider(props) {
 
         slider.addEventListener("transitionend", () => {
             if (carouselImages[counter].id === "lastCloneVinyl") {
-                slider.style.transition = "none";
-                counter = carouselImages.length - 2;
-                slider.style.transform =
-                    "translateX(" + -size * counter + "px)";
+                nextBtn.style.visibility = "hidden";
             }
+
             if (carouselImages[counter].id === "firstCloneVinyl") {
-                slider.style.transition = "none";
-                counter = carouselImages.length - counter;
-                slider.style.transform =
-                    "translateX(" + -size * counter + "px)";
+                prevBtn.style.visibility = "hidden";
             }
         });
     });
@@ -53,18 +48,16 @@ export default function VinylSlider(props) {
             <img src="/icons/next.png" alt="" className="next-btn" />
             <div className="images-slide">
                 <img
-                    src="/vinyl-light.jpg"
-                    id="lastCloneVinyl"
+                    src="/vinyl-red.jpg"
                     className="vinylphoto"
+                    id="firstCloneVinyl"
                 />
-                <img src="/vinyl-red.jpg" className="vinylphoto" />
                 <img src="/vinyl-green.jpg" className="vinylphoto" />
                 <img src="/vinyl-blue.jpg" className="vinylphoto" />
-                <img src="/vinyl-light.jpg" className="vinylphoto" />
                 <img
-                    src="/vinyl-red.jpg"
-                    id="firstCloneVinyl"
+                    src="/vinyl-light.jpg"
                     className="vinylphoto"
+                    id="lastCloneVinyl"
                 />
             </div>
         </div>

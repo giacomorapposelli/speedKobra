@@ -6,14 +6,13 @@ export default function OnTheRoadSlider() {
         const carouselImages = document.querySelectorAll(".otr-slide img");
         const prevBtn = document.querySelector(".prev-btn");
         const nextBtn = document.querySelector(".next-btn");
-
-        let counter = 1;
+        let counter = 0;
         const size = carouselImages[0].clientWidth;
-
+        prevBtn.style.visibility = "hidden";
         slider.style.transform = "translateX(" + -size * counter + "px)";
 
         nextBtn.addEventListener("click", () => {
-            console.log(carouselImages);
+            prevBtn.style.visibility = "visible";
             if (counter == carouselImages.length - 1) {
                 return;
             }
@@ -23,7 +22,7 @@ export default function OnTheRoadSlider() {
         });
 
         prevBtn.addEventListener("click", () => {
-            console.log(carouselImages);
+            nextBtn.style.visibility = "visible";
             if (counter <= 0) {
                 return;
             }
@@ -34,16 +33,11 @@ export default function OnTheRoadSlider() {
 
         slider.addEventListener("transitionend", () => {
             if (carouselImages[counter].id === "lastClone") {
-                slider.style.transition = "none";
-                counter = carouselImages.length - 2;
-                slider.style.transform =
-                    "translateX(" + -size * counter + "px)";
+                nextBtn.style.visibility = "hidden";
             }
+
             if (carouselImages[counter].id === "firstClone") {
-                slider.style.transition = "none";
-                counter = carouselImages.length - counter;
-                slider.style.transform =
-                    "translateX(" + -size * counter + "px)";
+                prevBtn.style.visibility = "hidden";
             }
         });
     });
@@ -54,13 +48,9 @@ export default function OnTheRoadSlider() {
             <img src="/icons/next.png" alt="" className="next-btn" />
             <div className="otr-slide">
                 <img
-                    src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074YWSgCi1L.jpg"
-                    className="otrphoto"
-                    id="lastClone"
-                />
-                <img
                     src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074gz0yfIV0.jpg"
                     className="otrphoto"
+                    id="firstClone"
                 />
                 <img
                     src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074WjVaXV6s.jpg"
@@ -89,11 +79,7 @@ export default function OnTheRoadSlider() {
                 <img
                     src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074YWSgCi1L.jpg"
                     className="otrphoto"
-                />
-                <img
-                    src="https://dvqlxo2m2q99q.cloudfront.net/000_clients/636074/page/h800-636074gz0yfIV0.jpg"
-                    className="otrphoto"
-                    id="firstClone"
+                    id="lastClone"
                 />
             </div>
         </div>

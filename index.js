@@ -91,7 +91,6 @@ app.get("/order", (req, res) => {
                 "We have a new Order!",
                 ` 
                 Order Code: ${orderCode}
-
                 ${result.rows[0].email}
 
                 ${items.join(" ")}                    
@@ -260,6 +259,4 @@ app.post("/removevinyl", (req, res) => {
         });
 });
 
-app.listen(8080, function () {
-    console.log("I'm listening.");
-});
+app.listen(process.env.PORT || 8080, () => console.log("server listening"));
