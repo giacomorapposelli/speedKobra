@@ -370,6 +370,10 @@ p {
 
 .reg-form {
     margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .shop-general {
@@ -532,7 +536,6 @@ button {
 }
 .reg-error {
     width: 40%;
-    margin-left: 7.5%;
 }
 
 input {
@@ -562,6 +565,8 @@ input:focus {
 
 .reg-title {
     color: rgb(235, 235, 235);
+    width: 90%;
+    margin-left: 5%;
 }
 
 .empty-cart {
@@ -669,7 +674,7 @@ button:hover {
 
 .reg-btn {
     width: 20%;
-    margin-top: 20px;
+    margin-top: 5%;
     margin-left: 15%;
 }
 
@@ -684,9 +689,8 @@ button:hover {
 }
 
 .already {
-    width: 40%;
-    margin-left: 5%;
-    margin-top: 25px;
+    min-width: 50%;
+    margin-top: 3.5%;
 }
 
 .login-link {
