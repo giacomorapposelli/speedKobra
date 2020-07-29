@@ -9,7 +9,7 @@ export default function Tour() {
                 <p className="column-title">DATE</p>
                 <p className="column-title">LOCATION</p>
                 <p className="column-title">CITY</p>
-                <p className="column-title">FLYER</p>
+                <p className="column-title">FB EVENT</p>
             </div>
             <div className="show-container">
                 <p className="column">16.11.2019</p>

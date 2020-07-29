@@ -57,7 +57,7 @@ export default function App() {
                         <img src="/you.png" alt="" className="social-logo" />
                     </a>
                     <a
-                        href="https://speedkobra666.bandcamp.com/"
+                        href="https://open.spotify.com/artist/6bwLhL6tsar6mpLQTvnxr9"
                         target="_blank"
                     >
                         <img
