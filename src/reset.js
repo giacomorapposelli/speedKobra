@@ -169,6 +169,12 @@ export default class ResetPassword extends React.Component {
                             onFocus={this.resetError}
                         />
                         <button className="reg-btn">Submit</button>
+                        <p className="already">
+                            Back to{" "}
+                            <Link to="/log" className="login-link">
+                                Log in
+                            </Link>
+                        </p>
                     </form>
                     {this.state.error && (
                         <p className="error">Email does not exist</p>
