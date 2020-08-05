@@ -340,7 +340,8 @@ p {
 
 .cart,
 .registration,
-.login {
+.login,
+.reset-form {
     position: absolute;
     left: 50%;
     top: 333%;
@@ -701,4 +702,8 @@ button:hover {
 .empty-icon {
     margin-right: 10px;
     height: 30px;
+}
+
+.success-msg {
+    text-align: center;
 }

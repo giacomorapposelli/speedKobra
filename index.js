@@ -9,6 +9,9 @@ const {
     addVinyl,
     removeItem,
     submitOrder,
+    insertCode,
+    checkCode,
+    updatePassword,
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
@@ -256,6 +259,69 @@ app.post("/removevinyl", (req, res) => {
         })
         .catch((err) => {
             console.log("VINYL NOT REMOVED");
+        });
+});
+
+app.post("/password/reset/start", (req, res) => {
+    getEmail(req.body.email)
+        .then((result) => {
+            if (result.rows[0]) {
+                const secretCode = cryptoRandomString({
+                    length: 6,
+                });
+                insertCode(req.body.email, secretCode)
+                    .then(() => {
+                        sendEmail(
+                            req.body.email,
+                            "Password Reset",
+                            `Here's the code that allows you to reset your password: ${secretCode}`
+                        );
+                        res.json();
+                    })
+                    .catch((err) => {
+                        res.sendStatus(500);
+                        console.log("NO CODE: ", err);
+                    });
+            } else {
+                res.sendStatus(500);
+            }
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.log("NOT FOUND: ", err);
+        });
+});
+
+app.post("/password/reset/verify", (req, res) => {
+    checkCode(req.body.email)
+        .then((result) => {
+            if (req.body.code === result.rows[result.rows.length - 1].code) {
+                if (req.body.newPassword === req.body.newPassword2) {
+                    hash(req.body.newPassword)
+                        .then((hashedPw) => {
+                            updatePassword(req.body.email, hashedPw)
+                                .then(() => {
+                                    res.json();
+                                })
+                                .catch((err) => {
+                                    res.sendStatus(500);
+                                    console.log("UPDATING HORROR:", err);
+                                });
+                        })
+                        .catch((err) => {
+                            console.log("???:", err);
+                        });
+                } else {
+                    res.json({ noMatch: true });
+                }
+            } else {
+                res.sendStatus(500);
+                console.log("NO CODE MATCH: ");
+            }
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.log("EMAIL NOT MATCHING: ", err);
         });
 });
 

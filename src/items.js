@@ -31,12 +31,9 @@ export default function Items() {
         axios
             .post("/addthsirt", { size })
             .then((response) => {
-                console.log("DATA", response.data);
                 setCurrentCart([...currentCart, response.data]);
-                console.log("CURR:", currentCart);
             })
             .catch((err) => {
-                console.log("TSHIRT NOT ADDED: ", err);
                 setError(true);
             });
     };
@@ -49,7 +46,6 @@ export default function Items() {
                 setCurrentCart([...currentCart, response.data]);
             })
             .catch((err) => {
-                console.log("TSHIRT NOT ADDED: ", err);
                 setTimeout(function () {
                     setError("Choose a size!");
                 }, 3000);
@@ -64,7 +60,6 @@ export default function Items() {
                 setCurrentCart([...currentCart, response.data]);
             })
             .catch((err) => {
-                console.log("VINYL NOT ADDED: ", err);
                 setTimeout(function () {
                     setError("Choose a color!");
                 }, 3000);
@@ -131,10 +126,8 @@ export default function Items() {
     };
 
     const removeitem = (event) => {
-        console.log(event.target);
         const itemId = event.target.parentElement.id;
         const items = currentCart.filter((each) => each.id != itemId);
-        console.log(itemId);
         setCurrentCart(items);
         axios.post("/removeitem", { itemId });
     };
@@ -149,7 +142,6 @@ export default function Items() {
         axios
             .get("/code")
             .then((response) => {
-                console.log("RANDOM CODE: ", response);
                 setCode(response.data.orderCode);
             })
             .catch((err) => console.log(err));

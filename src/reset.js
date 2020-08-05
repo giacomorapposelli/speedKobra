@@ -1,32 +1,22 @@
 import React from "react";
-import axios from "./axios";
+import axios from "./axios.js";
 import { Link } from "react-router-dom";
-import VinylSlider from "./vinylslider";
 
-export default class Register extends React.Component {
+export default class ResetPassword extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstname: "",
-            lastname: "",
             email: "",
-            address: "",
-            zip: "",
-            city: "",
-            country: "",
-            password1: "",
-            password2: "",
-            vinylSlider: "hidden",
-            tapeModal: "hidden",
-            tshirtModal: "hidden",
-            longsleeveModal: "hidden",
-            overlay: "",
+            code: "",
+            newPassword: "",
+            newPassword2: "",
             error: false,
+            count: 0,
             noMatch: false,
         };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmitEmail = this.handleSubmitEmail.bind(this);
+        this.handleSubmitCode = this.handleSubmitCode.bind(this);
         this.resetError = this.resetError.bind(this);
         this.setError1 = this.setError1.bind(this);
         this.setError2 = this.setError2.bind(this);
@@ -40,37 +30,15 @@ export default class Register extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-
-        axios
-            .post("/register", this.state)
-            .then((response) => {
-                if (response.data.noMatch) {
-                    this.setState({
-                        noMatch: true,
-                    });
-                } else {
-                    location.replace("/#/cart");
-                }
-            })
-            .catch((err) => {
-                this.setState({
-                    error: true,
-                });
-                console.log("error: ", err);
-            });
+        let name = event.target.name;
+        let val = event.target.value;
+        this.setState({ [name]: val });
     }
 
     resetError(event) {
         event.preventDefault();
         this.setState({
             error: false,
-            noMatch: false,
-            shortPW: false,
         });
     }
 
@@ -118,21 +86,6 @@ export default class Register extends React.Component {
         });
     }
 
-    setTshirtModal(event) {
-        event.preventDefault();
-        this.setState({
-            tshirtModal: "visible",
-            overlay: "overlay",
-        });
-    }
-
-    setLongsleeveModal(event) {
-        this.setState({
-            longsleeveModal: "visible",
-            overlay: "overlay",
-        });
-    }
-
     closeModal(event) {
         event.preventDefault();
         this.setState({
@@ -142,6 +95,145 @@ export default class Register extends React.Component {
             longsleeveModal: "hidden",
             overlay: "",
         });
+    }
+
+    setTshirtModal(event) {
+        event.preventDefault();
+        this.setState({
+            tshirtModal: "visible",
+            overlay: "overlay",
+        });
+    }
+
+    setLongsleeveModal(event) {
+        event.preventDefault();
+        this.setState({
+            longsleeveModal: "visible",
+            overlay: "overlay",
+        });
+    }
+
+    handleSubmitEmail(event) {
+        event.preventDefault();
+        axios
+            .post("/password/reset/start", { email: this.state.email })
+            .then((response) => {
+                this.setState({
+                    count: 1,
+                });
+            })
+            .catch((err) => {
+                this.setState({
+                    error: true,
+                });
+            });
+    }
+
+    handleSubmitCode(event) {
+        event.preventDefault();
+        axios
+            .post("/password/reset/verify", this.state)
+            .then((response) => {
+                if (response.data.noMatch) {
+                    this.setState({
+                        noMatch: true,
+                    });
+                } else {
+                    this.setState({
+                        count: 2,
+                    });
+                }
+            })
+            .catch((err) => {
+                this.setState({
+                    error: true,
+                });
+            });
+    }
+
+    getCurrentDisplay() {
+        if (this.state.count === 0) {
+            return (
+                <div className="reset-form">
+                    <h2 className="login-title">ENTER YOUR EMAIL:</h2>
+                    <form
+                        onSubmit={this.handleSubmitEmail}
+                        className="login-form"
+                    >
+                        <input
+                            type="email"
+                            name="email"
+                            onChange={this.handleChange}
+                            placeholder="Email"
+                            required
+                            onFocus={this.resetError}
+                        />
+                        <button className="reg-btn">Submit</button>
+                    </form>
+                    {this.state.error && (
+                        <p className="error">Email does not exist</p>
+                    )}
+                </div>
+            );
+        } else if (this.state.count === 1) {
+            return (
+                <div className="reset-form">
+                    <h2 className="login-title">
+                        ENTER THE CODE AND YOUR NEW PASSWORD
+                    </h2>
+                    <form
+                        onSubmit={this.handleSubmitCode}
+                        className="login-form"
+                    >
+                        <input
+                            type="text"
+                            name="code"
+                            value={this.state.code}
+                            onChange={this.handleChange}
+                            placeholder="Your Code"
+                            required
+                            onFocus={this.resetError}
+                        />
+                        <input
+                            type="password"
+                            name="newPassword"
+                            onChange={this.handleChange}
+                            placeholder="Your New Password"
+                            required
+                            onFocus={this.resetError}
+                        />
+                        <input
+                            type="password"
+                            name="newPassword2"
+                            onChange={this.handleChange}
+                            placeholder="Confirm Password"
+                            required
+                            onFocus={this.resetError}
+                        />
+                        <button className="reg-btn">Submit</button>
+                        {this.state.error && (
+                            <p className="error">Wrong Code</p>
+                        )}
+                        {this.state.noMatch && (
+                            <p className="reg-error">Passwords don't match</p>
+                        )}
+                    </form>
+                </div>
+            );
+        } else {
+            return (
+                <div className="reset-form">
+                    <h2 className="login-title">SUCCESS!</h2>
+                    <p className="success-msg">
+                        You can now{" "}
+                        <Link to="/log" className="login-link">
+                            Log in{" "}
+                        </Link>
+                        with your new password!
+                    </p>
+                </div>
+            );
+        }
     }
 
     render() {
@@ -286,98 +378,6 @@ export default class Register extends React.Component {
                         )}
                     </div>
                 </div>
-                <div className="registration">
-                    <h2 className="reg-title">
-                        REGISTER HERE IN ORDER TO BUY SOMETHING
-                    </h2>
-                    <form onSubmit={this.handleSubmit} className="reg-form">
-                        <input
-                            type="text"
-                            name="firstname"
-                            placeholder="First Name"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <input
-                            type="text"
-                            name="lastname"
-                            placeholder="Last Name"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <input
-                            type="text"
-                            name="address"
-                            placeholder="Street Name and Number"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <input
-                            type="text"
-                            name="zip"
-                            placeholder="ZIP"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <input
-                            type="text"
-                            name="city"
-                            placeholder="City"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <input
-                            type="text"
-                            name="country"
-                            placeholder="Country"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <input
-                            type="password"
-                            name="password1"
-                            placeholder="Password"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <input
-                            type="password"
-                            name="password2"
-                            placeholder="Confirm Password"
-                            required
-                            onChange={this.handleChange}
-                            onFocus={this.resetError}
-                        />
-                        <button className="reg-btn">Register</button>
-                        <p className="already">
-                            Already a member?{" "}
-                            <Link to="/log" className="login-link">
-                                Log in
-                            </Link>
-                        </p>
-                        {this.state.error && (
-                            <p className="reg-error">Email already in use</p>
-                        )}
-                        {this.state.noMatch && (
-                            <p className="reg-error">Passwords don't match</p>
-                        )}
-                    </form>
-                </div>
                 {this.state.vinylSlider == "visible" && <VinylSlider />}
                 {this.state.tapeModal == "visible" && (
                     <div className="tape-modal">
@@ -406,6 +406,7 @@ export default class Register extends React.Component {
                         />
                     </div>
                 )}
+                <div>{this.getCurrentDisplay(this.state.count)}</div>;
             </div>
         );
     }

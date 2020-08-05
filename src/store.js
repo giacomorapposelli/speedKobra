@@ -2,6 +2,7 @@ import React from "react";
 import Items from "./items";
 import Register from "./register";
 import Login from "./login";
+import ResetPassword from "./reset";
 import { HashRouter, Route } from "react-router-dom";
 
 export default function Store() {
@@ -13,6 +14,7 @@ export default function Store() {
                     <Route path="/store" component={Register} />
                     <Route path="/log" component={Login} />
                     <Route path="/cart" component={Items} />
+                    <Route path="/reset" component={ResetPassword} />
                 </HashRouter>
             </div>
         </div>

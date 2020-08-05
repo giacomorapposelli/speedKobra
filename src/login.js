@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "./axios";
+import { Link } from "react-router-dom";
 import VinylSlider from "./vinylslider";
 
 export default class Login extends React.Component {
@@ -30,7 +31,6 @@ export default class Login extends React.Component {
     }
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
-        console.log("IMPUTS CHANGING: ", this.state);
     }
 
     handleSubmit(event) {
@@ -287,6 +287,18 @@ export default class Login extends React.Component {
                             onFocus={this.resetError}
                         />
                         <button className="reg-btn">Log in</button>
+                        <p className="already">
+                            <Link to="/reset" className="login-link">
+                                Forgot password?
+                            </Link>
+                        </p>
+                        <p className="already">
+                            <Link to="/store" className="login-link">
+                                Register here{" "}
+                            </Link>
+                            if you haven't yet.
+                        </p>
+
                         {this.state.error && (
                             <p className="error">
                                 Email or Password aren't correct
