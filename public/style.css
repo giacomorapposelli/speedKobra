@@ -573,6 +573,7 @@ input:focus {
     color: rgb(235, 235, 235);
     width: 90%;
     margin-left: 5%;
+    text-align: center;
 }
 
 .empty-cart {
