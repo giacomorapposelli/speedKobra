@@ -422,9 +422,7 @@ p {
 .tshirt-modal,
 .longsleeve-modal,
 .tape-modal {
-    object-fit: cover;
     width: 80%;
-    height: 90%;
     border: 3px solid black;
     background-image: url("image.jpg");
     background-size: cover;
@@ -591,15 +589,6 @@ input:focus {
 .vinylphoto,
 .longsleevephoto {
     object-fit: cover;
-    height: 100%;
-    width: 100%;
-}
-
-.tapephto {
-    object-fit: contain;
-}
-
-.vinylphoto {
     height: 100%;
     width: 100%;
 }
