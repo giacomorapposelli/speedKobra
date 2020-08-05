@@ -422,7 +422,9 @@ p {
 .tshirt-modal,
 .longsleeve-modal,
 .tape-modal {
+    object-fit: cover;
     width: 80%;
+    height: 90%;
     border: 3px solid black;
     background-image: url("image.jpg");
     background-size: cover;
@@ -457,6 +459,7 @@ p {
     border: 3px solid black;
     background-image: url("image.jpg");
     background-size: cover;
+    object-fit: cover;
     border-radius: 15px;
     position: absolute;
     top: 315%;
