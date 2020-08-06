@@ -126,7 +126,8 @@ app.get("*", function (req, res) {
 });
 
 app.post("/register", (req, res) => {
-    if (req.body.password1 == req.body.password2) {
+    let password = req.body.password1 == req.body.password2;
+    if (password) {
         hash(req.body.password1)
             .then((hashedPw) => {
                 addUser(

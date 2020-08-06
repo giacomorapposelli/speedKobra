@@ -78,6 +78,9 @@ export default class Register extends React.Component {
         event.preventDefault();
         this.setState({
             error1: true,
+            error2: false,
+            error3: false,
+            error4: false,
         });
     }
 
@@ -85,6 +88,9 @@ export default class Register extends React.Component {
         event.preventDefault();
         this.setState({
             error2: true,
+            error1: false,
+            error3: false,
+            error4: false,
         });
     }
 
@@ -92,6 +98,9 @@ export default class Register extends React.Component {
         event.preventDefault();
         this.setState({
             error3: true,
+            error2: false,
+            error1: false,
+            error4: false,
         });
     }
 
@@ -99,6 +108,9 @@ export default class Register extends React.Component {
         event.preventDefault();
         this.setState({
             error4: true,
+            error2: false,
+            error3: false,
+            error1: false,
         });
     }
 
