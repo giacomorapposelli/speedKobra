@@ -230,13 +230,13 @@ export default class ResetPassword extends React.Component {
             return (
                 <div className="reset-form">
                     <h2 className="login-title">SUCCESS!</h2>
-                    <p className="success-msg">
+                    <h3 className="success-msg">
                         You can now{" "}
                         <Link to="/log" className="login-link">
                             Log in{" "}
                         </Link>
                         with your new password!
-                    </p>
+                    </h3>
                 </div>
             );
         }

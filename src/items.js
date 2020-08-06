@@ -284,7 +284,6 @@ export default function Items() {
                     {currentCart &&
                         currentCart.length > 0 &&
                         currentCart.map((each) => {
-                            console.log("EACH: ", each);
                             return (
                                 <div
                                     key={each.id}

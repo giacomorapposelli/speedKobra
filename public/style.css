@@ -701,6 +701,8 @@ button:hover {
 
 .success-msg {
     text-align: center;
+    margin-top: 25%;
+    color: rgb(235, 235, 235);
 }
 
 .greyed {

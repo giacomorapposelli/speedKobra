@@ -5,7 +5,7 @@ import Gallery from "./gallery";
 import Store from "./store";
 
 export default function App() {
-    const [classHome, setClassHome] = useState("head-links");
+    const [classHome, setClassHome] = useState("head-links greyed");
     const [classTour, setClassTour] = useState("head-links");
     const [classGallery, setClassGallery] = useState("head-links");
     const [classStore, setClassStore] = useState("head-links");
