@@ -484,9 +484,9 @@ p {
 
 #x-modal,
 #x-conf-modal {
-    position: absolute;
-    top: 5px;
-    right: 20px;
+    position: fixed;
+    top: 6%;
+    right: 11%;
     color: gray;
     font-size: 30px;
     cursor: pointer;
@@ -719,5 +719,10 @@ button:hover {
     .tshirt-modal,
     .longsleeve-modal {
         top: 312.5%;
+    }
+    .vinyl-modal {
+        width: 70%;
+        top: 321%;
+        left: 15%;
     }
 }
