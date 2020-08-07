@@ -496,6 +496,8 @@ p {
 
 #x-conf-modal {
     font-size: 20px;
+    top: 26%;
+    right: 31%;
 }
 #x-conf-modal:hover,
 #x-modal:hover {
@@ -718,11 +720,11 @@ button:hover {
     .tape-modal,
     .tshirt-modal,
     .longsleeve-modal {
-        top: 312.5%;
+        top: 313.5%;
     }
     .vinyl-modal {
         width: 70%;
-        top: 317%;
+        top: 318%;
         left: 15%;
     }
     .img-view {
@@ -735,4 +737,17 @@ button:hover {
     .card-desc {
         font-size: 30px;
     }
+    .live-modal,
+    .otr-modal {
+        top: 215%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .home {
+        flex-direction: column;
+    }
+    /* .container {
+        width: 100%;
+    } */
 }
