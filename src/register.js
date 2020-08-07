@@ -61,6 +61,8 @@ export default class Register extends React.Component {
                 this.setState({
                     error: true,
                 });
+                const errorMsg = document.querySelector(".reg-error");
+                setTimeout(() => (errorMsg.style.visibility = "hidden"), 3000);
                 console.log("error: ", err);
             });
     }

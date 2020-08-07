@@ -45,6 +45,8 @@ export default class Login extends React.Component {
                     error: true,
                 });
                 console.log("error: ", err);
+                const errorMsg = document.querySelector(".reg-error");
+                setTimeout(() => (errorMsg.style.visibility = "hidden"), 3000);
             });
     }
     resetError(event) {
@@ -312,7 +314,7 @@ export default class Login extends React.Component {
                         </p>
 
                         {this.state.error && (
-                            <p className="error">
+                            <p className="reg-error">
                                 Email or Password aren't correct
                             </p>
                         )}
