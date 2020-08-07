@@ -291,12 +291,12 @@ footer {
     flex-direction: column;
 }
 
-.merch-card  {
+/* .merch-card  {
     display: flex;
     border: 1px solid rgb(235, 235, 235);
     height: 200px;
     max-height: 240px;
-}
+} */
 
 .row {
     display: flex;
@@ -724,5 +724,60 @@ button:hover {
         width: 70%;
         top: 321%;
         left: 15%;
+    }
+    .description {
+        height: 300px;
+        width: 210px;
+        margin-left: 20px;
+    }
+
+    .item-name {
+        width: 225px;
+        font-size: 18px;
+    }
+
+    .item-img {
+        border: 1px solid grey;
+        height: 225px;
+        width: 177px;
+        object-fit: cover;
+        border-radius: 3px;
+        box-shadow: 2px 2px 2px 0px grey;
+    }
+    button {
+        border: 1.5px solid rgb(235, 235, 235);
+        border-radius: 4.5px;
+        height: 37.5px;
+        width: 150px;
+        outline: none;
+    }
+    .addtocart {
+        margin-top: 12px;
+        margin-left: 13.5px;
+    }
+
+    .submit-btn {
+        margin-top: 17px;
+    }
+    select {
+        height: 37.5px;
+        width: 177px;
+        border: 1.5px solid rgb(235, 235, 235);
+        border-radius: 4.5px;
+        margin-top: 7.5px;
+    }
+    .row {
+        margin-left: 4%;
+        margin-top: 1.5%;
+    }
+    .img-view {
+        margin-top: 50%;
+        height: 100%;
+    }
+    .card-container {
+        justify-content: space-around;
+    }
+    .card-desc {
+        font-size: 30px;
     }
 }
