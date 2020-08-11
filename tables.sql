@@ -2,18 +2,18 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS reset_codes CASCADE;
 
-CREATE TABLE users(
-  id SERIAL PRIMARY KEY,
-  first VARCHAR(255) NOT NULL CHECK (first != ''),
-  last VARCHAR(255) NOT NULL CHECK (last != ''),
-  email VARCHAR(255) NOT NULL UNIQUE CHECK (email != ''),
-  address VARCHAR(255) NOT NULL CHECK (address != ''),
-  zip VARCHAR(255) NOT NULL CHECK (zip != ''),
-  city VARCHAR(255) NOT NULL CHECK (city != ''),
-  country VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL CHECK (password != ''),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+  CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    first VARCHAR(255) NOT NULL CHECK (first != ''),
+    last VARCHAR(255) NOT NULL CHECK (last != ''),
+    email VARCHAR(255) NOT NULL UNIQUE CHECK (email != ''),
+    address VARCHAR(255) NOT NULL CHECK (address != ''),
+    zip VARCHAR(255) NOT NULL CHECK (zip != ''),
+    city VARCHAR(255) NOT NULL CHECK (city != ''),
+    country VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL CHECK (password != ''),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
 
 CREATE TABLE orders(
   id SERIAL PRIMARY KEY,
@@ -33,3 +33,4 @@ CREATE TABLE reset_codes(
   code VARCHAR NOT NULL CHECK (code != ''),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+

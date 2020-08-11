@@ -742,12 +742,3 @@ button:hover {
         top: 215%;
     }
 }
-
-@media screen and (max-width: 300px) {
-    .home {
-        flex-direction: column;
-    }
-    /* .container {
-        width: 100%;
-    } */
-}
