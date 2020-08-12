@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function VinylSlider(props) {
+export default function VinylSlider() {
     useEffect(() => {
         const slider = document.querySelector(".images-slide");
         const carouselImages = document.querySelectorAll(".images-slide img");

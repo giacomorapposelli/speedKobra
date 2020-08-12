@@ -12,12 +12,15 @@ const {
     insertCode,
     checkCode,
     updatePassword,
+    getFirstName,
+    getDataToEdit,
+    updateAddress,
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
 const { sendEmail } = require("./ses.js");
-const { ElastiCache } = require("aws-sdk");
+const { ElastiCache, ApiGatewayManagementApi } = require("aws-sdk");
 const cryptoRandomString = require("crypto-random-string");
 
 app.use(express.static(__dirname + "/public"));
@@ -112,6 +115,14 @@ app.get("/order", (req, res) => {
         .catch((err) => console.log("ERR IN ORDER: ", err));
 });
 
+app.get("/firstname", (req, res) => {
+    getFirstName(req.session.userId)
+        .then((result) => {
+            res.json(result.rows[0].first);
+        })
+        .catch((err) => console.log("NO NAME: ", err));
+});
+
 const orderCode = cryptoRandomString({
     length: 6,
 });
@@ -119,6 +130,20 @@ const orderCode = cryptoRandomString({
 app.get("/code", (req, res) => {
     console.log("ORDER CODE: ", orderCode);
     res.json({ orderCode });
+});
+
+app.get("/datatoedit", (req, res) => {
+    getDataToEdit(req.session.userId)
+        .then((result) => {
+            console.log("DATA TO EDIT: ", result.rows[0]);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => console.log("Error: ", err));
+});
+
+app.get("/logout", (req, res) => {
+    req.session.userId = null;
+    res.redirect("/");
 });
 
 app.get("*", function (req, res) {
@@ -324,6 +349,23 @@ app.post("/password/reset/verify", (req, res) => {
             res.sendStatus(500);
             console.log("EMAIL NOT MATCHING: ", err);
         });
+});
+
+app.post("/updateaddress", (req, res) => {
+    updateAddress(
+        req.session.userId,
+        req.body.firstname,
+        req.body.lastname,
+        req.body.address,
+        req.body.zip,
+        req.body.city,
+        req.body.country
+    )
+        .then((result) => {
+            console.log("UPDATED ADDRESS: ", result.rows[0]);
+            res.json();
+        })
+        .catch((err) => console.log("ADDRESS NOT UPDATED: ", err));
 });
 
 app.listen(process.env.PORT || 8080, () => console.log("server listening"));

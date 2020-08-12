@@ -116,3 +116,31 @@ exports.updatePassword = (email, password) => {
         [email, password]
     );
 };
+
+exports.getFirstName = (id) => {
+    return db.query(`SELECT first FROM users WHERE id = $1;`, [id]);
+};
+
+exports.getDataToEdit = (userId) => {
+    return db.query(
+        `
+        SELECT first,last,address,zip,city,country FROM users WHERE id=$1;
+        `,
+        [userId]
+    );
+};
+
+exports.updateAddress = (
+    userId,
+    firstname,
+    lastname,
+    address,
+    zip,
+    city,
+    country
+) => {
+    return db.query(
+        `UPDATE users SET first=$2, last=$3, address=$4, zip=$5, city=$6, country=$7 WHERE id=$1;`,
+        [userId, firstname, lastname, address, zip, city, country]
+    );
+};

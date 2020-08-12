@@ -291,13 +291,6 @@ footer {
     flex-direction: column;
 }
 
-/* .merch-card  {
-    display: flex;
-    border: 1px solid rgb(235, 235, 235);
-    height: 200px;
-    max-height: 240px;
-} */
-
 .row {
     display: flex;
     flex-direction: row;
@@ -346,7 +339,7 @@ p {
 .reset-form {
     position: absolute;
     left: 50%;
-    top: 333%;
+    top: 331%;
     width: 50%;
     max-height: 70vh;
 }
@@ -356,7 +349,7 @@ p {
 }
 
 .cart-container {
-    max-height: 45vh;
+    max-height: 38vh;
     overflow-y: scroll;
 }
 
@@ -371,12 +364,17 @@ p {
     margin-top: 10%;
 }
 
-.reg-form {
+.reg-form,
+.edit-form {
     margin-left: 25%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+}
+
+.edit-form {
+    margin-left: 35%;
 }
 
 .shop-general {
@@ -407,10 +405,7 @@ p {
     flex-direction: row;
     padding-bottom: 1%;
     padding-top: 1%;
-}
-
-.resume-container {
-    padding-left: 5%;
+    margin-left: 5%;
 }
 
 .address {
@@ -581,7 +576,7 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20%;
+    margin-top: 12.5%;
 }
 
 .livephoto,
@@ -659,7 +654,8 @@ button:hover {
 }
 
 .submit-btn {
-    margin-top: 17px;
+    margin-top: 2.5%;
+    margin-left: 14%;
 }
 
 .conf-btn {
@@ -678,7 +674,7 @@ button:hover {
 
 .temp-total {
     float: right;
-    margin-right: 19%;
+    margin-right: 14%;
     font-size: 18px;
 }
 
@@ -691,9 +687,19 @@ button:hover {
     margin-top: 3.5%;
 }
 
-.login-link {
+.login-link,
+.logout-link,
+.edit-link {
     text-decoration: none;
     color: grey;
+}
+
+.logout-link {
+    margin-left: 3%;
+}
+
+.edit-link {
+    margin-left: 50%;
 }
 
 .empty-icon {
@@ -710,6 +716,17 @@ button:hover {
 .greyed {
     color: grey;
     cursor: default;
+}
+
+.hello {
+    margin-left: 3%;
+}
+
+.user-info {
+    border-bottom: 2px solid #808080;
+    padding-bottom: 1%;
+    width: 90%;
+    margin-left: 5%;
 }
 
 @media screen and (min-width: 1680px) {

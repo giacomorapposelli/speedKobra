@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
 import VinylSlider from "./vinylslider";
+import { Link } from "react-router-dom";
 
 export default function Items() {
     const [size, setSize] = useState("");
     const [color, setColor] = useState("");
     const [order, setOrder] = useState([]);
-    const [modal, setModal] = useState("hidden");
+    const [thankYouModal, setThankYouModal] = useState("hidden");
     const [vinylSlider, setVinylSlider] = useState("hidden");
     const [tapeModal, setTapeModal] = useState("hidden");
     const [longsleeveModal, setLongsleeveModal] = useState("hidden");
@@ -18,6 +19,7 @@ export default function Items() {
     const [error, setError] = useState("");
     const [code, setCode] = useState("");
     const [currentCart, setCurrentCart] = useState([]);
+    const [name, setName] = useState("");
 
     let sum = 0;
     let tempSum = 0;
@@ -72,7 +74,7 @@ export default function Items() {
             .get("/order")
             .then((response) => {
                 setOrder(response.data);
-                setModal("visible");
+                setThankYouModal("visible");
                 setClassName("overlay");
                 setConfirmModal("hidden");
                 setCurrentCart([]);
@@ -84,7 +86,7 @@ export default function Items() {
 
     const closeModal = (event) => {
         event.preventDefault();
-        setModal("hidden");
+        setThankYouModal("hidden");
         setVinylSlider("hidden");
         setTapeModal("hidden");
         setTshirtModal("hidden");
@@ -139,6 +141,16 @@ export default function Items() {
     };
 
     useEffect(() => {
+        axios
+            .get("/firstname")
+            .then((response) => {
+                setName(response.data);
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
         axios
             .get("/code")
             .then((response) => {
@@ -268,6 +280,15 @@ export default function Items() {
                 </div>
             </div>
             <div className="cart">
+                <div className="user-info">
+                    <p className="hello">Hello, {name}!</p>
+                    <a href="/logout" className="logout-link">
+                        Log Out
+                    </a>
+                    <Link to="/edit" className="edit-link">
+                        Edit Your Billing Address
+                    </Link>
+                </div>
                 <h2 className="cart-title">YOUR CART:</h2>
                 {!currentCart.length && (
                     <div className="empty-cart">
@@ -279,7 +300,6 @@ export default function Items() {
                         />
                     </div>
                 )}
-                ||
                 <div className="cart-container">
                     {currentCart &&
                         currentCart.length > 0 &&
@@ -287,7 +307,7 @@ export default function Items() {
                             return (
                                 <div
                                     key={each.id}
-                                    className="item-container"
+                                    className="resume-container"
                                     id={each.id}
                                 >
                                     <img
@@ -330,7 +350,7 @@ export default function Items() {
                 )}
             </div>
 
-            {modal == "visible" && (
+            {thankYouModal == "visible" && (
                 <div className="thankyou-modal">
                     <a id="x-modal" onClick={closeModal}>
                         X
