@@ -194,7 +194,7 @@ export default function Items() {
                 <div className="description">
                     <p className="item-name">"Harvester Of Hate"</p>
                     <p className="item-name">T-Shirt</p>
-                    <p className="item-name">Price 10€</p>
+                    <p className="item-name">Price: 10€</p>
                     {<p className="error">{error}</p>}
                 </div>
 
@@ -223,7 +223,7 @@ export default function Items() {
                 <div className="description">
                     <p className="item-name">"Dehumanized"</p>
                     <p className="item-name">Longsleeve</p>
-                    <p className="item-name">Price 15€</p>
+                    <p className="item-name">Price: 15€</p>
                     <p className="error">{error}</p>
                 </div>
             </div>
@@ -253,7 +253,7 @@ export default function Items() {
                 <div className="description">
                     <p className="item-name">Days Of Madness</p>
                     <p className="item-name">LP 12"</p>
-                    <p className="item-name">Price 12€</p>
+                    <p className="item-name">Price: 12€</p>
                     <p className="error">{error}</p>
                 </div>
 

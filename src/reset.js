@@ -275,7 +275,7 @@ export default class ResetPassword extends React.Component {
                     <div className="description">
                         <p className="item-name">"Harvester Of Hate"</p>
                         <p className="item-name">T-Shirt</p>
-                        <p className="item-name">Price 10€</p>
+                        <p className="item-name">Price: 10€</p>
                         {this.state.error1 && (
                             <p className="error">
                                 You need to be registered in order to buy
@@ -309,7 +309,7 @@ export default class ResetPassword extends React.Component {
                     <div className="description">
                         <p className="item-name">"Dehumanized"</p>
                         <p className="item-name">Longsleeve</p>
-                        <p className="item-name">Price 15€</p>
+                        <p className="item-name">Price: 15€</p>
                         {this.state.error2 && (
                             <p className="error">
                                 You need to be registered in order to buy
@@ -344,7 +344,7 @@ export default class ResetPassword extends React.Component {
                     <div className="description">
                         <p className="item-name">Days Of Madness</p>
                         <p className="item-name">LP 12"</p>
-                        <p className="item-name">Price 12€</p>
+                        <p className="item-name">Price: 12€</p>
                         {this.state.error3 && (
                             <p className="error">
                                 You need to be registered in order to buy

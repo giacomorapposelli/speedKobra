@@ -407,6 +407,9 @@ p {
     flex-direction: row;
     padding-bottom: 1%;
     padding-top: 1%;
+}
+
+.resume-container {
     margin: 0 auto;
 }
 
