@@ -12,8 +12,8 @@ export default function Store() {
             <h1 className="headlines">OUR MERCHSTORE</h1>
             <div className="store-container">
                 <HashRouter>
-                    <Route path="/store" component={Register} />
                     <Route path="/log" component={Login} />
+                    <Route path="/store" component={Register} />
                     <Route path="/cart" component={Items} />
                     <Route path="/reset" component={ResetPassword} />
                     <Route path="/edit" component={Edit} />

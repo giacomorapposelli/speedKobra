@@ -41,6 +41,7 @@ header {
     display: block;
     font-size: 120%;
     text-decoration: none;
+    transition: color 0.3s ease-in-out;
 }
 
 .head-links:hover {
@@ -70,10 +71,11 @@ footer {
 .social-logo {
     margin-right: 10px;
     height: 30px;
+    transition: filter 0.3s ease-in-out;
 }
 
 .social-logo:hover {
-    filter: brightness(0.5);
+    filter: brightness(0.4);
     cursor: pointer;
 }
 
@@ -135,6 +137,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease-in-out;
 }
 
 .listen:hover {
@@ -204,6 +207,7 @@ footer {
     filter: grayscale();
     cursor: pointer;
     box-shadow: 5px 5px 15px 0px rgb(31, 31, 31);
+    transition: filter 0.3s ease-in-out;
 }
 
 .img-view:hover {
@@ -213,6 +217,7 @@ footer {
 .card-desc {
     color: rgb(235, 235, 235);
     cursor: pointer;
+    transition: color 0.3s ease-in-out;
 }
 
 .card-desc:hover {
@@ -308,10 +313,11 @@ footer {
     border-radius: 3px;
     box-shadow: 2px 2px 2px 0px grey;
     position: relative;
+    transition: filter 0.3s ease-in-out;
 }
 
 .item-img:hover {
-    filter: brightness(0.5);
+    filter: brightness(0.4);
     cursor: pointer;
     box-shadow: 1px 1px 1px 0px grey;
     top: 1px;
@@ -492,6 +498,7 @@ p {
     cursor: pointer;
     font-family: "Righteous";
     z-index: 5;
+    transition: color 0.3s ease-in-out;
 }
 
 #x-conf-modal {
@@ -600,6 +607,7 @@ input:focus {
     left: 2%;
     z-index: 4;
     height: 30px;
+    transition: filter 0.3s ease-in-out;
 }
 
 .next-btn {
@@ -608,15 +616,12 @@ input:focus {
     right: 2%;
     z-index: 4;
     height: 30px;
+    transition: filter 0.3s ease-in-out;
 }
 
-.next-btn:hover {
-    filter: brightness(0.5);
-    cursor: pointer;
-}
-
+.next-btn:hover,
 .prev-btn:hover {
-    filter: brightness(0.5);
+    filter: brightness(0.4);
     cursor: pointer;
 }
 
@@ -632,6 +637,7 @@ select {
     cursor: pointer;
     margin-top: 5px;
     box-shadow: 1px 1px 1px 0px rgba(231, 231, 231, 0.58);
+    transition: all 0.3s ease-in-out;
 }
 
 button {
@@ -646,7 +652,9 @@ button {
     box-shadow: 0 2px rgba(172, 172, 172, 0.58);
     display: block;
     position: relative;
+    transition: all 0.3s ease-in-out;
 }
+
 select:hover,
 button:hover {
     border: 1px solid grey;
