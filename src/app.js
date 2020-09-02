@@ -15,6 +15,7 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links");
         setClassStore("head-links");
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     const updateTourClass = () => {
@@ -22,6 +23,7 @@ export default function App() {
         setClassTour("head-links greyed");
         setClassGallery("head-links");
         setClassStore("head-links");
+        window.scrollTo({ top: 700, behavior: "smooth" });
     };
 
     const updateGalleryClass = () => {
@@ -29,6 +31,7 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links greyed");
         setClassStore("head-links");
+        window.scrollTo({ top: 1432, behavior: "smooth" });
     };
 
     const updateStoreClass = () => {
@@ -36,44 +39,29 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links");
         setClassStore("head-links greyed");
+        window.scrollTo({ top: 2170, behavior: "smooth" });
     };
 
     return (
         <div className="container2">
             <header>
                 <p>
-                    <a
-                        href="#home"
-                        className={classHome}
-                        onClick={updateHomeClass}
-                    >
+                    <a className={classHome} onClick={updateHomeClass}>
                         HOME
                     </a>
                 </p>
                 <p>
-                    <a
-                        href="#tour"
-                        className={classTour}
-                        onClick={updateTourClass}
-                    >
+                    <a className={classTour} onClick={updateTourClass}>
                         TOUR
                     </a>
                 </p>
                 <p>
-                    <a
-                        href="#gallery"
-                        className={classGallery}
-                        onClick={updateGalleryClass}
-                    >
+                    <a className={classGallery} onClick={updateGalleryClass}>
                         GALLERY
                     </a>
                 </p>
                 <p>
-                    <a
-                        href="#store"
-                        className={classStore}
-                        onClick={updateStoreClass}
-                    >
+                    <a className={classStore} onClick={updateStoreClass}>
                         STORE
                     </a>
                 </p>

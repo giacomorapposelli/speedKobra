@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import VinylSlider from "./vinylslider";
 
 export default class Login extends React.Component {
@@ -38,7 +38,7 @@ export default class Login extends React.Component {
         axios
             .post("/login", this.state)
             .then((response) => {
-                location.replace("/#/cart");
+                this.props.setItems();
             })
             .catch((err) => {
                 this.setState({
@@ -302,14 +302,22 @@ export default class Login extends React.Component {
                         />
                         <button className="reg-btn">Log in</button>
                         <p className="already">
-                            <Link to="/reset" className="login-link">
+                            <a
+                                to="/reset"
+                                className="login-link"
+                                onClick={this.props.setReset}
+                            >
                                 Forgot password?
-                            </Link>
+                            </a>
                         </p>
                         <p className="already">
-                            <Link to="/store" className="login-link">
+                            <a
+                                to="/store"
+                                className="login-link"
+                                onClick={this.props.setRegister}
+                            >
                                 Register here{" "}
-                            </Link>
+                            </a>
                             if you haven't yet.
                         </p>
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
 import VinylSlider from "./vinylslider";
-import { Link } from "react-router-dom";
+import { ProgressPlugin } from "webpack";
+// import { Link } from "react-router-dom";
 
-export default function Items() {
+export default function Items(props) {
     const [size, setSize] = useState("");
     const [color, setColor] = useState("");
     const [order, setOrder] = useState([]);
@@ -285,9 +286,9 @@ export default function Items() {
                     <a href="/logout" className="logout-link">
                         Log Out
                     </a>
-                    <Link to="/edit" className="edit-link">
+                    <a className="edit-link" onClick={props.SetEdit}>
                         Edit Your Billing Address
-                    </Link>
+                    </a>
                 </div>
                 <h2 className="cart-title">YOUR CART:</h2>
                 {!currentCart.length && (

@@ -146,7 +146,13 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
+// app.get("/", (req, res) => {});
+
 app.get("*", function (req, res) {
+    // if (req.session.userId) {
+    //     res.json({ loggedIn: true });
+    //     res.sendFile(__dirname + "/index.html");
+    // }
     res.sendFile(__dirname + "/index.html");
 });
 

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios.js";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default class ResetPassword extends React.Component {
     constructor(props) {
@@ -170,9 +170,12 @@ export default class ResetPassword extends React.Component {
                         />
                         <button className="reg-btn">Submit</button>
                         <p className="already">
-                            <Link to="/log" className="login-link">
+                            <a
+                                className="login-link"
+                                onClick={this.props.setLogin}
+                            >
                                 Back to Log in
-                            </Link>
+                            </a>
                         </p>
                     </form>
                     {this.state.error && (
@@ -231,9 +234,9 @@ export default class ResetPassword extends React.Component {
                     <h2 className="login-title">SUCCESS!</h2>
                     <h3 className="success-msg">
                         You can now{" "}
-                        <Link to="/log" className="login-link">
+                        <a className="login-link" onClick={this.props.setLogin}>
                             Log in{" "}
-                        </Link>
+                        </a>
                         with your new password!
                     </h3>
                 </div>

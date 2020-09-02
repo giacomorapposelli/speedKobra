@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import VinylSlider from "./vinylslider";
 
 export default class Register extends React.Component {
@@ -54,7 +54,7 @@ export default class Register extends React.Component {
                         noMatch: true,
                     });
                 } else {
-                    location.replace("/#/cart");
+                    this.props.setItems();
                 }
             })
             .catch((err) => {
@@ -377,12 +377,20 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                             onFocus={this.resetError}
                         />
-                        <button className="reg-btn">Register</button>
+                        <button
+                            className="reg-btn"
+                            onClick={this.props.setItems}
+                        >
+                            Register
+                        </button>
                         <p className="already">
                             Already a member?{" "}
-                            <Link to="/log" className="login-link">
+                            <a
+                                className="login-link"
+                                onClick={this.props.setLogin}
+                            >
                                 Log in
-                            </Link>
+                            </a>
                         </p>
                         {this.state.error && (
                             <p className="reg-error">Email already in use</p>
