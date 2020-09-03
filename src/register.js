@@ -377,12 +377,7 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                             onFocus={this.resetError}
                         />
-                        <button
-                            className="reg-btn"
-                            onClick={this.props.setItems}
-                        >
-                            Register
-                        </button>
+                        <button className="reg-btn">Register</button>
                         <p className="already">
                             Already a member?{" "}
                             <a
