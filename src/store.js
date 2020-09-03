@@ -24,6 +24,7 @@ export default function Store() {
     };
     const setEdit = () => {
         setCounter(4);
+        console.log(counter);
     };
 
     return (
@@ -41,13 +42,6 @@ export default function Store() {
                 {counter == 2 && <ResetPassword setLogin={setLogin} />}
                 {counter == 3 && <Items setEdit={setEdit} />}
                 {counter == 4 && <Edit />}
-                {/* <HashRouter>
-                    <Route path="/log" component={Login} />
-                    <Route path="/store" component={Register} />
-                    <Route path="/cart" component={Items} />
-                    <Route path="/reset" component={ResetPassword} />
-                    <Route path="/edit" component={Edit} />
-                </HashRouter> */}
             </div>
         </div>
     );

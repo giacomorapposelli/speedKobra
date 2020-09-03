@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
 import VinylSlider from "./vinylslider";
-import { ProgressPlugin } from "webpack";
 // import { Link } from "react-router-dom";
 
 export default function Items(props) {
@@ -146,7 +145,6 @@ export default function Items(props) {
             .get("/firstname")
             .then((response) => {
                 setName(response.data);
-                console.log(response.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -168,6 +166,7 @@ export default function Items(props) {
     return (
         <div className="shop-general">
             <div className={className} onClick={closeModal} id="shop"></div>
+            {console.log("props in ProfilePic: ", props)}
             <div className="row">
                 <div className="merch-card">
                     <img
@@ -286,14 +285,14 @@ export default function Items(props) {
                     <a href="/logout" className="logout-link">
                         Log Out
                     </a>
-                    <a className="edit-link" onClick={props.SetEdit}>
+                    <a className="edit-link" onClick={props.setEdit}>
                         Edit Your Billing Address
                     </a>
                 </div>
                 <h2 className="cart-title">YOUR CART:</h2>
                 {!currentCart.length && (
                     <div className="empty-cart">
-                        <h2 className="sold-out ">Your Cart is now empty </h2>
+                        <h2 className="sold-out ">Your Cart is now empty</h2>
                         <img
                             src="/empty-cart.png"
                             alt=""
