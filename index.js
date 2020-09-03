@@ -15,6 +15,7 @@ const {
     getFirstName,
     getDataToEdit,
     updateAddress,
+    getId,
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
@@ -146,14 +147,12 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
-// app.get("/", (req, res) => {});
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+});
 
 app.get("*", function (req, res) {
-    // if (req.session.userId) {
-    //     res.json({ loggedIn: true });
-    //     res.sendFile(__dirname + "/index.html");
-    // }
-    res.sendFile(__dirname + "/index.html");
+    res.redirect("/");
 });
 
 app.post("/register", (req, res) => {

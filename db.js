@@ -144,3 +144,7 @@ exports.updateAddress = (
         [userId, firstname, lastname, address, zip, city, country]
     );
 };
+
+exports.getId = (userId) => {
+    return db.query(`SELECT id FROM users WHERE id = $1;`, [userId]);
+};

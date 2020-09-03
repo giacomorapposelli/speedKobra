@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "./axios";
 import VinylSlider from "./vinylslider";
+import { IoTThingsGraph } from "aws-sdk";
 
 export default class Edit extends React.Component {
     constructor(props) {
@@ -47,7 +48,7 @@ export default class Edit extends React.Component {
         axios
             .post("/updateaddress", this.state)
             .then(() => {
-                location.replace("/#/cart");
+                this.props.setItems();
             })
             .catch((err) => {
                 this.setState({

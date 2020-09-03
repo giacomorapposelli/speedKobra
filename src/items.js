@@ -166,7 +166,6 @@ export default function Items(props) {
     return (
         <div className="shop-general">
             <div className={className} onClick={closeModal} id="shop"></div>
-            {console.log("props in ProfilePic: ", props)}
             <div className="row">
                 <div className="merch-card">
                     <img

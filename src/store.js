@@ -4,7 +4,7 @@ import Register from "./register";
 import Login from "./login";
 import Edit from "./edit";
 import ResetPassword from "./reset";
-import { HashRouter, Route } from "react-router-dom";
+import axios from "./axios";
 
 export default function Store() {
     const [counter, setCounter] = useState(0);
@@ -27,11 +27,23 @@ export default function Store() {
         console.log(counter);
     };
 
+    useEffect(() => {
+        axios.get("*").then((response) => {
+            console.log(response);
+            if (response.data.isLoggedIn) {
+                setCounter(4);
+                console.log(counter);
+            }
+        });
+    });
+
     return (
         <div className="store" id="store">
             <h1 className="headlines">OUR MERCHSTORE</h1>
             <div className="store-container">
-                {counter == 0 && <Register setLogin={setLogin} />}
+                {counter == 0 && (
+                    <Register setLogin={setLogin} setItems={setItems} />
+                )}
                 {counter == 1 && (
                     <Login
                         setRegister={setRegister}
@@ -41,7 +53,7 @@ export default function Store() {
                 )}
                 {counter == 2 && <ResetPassword setLogin={setLogin} />}
                 {counter == 3 && <Items setEdit={setEdit} />}
-                {counter == 4 && <Edit />}
+                {counter == 4 && <Edit setItems={setItems} />}
             </div>
         </div>
     );
