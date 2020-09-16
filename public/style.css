@@ -752,7 +752,7 @@ button:active,
     margin: 0 auto;
 }
 
-@media screen and (min-width: 1680px) {
+@media screen and (min-width: 1300px) {
     .tour {
         padding-top: 3%;
     }
