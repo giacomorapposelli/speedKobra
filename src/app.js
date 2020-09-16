@@ -15,7 +15,8 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links");
         setClassStore("head-links");
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        let home = document.getElementById("home");
+        home.scrollIntoView();
     };
 
     const updateTourClass = () => {
@@ -23,7 +24,8 @@ export default function App() {
         setClassTour("head-links greyed");
         setClassGallery("head-links");
         setClassStore("head-links");
-        window.scrollTo({ top: 700, behavior: "smooth" });
+        let tour = document.getElementById("tour");
+        tour.scrollIntoView();
     };
 
     const updateGalleryClass = () => {
@@ -31,7 +33,8 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links greyed");
         setClassStore("head-links");
-        window.scrollTo({ top: 1432, behavior: "smooth" });
+        let gallery = document.getElementById("gallery");
+        gallery.scrollIntoView();
     };
 
     const updateStoreClass = () => {
@@ -39,7 +42,8 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links");
         setClassStore("head-links greyed");
-        window.scrollTo({ top: 2170, behavior: "smooth" });
+        let store = document.getElementById("store");
+        store.scrollIntoView();
     };
 
     return (

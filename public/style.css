@@ -17,6 +17,7 @@ html {
 .container {
     background-image: url("image.jpg");
     background-size: cover;
+    background-color: black;
 }
 
 /* APP///////////////////////////////////////////////// */

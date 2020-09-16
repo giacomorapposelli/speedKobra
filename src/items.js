@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
 import VinylSlider from "./vinylslider";
-// import { Link } from "react-router-dom";
 
 export default function Items(props) {
     const [size, setSize] = useState("");
