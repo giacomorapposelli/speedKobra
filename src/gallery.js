@@ -9,18 +9,21 @@ export default function Gallery(props) {
 
     const setLiveModal = (event) => {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         setLiveSlider(true);
         setClassName("overlay");
     };
 
     const setOnTheRoadModal = (event) => {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         setOnTheRoadSlider(true);
         setClassName("overlay");
     };
 
     const closeLiveModal = (event) => {
         event.preventDefault();
+        document.body.style.overflow = "scroll";
         setLiveSlider(false);
         setOnTheRoadSlider(false);
         setClassName("");

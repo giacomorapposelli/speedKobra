@@ -14,7 +14,7 @@ html {
     scroll-behavior: smooth;
 }
 
-.container {
+#container {
     background-image: url("image.jpg");
     background-size: cover;
     background-color: black;
@@ -237,21 +237,6 @@ footer {
     margin-top: 7%;
 }
 
-.live-modal,
-.otr-modal {
-    object-fit: cover;
-    height: 80%;
-    width: 90%;
-    position: absolute;
-    border: 3px solid black;
-    border-radius: 5px;
-    overflow: hidden;
-    top: 214%;
-    left: 5%;
-    z-index: 3;
-    box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.58);
-}
-
 .images-slide,
 .otr-slide {
     width: 100%;
@@ -263,11 +248,11 @@ footer {
     object-fit: cover;
     height: 80%;
     width: 90%;
-    position: absolute;
+    position: fixed;
     border: 3px solid black;
     border-radius: 5px;
     overflow: hidden;
-    top: 214%;
+    top: 10%;
     left: 5%;
     z-index: 3;
     box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.58);
@@ -439,8 +424,8 @@ p {
     background-image: url("image.jpg");
     background-size: cover;
     border-radius: 15px;
-    position: absolute;
-    top: 315%;
+    position: fixed;
+    top: 5%;
     left: 10%;
     z-index: 3;
     max-height: 90%;
@@ -471,8 +456,8 @@ p {
     background-size: cover;
     object-fit: cover;
     border-radius: 15px;
-    position: absolute;
-    top: 315%;
+    position: fixed;
+    top: 5%;
     left: 10%;
     z-index: 3;
     max-height: 90%;
@@ -756,15 +741,14 @@ button:active,
     .tour {
         padding-top: 1%;
     }
-    .vinyl-modal,
+    /* .vinyl-modal,
     .tape-modal,
     .tshirt-modal,
     .longsleeve-modal {
         top: 313.5%;
-    }
+    } */
     .vinyl-modal {
         width: 70%;
-        top: 318%;
         left: 15%;
     }
     .img-view {

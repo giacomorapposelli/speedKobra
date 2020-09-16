@@ -85,6 +85,7 @@ export default function Items(props) {
 
     const closeModal = (event) => {
         event.preventDefault();
+        document.body.style.overflow = "scroll";
         setThankYouModal("hidden");
         setVinylSlider("hidden");
         setTapeModal("hidden");
@@ -104,24 +105,28 @@ export default function Items(props) {
 
     const setVinylModal = (event) => {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         setVinylSlider("visible");
         setClassName("overlay");
     };
 
     const openTapeModal = (event) => {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         setTapeModal("visible");
         setClassName("overlay");
     };
 
     const openTshirtModal = (event) => {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         setTshirtModal("visible");
         setClassName("overlay");
     };
 
     const openLongsleeveModal = (event) => {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         setLongsleeveModal("visible");
         setClassName("overlay");
     };

@@ -98,6 +98,7 @@ export default class Login extends React.Component {
 
     setVinylModal(event) {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         this.setState({
             vinylSlider: "visible",
             overlay: "overlay",
@@ -106,6 +107,7 @@ export default class Login extends React.Component {
 
     setTapeModal(event) {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         this.setState({
             tapeModal: "visible",
             overlay: "overlay",
@@ -114,6 +116,7 @@ export default class Login extends React.Component {
 
     closeModal(event) {
         event.preventDefault();
+        document.body.style.overflow = "scroll";
         this.setState({
             vinylSlider: "hidden",
             tapeModal: "hidden",
@@ -125,6 +128,7 @@ export default class Login extends React.Component {
 
     setTshirtModal(event) {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         this.setState({
             tshirtModal: "visible",
             overlay: "overlay",
@@ -133,6 +137,7 @@ export default class Login extends React.Component {
 
     setLongsleeveModal(event) {
         event.preventDefault();
+        document.body.style.overflow = "hidden";
         this.setState({
             longsleeveModal: "visible",
             overlay: "overlay",

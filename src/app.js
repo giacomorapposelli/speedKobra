@@ -106,7 +106,7 @@ export default function App() {
                     </a>
                 </p>
             </header>
-            <div className="container">
+            <div id="container">
                 <Home onMouseOver={updateHomeClass} />
                 <Tour onMouseOver={updateTourClass} />
                 <Gallery onMouseOver={updateGalleryClass} />
