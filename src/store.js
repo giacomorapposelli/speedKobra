@@ -29,7 +29,6 @@ export default function Store(props) {
 
     useEffect(() => {
         axios.get("*").then((response) => {
-            console.log(response);
             if (response.data.isLoggedIn) {
                 setCounter(4);
                 console.log(counter);

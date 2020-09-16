@@ -455,12 +455,11 @@ p {
     background-image: url("image.jpg");
     background-size: cover;
     border-radius: 15px;
-    position: absolute;
-    top: 335%;
+    position: fixed;
+    top: 35%;
     left: 30%;
     z-index: 3;
-    max-height: 90%;
-    overflow-y: scroll;
+    height: 20%;
     box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.58);
 }
 
@@ -509,7 +508,7 @@ p {
 
 #x-conf-modal {
     font-size: 20px;
-    top: 26%;
+    top: 36%;
     right: 31%;
 }
 #x-conf-modal:hover,
@@ -765,7 +764,7 @@ button:active,
     .vinyl-modal {
         width: 70%;
         left: 15%;
-        top: 7.5%;
+        top: 9%;
     }
     .img-view {
         margin-top: 50%;
