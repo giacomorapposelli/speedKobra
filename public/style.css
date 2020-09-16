@@ -116,11 +116,11 @@ footer {
 
 .message {
     color: rgb(235, 235, 235);
-    height: 250px;
+    height: 55%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .days {
