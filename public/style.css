@@ -754,13 +754,13 @@ button:active,
 
 @media screen and (min-width: 1680px) {
     .tour {
-        padding-top: 1%;
+        padding-top: 3%;
     }
-    .vinyl-modal,
+
     .tape-modal,
     .tshirt-modal,
     .longsleeve-modal {
-        top: 313.5%;
+        top: 310%;
     }
     .vinyl-modal {
         width: 70%;
@@ -779,6 +779,6 @@ button:active,
     }
     .live-modal,
     .otr-modal {
-        top: 215%;
+        top: 214%;
     }
 }
