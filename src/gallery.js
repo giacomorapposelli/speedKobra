@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LiveSlider from "./liveslider";
 import OnTheRoadSlider from "./ontheroadslider";
 
-export default function Gallery() {
+export default function Gallery(props) {
     const [liveSlider, setLiveSlider] = useState(false);
     const [ontTheRoadSlider, setOnTheRoadSlider] = useState(false);
     const [className, setClassName] = useState();
@@ -28,7 +28,7 @@ export default function Gallery() {
     };
 
     return (
-        <div className="gallery" id="gallery">
+        <div className="gallery" id="gallery" onMouseOver={props.onMouseOver}>
             <div
                 className={className}
                 onClick={closeLiveModal}

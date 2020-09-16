@@ -3,7 +3,7 @@ body {
     font-family: AA_typewriter;
     min-height: 100vh;
     box-sizing: border-box;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 @font-face {
     font-family: AA_typewriter;

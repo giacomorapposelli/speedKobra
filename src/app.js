@@ -15,6 +15,9 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links");
         setClassStore("head-links");
+    };
+
+    const scrollToHome = () => {
         let home = document.getElementById("home");
         home.scrollIntoView();
     };
@@ -24,6 +27,9 @@ export default function App() {
         setClassTour("head-links greyed");
         setClassGallery("head-links");
         setClassStore("head-links");
+    };
+
+    const scrollToTour = () => {
         let tour = document.getElementById("tour");
         tour.scrollIntoView();
     };
@@ -33,6 +39,9 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links greyed");
         setClassStore("head-links");
+    };
+
+    const scrollToGallery = () => {
         let gallery = document.getElementById("gallery");
         gallery.scrollIntoView();
     };
@@ -42,6 +51,9 @@ export default function App() {
         setClassTour("head-links");
         setClassGallery("head-links");
         setClassStore("head-links greyed");
+    };
+
+    const scrollToStore = () => {
         let store = document.getElementById("store");
         store.scrollIntoView();
     };
@@ -50,31 +62,55 @@ export default function App() {
         <div className="container2">
             <header>
                 <p>
-                    <a className={classHome} onClick={updateHomeClass}>
+                    <a
+                        className={classHome}
+                        onClick={() => {
+                            updateHomeClass();
+                            scrollToHome();
+                        }}
+                    >
                         HOME
                     </a>
                 </p>
                 <p>
-                    <a className={classTour} onClick={updateTourClass}>
+                    <a
+                        className={classTour}
+                        onClick={() => {
+                            updateTourClass();
+                            scrollToTour();
+                        }}
+                    >
                         TOUR
                     </a>
                 </p>
                 <p>
-                    <a className={classGallery} onClick={updateGalleryClass}>
+                    <a
+                        className={classGallery}
+                        onClick={() => {
+                            updateGalleryClass();
+                            scrollToGallery();
+                        }}
+                    >
                         GALLERY
                     </a>
                 </p>
                 <p>
-                    <a className={classStore} onClick={updateStoreClass}>
+                    <a
+                        className={classStore}
+                        onClick={() => {
+                            updateStoreClass();
+                            scrollToStore();
+                        }}
+                    >
                         STORE
                     </a>
                 </p>
             </header>
             <div className="container">
-                <Home />
-                <Tour />
-                <Gallery />
-                <Store />
+                <Home onMouseOver={updateHomeClass} />
+                <Tour onMouseOver={updateTourClass} />
+                <Gallery onMouseOver={updateGalleryClass} />
+                <Store onMouseOver={updateStoreClass} />
                 <footer>
                     <p className="copyright">
                         © 2020 Speedköbra - All rights reserved

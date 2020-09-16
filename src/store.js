@@ -6,7 +6,7 @@ import Edit from "./edit";
 import ResetPassword from "./reset";
 import axios from "./axios";
 
-export default function Store() {
+export default function Store(props) {
     const [counter, setCounter] = useState(0);
 
     const setRegister = () => {
@@ -38,7 +38,7 @@ export default function Store() {
     });
 
     return (
-        <div className="store" id="store">
+        <div className="store" id="store" onMouseOver={props.onMouseOver}>
             <h1 className="headlines">OUR MERCHSTORE</h1>
             <div className="store-container">
                 {counter == 0 && (
