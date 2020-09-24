@@ -755,16 +755,10 @@ button:active,
     .tour {
         padding-top: 1%;
     }
-    /* .vinyl-modal,
-    .tape-modal,
-    .tshirt-modal,
-    .longsleeve-modal {
-        top: 313.5%;
-    } */
     .vinyl-modal {
         width: 70%;
         left: 15%;
-        top: 9%;
+        top: 13%;
     }
     .img-view {
         margin-top: 50%;
@@ -776,8 +770,16 @@ button:active,
     .card-desc {
         font-size: 30px;
     }
-    .live-modal,
-    .otr-modal {
-        top: 215%;
+}
+
+@media screen and (max-width: 400px) {
+    .home {
+        flex-direction: column-reverse;
+    }
+    #container {
+        width: 100%;
+    }
+    .album {
+        height: 45%;
     }
 }
