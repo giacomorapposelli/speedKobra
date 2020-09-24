@@ -419,7 +419,7 @@ export default class ResetPassword extends React.Component {
                         />
                     </div>
                 )}
-                <div>{this.getCurrentDisplay(this.state.count)}</div>;
+                {this.getCurrentDisplay(this.state.count)}
             </div>
         );
     }

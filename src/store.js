@@ -38,7 +38,9 @@ export default function Store(props) {
 
     return (
         <div className="store" id="store" onMouseOver={props.onMouseOver}>
-            <h1 className="headlines">OUR MERCHSTORE</h1>
+            <h1 className="headlines" id="store-headline">
+                OUR MERCHSTORE
+            </h1>
             <div className="store-container">
                 {counter == 0 && (
                     <Register setLogin={setLogin} setItems={setItems} />
