@@ -523,10 +523,10 @@ p {
     bottom: 0;
     right: 0;
     background: transparent;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
     z-index: 2;
     transition-property: background;
     transition: 0.1s ease-in-out;
@@ -775,11 +775,53 @@ button:active,
 @media screen and (max-width: 400px) {
     .home {
         flex-direction: column-reverse;
+        justify-content: space-around;
     }
     #container {
         width: 100%;
     }
     .album {
-        height: 45%;
+        height: 33%;
+        margin-top: 20%;
+    }
+    .message {
+        width: 100%;
+    }
+    .days {
+        font-size: 220%;
+        text-align: center;
+    }
+
+    .headlines,
+    .tour-headline {
+        font-size: 250%;
+    }
+
+    .img-view {
+        height: 30%;
+    }
+
+    .social-logo {
+        margin-right: 8px;
+        height: 13px;
+        transition: filter 0.3s ease-in-out;
+    }
+
+    .copyright {
+        font-size: 13px;
+        margin-left: 10px;
+    }
+
+    .head-links {
+        color: rgb(235, 235, 235);
+        display: block;
+        font-size: 100%;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .logos {
+        margin-right: 5px;
+        margin-top: 2px;
     }
 }
