@@ -775,17 +775,18 @@ button:active,
 @media screen and (max-width: 400px) {
     .home {
         flex-direction: column-reverse;
-        justify-content: space-around;
+        justify-content: space-evenly;
     }
     #container {
         width: 100%;
     }
     .album {
         height: 33%;
-        margin-top: 20%;
     }
     .message {
         width: 100%;
+        justify-content: flex-start;
+        height: 40%;
     }
     .days {
         font-size: 220%;
