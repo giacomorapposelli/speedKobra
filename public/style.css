@@ -252,12 +252,6 @@ footer {
     box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.58);
 }
 
-.images-slide,
-.otr-slide {
-    width: 100%;
-    display: flex;
-    object-fit: cover;
-}
 .live-modal,
 .otr-modal {
     object-fit: cover;
