@@ -757,10 +757,7 @@ button:active,
         left: 15%;
         top: 13%;
     }
-    .img-view {
-        margin-top: 50%;
-        height: 100%;
-    }
+
     .card-container {
         justify-content: space-around;
     }
@@ -774,10 +771,6 @@ button:active,
         height: 175px;
         width: 150px;
         margin-bottom: 35%;
-    }
-
-    .img-view:hover {
-        filter: brightness();
     }
 
     .card-desc:hover {
