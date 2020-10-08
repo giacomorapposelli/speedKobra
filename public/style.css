@@ -169,7 +169,7 @@ footer {
 }
 
 .show-container {
-    height: 10%;
+    height: 9%;
     width: 60%;
     border-bottom: 2px solid rgb(104, 104, 104);
     display: flex;
@@ -178,13 +178,14 @@ footer {
     justify-content: space-between;
 }
 
-.column-title {
+.column-title,
+.column {
     width: 15%;
     color: grey;
+    text-align: center;
 }
 
 .column {
-    width: 15%;
     color: rgb(235, 235, 235);
     text-decoration: none;
 }
@@ -285,24 +286,29 @@ footer {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     overflow-y: scroll;
 }
-
+/* 
 .shop {
     width: 50%;
     display: flex;
     flex-direction: column;
+} */
+
+.products {
+    width: 50%;
+    overflow: hidden;
 }
 
 .row {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
-    width: 50%;
+    justify-content: space-around;
     margin-bottom: 3%;
-    margin-left: 1%;
+    width: 100%;
+    /* margin-left: 1%; */
 }
 
 .item-img {
@@ -341,19 +347,13 @@ p {
     flex-direction: column;
 }
 
-.cart,
 .registration,
 .login,
-.reset-form {
-    position: absolute;
-    left: 50%;
-    top: 331%;
+.reset,
+.cart,
+.edit {
+    height: 100%;
     width: 50%;
-    max-height: 70%;
-}
-
-.registration {
-    top: 332%;
 }
 
 .cart-container {
@@ -368,30 +368,32 @@ p {
 }
 
 .login-form {
-    margin-left: 33%;
-    margin-top: 10%;
+    width: 40%;
+    margin-left: 30%;
 }
 
 .reg-form,
-.edit-form {
+.edit-form,
+.login-form {
     margin-left: 25%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
 }
 
 .edit-form {
-    margin-left: 35%;
+    margin-left: 25%;
 }
 
 .shop-general {
-    height: 60vh;
+    min-height: 60vh;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .small-pic {
@@ -531,13 +533,17 @@ p {
     color: grey;
 }
 
+.merch-card {
+    width: 20%;
+}
+
 .description {
     height: 200px;
-    width: 140px;
+    width: 20%;
 }
 
 .item-name {
-    width: 150px;
+    /* width: 100%; */
 }
 
 .reg-error,
@@ -553,7 +559,7 @@ input {
     border: none;
     border-bottom: 2px solid rgb(82, 82, 82);
     background-color: transparent;
-    width: 50%;
+    width: 100%;
     height: 30px;
     font-size: 20px;
     outline: none;
@@ -691,9 +697,7 @@ button:active,
 }
 
 .reg-btn {
-    width: 20%;
     margin-top: 5%;
-    margin-left: 15%;
 }
 
 .temp-total {
@@ -707,8 +711,7 @@ button:active,
 }
 
 .already {
-    min-width: 50%;
-    margin-top: 3.5%;
+    margin-top: 5%;
 }
 
 .login-link,
@@ -729,7 +732,7 @@ button:active,
 
 .success-msg {
     text-align: center;
-    margin-top: 25%;
+    margin-top: 15%;
     color: rgb(235, 235, 235);
 }
 
@@ -909,14 +912,6 @@ button:active,
     }
     #store-headline {
         visibility: hidden;
-    }
-    .registration,
-    .login,
-    .reset-form,
-    .cart {
-        top: 390%;
-        left: 0;
-        width: 100%;
     }
 
     .reg-title,

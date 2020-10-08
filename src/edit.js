@@ -158,139 +158,143 @@ export default class Edit extends React.Component {
                     className={this.state.overlay}
                     onClick={this.closeModal}
                 ></div>
-                <div className="row">
-                    <div className="merch-card">
-                        <img
-                            src="tshirt.jpg"
-                            className="item-img"
-                            onClick={this.setTshirtModal}
-                        />
+                <div className="products">
+                    <div className="row">
+                        <div className="merch-card">
+                            <img
+                                src="tshirt.jpg"
+                                className="item-img"
+                                onClick={this.setTshirtModal}
+                            />
 
-                        <form>
-                            <select name="size">
-                                <option value="-">Choose a size:</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                            </select>
-                            <button
-                                onClick={this.setError1}
-                                className="addtocart"
-                            >
-                                Add to cart
-                            </button>
-                        </form>
-                    </div>
-                    <div className="description">
-                        <p className="item-name">"Harvester Of Hate"</p>
-                        <p className="item-name">T-Shirt</p>
-                        <p className="item-name">Price 10€</p>
-                        {this.state.error1 && (
-                            <p className="error">
-                                You need to be registered in order to buy
-                                something
-                            </p>
-                        )}
-                    </div>
+                            <form>
+                                <select name="size">
+                                    <option value="-">Choose a size:</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                                <button
+                                    onClick={this.setError1}
+                                    className="addtocart"
+                                >
+                                    Add to cart
+                                </button>
+                            </form>
+                        </div>
+                        <div className="description">
+                            <p className="item-name">"Harvester Of Hate"</p>
+                            <p className="item-name">T-Shirt</p>
+                            <p className="item-name">Price 10€</p>
+                            {this.state.error1 && (
+                                <p className="error">
+                                    You need to be registered in order to buy
+                                    something
+                                </p>
+                            )}
+                        </div>
 
-                    <div className="merch-card">
-                        <img
-                            src="longsleeve.jpg"
-                            className="item-img"
-                            onClick={this.setLongsleeveModal}
-                        />
-                        <form>
-                            <select name="size">
-                                <option value="-">Choose a size:</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                            </select>
-                            <button
-                                onClick={this.setError2}
-                                className="addtocart"
-                            >
-                                Add to cart
-                            </button>
-                        </form>
+                        <div className="merch-card">
+                            <img
+                                src="longsleeve.jpg"
+                                className="item-img"
+                                onClick={this.setLongsleeveModal}
+                            />
+                            <form>
+                                <select name="size">
+                                    <option value="-">Choose a size:</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                                <button
+                                    onClick={this.setError2}
+                                    className="addtocart"
+                                >
+                                    Add to cart
+                                </button>
+                            </form>
+                        </div>
+                        <div className="description">
+                            <p className="item-name">"Dehumanized"</p>
+                            <p className="item-name">Longsleeve</p>
+                            <p className="item-name">Price 15€</p>
+                            {this.state.error2 && (
+                                <p className="error">
+                                    You need to be registered in order to buy
+                                    something
+                                </p>
+                            )}
+                        </div>
                     </div>
-                    <div className="description">
-                        <p className="item-name">"Dehumanized"</p>
-                        <p className="item-name">Longsleeve</p>
-                        <p className="item-name">Price 15€</p>
-                        {this.state.error2 && (
-                            <p className="error">
-                                You need to be registered in order to buy
-                                something
-                            </p>
-                        )}
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="merch-card">
-                        <img
-                            src="vinyl-red.jpg"
-                            className="item-img"
-                            onClick={this.setVinylModal}
-                        />
-                        <form>
-                            <select name="color">
-                                <option value="-">Choose a color:</option>
-                                <option value="Clear Red">RED</option>
-                                <option value="Clear Green">GREEN</option>
-                                <option value="Blue">BLUE</option>
-                                <option value="Light Blue">LIGHT BLUE</option>
-                            </select>
-                            <button
-                                onClick={this.setError3}
-                                className="addtocart"
-                            >
-                                Add to cart
-                            </button>
-                        </form>
-                    </div>
-                    <div className="description">
-                        <p className="item-name">Days Of Madness</p>
-                        <p className="item-name">LP 12"</p>
-                        <p className="item-name">Price 12€</p>
-                        {this.state.error3 && (
-                            <p className="error">
-                                You need to be registered in order to buy
-                                something
-                            </p>
-                        )}
-                    </div>
+                    <div className="row">
+                        <div className="merch-card">
+                            <img
+                                src="vinyl-red.jpg"
+                                className="item-img"
+                                onClick={this.setVinylModal}
+                            />
+                            <form>
+                                <select name="color">
+                                    <option value="-">Choose a color:</option>
+                                    <option value="Clear Red">RED</option>
+                                    <option value="Clear Green">GREEN</option>
+                                    <option value="Blue">BLUE</option>
+                                    <option value="Light Blue">
+                                        LIGHT BLUE
+                                    </option>
+                                </select>
+                                <button
+                                    onClick={this.setError3}
+                                    className="addtocart"
+                                >
+                                    Add to cart
+                                </button>
+                            </form>
+                        </div>
+                        <div className="description">
+                            <p className="item-name">Days Of Madness</p>
+                            <p className="item-name">LP 12"</p>
+                            <p className="item-name">Price 12€</p>
+                            {this.state.error3 && (
+                                <p className="error">
+                                    You need to be registered in order to buy
+                                    something
+                                </p>
+                            )}
+                        </div>
 
-                    <div className="merch-card">
-                        <img
-                            src="tape2.jpg"
-                            className="item-img"
-                            onClick={this.setTapeModal}
-                        />
-                        <form>
-                            <select>
-                                <option value="-">--</option>
-                            </select>
-                            <button
-                                onClick={this.setError4}
-                                className="addtocart"
-                            >
-                                Add to cart
-                            </button>
-                        </form>
-                    </div>
-                    <div className="description">
-                        <p className="item-name">Split w/ Moratory</p>
-                        <p className="item-name">Tape</p>
-                        <p className="sold-out">Sold Out</p>
-                        {this.state.error4 && (
-                            <p className="error">
-                                You need to be registered in order to buy
-                                something
-                            </p>
-                        )}
+                        <div className="merch-card">
+                            <img
+                                src="tape2.jpg"
+                                className="item-img"
+                                onClick={this.setTapeModal}
+                            />
+                            <form>
+                                <select>
+                                    <option value="-">--</option>
+                                </select>
+                                <button
+                                    onClick={this.setError4}
+                                    className="addtocart"
+                                >
+                                    Add to cart
+                                </button>
+                            </form>
+                        </div>
+                        <div className="description">
+                            <p className="item-name">Split w/ Moratory</p>
+                            <p className="item-name">Tape</p>
+                            <p className="sold-out">Sold Out</p>
+                            {this.state.error4 && (
+                                <p className="error">
+                                    You need to be registered in order to buy
+                                    something
+                                </p>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className="registration">
