@@ -172,127 +172,141 @@ export default function Items(props) {
             <div className={className} onClick={closeModal} id="shop"></div>
             <div className="products">
                 <div className="row">
-                    <div className="merch-card">
-                        <img
-                            src="tshirt.jpg"
-                            className="item-img"
-                            onClick={openTshirtModal}
-                        />
+                    <div className="item-wrapper">
+                        <div className="merch-card">
+                            <img
+                                src="tshirt.jpg"
+                                className="item-img"
+                                onClick={openTshirtModal}
+                            />
 
-                        <form>
-                            <select
-                                name="size"
-                                onChange={(event) =>
-                                    setSize(event.target.value)
-                                }
-                            >
-                                <option value="">Choose a size:</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                            </select>
-                            <button onClick={addTshirt} className="addtocart">
-                                Add to cart
-                            </button>
-                        </form>
+                            <form>
+                                <select
+                                    name="size"
+                                    onChange={(event) =>
+                                        setSize(event.target.value)
+                                    }
+                                >
+                                    <option value="">Choose a size:</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                                <button
+                                    onClick={addTshirt}
+                                    className="addtocart"
+                                >
+                                    Add to cart
+                                </button>
+                            </form>
+                        </div>
+                        <div className="description">
+                            <p className="item-name">"Harvester Of Hate"</p>
+                            <p className="item-name">T-Shirt</p>
+                            <p className="item-name">Price: 10€</p>
+                            {<p className="error">{error}</p>}
+                        </div>
                     </div>
-                    <div className="description">
-                        <p className="item-name">"Harvester Of Hate"</p>
-                        <p className="item-name">T-Shirt</p>
-                        <p className="item-name">Price: 10€</p>
-                        {<p className="error">{error}</p>}
-                    </div>
-
-                    <div className="merch-card">
-                        <img
-                            src="longsleeve.jpg"
-                            className="item-img"
-                            onClick={openLongsleeveModal}
-                        />
-                        <form>
-                            <select
-                                name="size"
-                                onChange={(event) =>
-                                    setSize(event.target.value)
-                                }
-                            >
-                                <option value="">Choose a size:</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                            </select>
-                            <button
-                                onClick={addLongsleeve}
-                                className="addtocart"
-                            >
-                                Add to cart
-                            </button>
-                        </form>
-                    </div>
-                    <div className="description">
-                        <p className="item-name">"Dehumanized"</p>
-                        <p className="item-name">Longsleeve</p>
-                        <p className="item-name">Price: 15€</p>
-                        <p className="error">{error}</p>
+                    <div className="item-wrapper">
+                        <div className="merch-card">
+                            <img
+                                src="longsleeve.jpg"
+                                className="item-img"
+                                onClick={openLongsleeveModal}
+                            />
+                            <form>
+                                <select
+                                    name="size"
+                                    onChange={(event) =>
+                                        setSize(event.target.value)
+                                    }
+                                >
+                                    <option value="">Choose a size:</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                                <button
+                                    onClick={addLongsleeve}
+                                    className="addtocart"
+                                >
+                                    Add to cart
+                                </button>
+                            </form>
+                        </div>
+                        <div className="description">
+                            <p className="item-name">"Dehumanized"</p>
+                            <p className="item-name">Longsleeve</p>
+                            <p className="item-name">Price: 15€</p>
+                            <p className="error">{error}</p>
+                        </div>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="merch-card">
-                        <img
-                            src="vinyl-red.jpg"
-                            className="item-img"
-                            onClick={setVinylModal}
-                        />
-                        <form>
-                            <select
-                                name="color"
-                                onChange={(event) =>
-                                    setColor(event.target.value)
-                                }
-                            >
-                                <option value="">Choose a color:</option>
-                                <option value="Red">RED</option>
-                                <option value="Green">GREEN</option>
-                                <option value="Blue">BLUE</option>
-                                <option value="Light Blue">LIGHT BLUE</option>
-                            </select>
-                            <button onClick={addVinyl} className="addtocart">
-                                Add to cart
-                            </button>
-                        </form>
+                    <div className="item-wrapper">
+                        <div className="merch-card">
+                            <img
+                                src="vinyl-red.jpg"
+                                className="item-img"
+                                onClick={setVinylModal}
+                            />
+                            <form>
+                                <select
+                                    name="color"
+                                    onChange={(event) =>
+                                        setColor(event.target.value)
+                                    }
+                                >
+                                    <option value="">Choose a color:</option>
+                                    <option value="Red">RED</option>
+                                    <option value="Green">GREEN</option>
+                                    <option value="Blue">BLUE</option>
+                                    <option value="Light Blue">
+                                        LIGHT BLUE
+                                    </option>
+                                </select>
+                                <button
+                                    onClick={addVinyl}
+                                    className="addtocart"
+                                >
+                                    Add to cart
+                                </button>
+                            </form>
+                        </div>
+                        <div className="description">
+                            <p className="item-name">Days Of Madness</p>
+                            <p className="item-name">LP 12"</p>
+                            <p className="item-name">Price: 12€</p>
+                            <p className="error">{error}</p>
+                        </div>
                     </div>
-                    <div className="description">
-                        <p className="item-name">Days Of Madness</p>
-                        <p className="item-name">LP 12"</p>
-                        <p className="item-name">Price: 12€</p>
-                        <p className="error">{error}</p>
-                    </div>
-
-                    <div className="merch-card">
-                        <img
-                            src="tape2.jpg"
-                            className="item-img"
-                            onClick={openTapeModal}
-                        />
-                        <form>
-                            <select>
-                                <option value="-">--</option>
-                            </select>
-                            <button
-                                onClick={soldOutError}
-                                className="addtocart"
-                            >
-                                Add to cart
-                            </button>
-                        </form>
-                    </div>
-                    <div className="description">
-                        <p className="item-name">Split w/ Moratory</p>
-                        <p className="item-name">Tape</p>
-                        <p className="sold-out">Sold Out</p>
-                        {soldOut && <p className="error">{soldOut}</p>}
+                    <div className="item-wrapper">
+                        <div className="merch-card">
+                            <img
+                                src="tape2.jpg"
+                                className="item-img"
+                                onClick={openTapeModal}
+                            />
+                            <form>
+                                <select>
+                                    <option value="-">--</option>
+                                </select>
+                                <button
+                                    onClick={soldOutError}
+                                    className="addtocart"
+                                >
+                                    Add to cart
+                                </button>
+                            </form>
+                        </div>
+                        <div className="description">
+                            <p className="item-name">Split w/ Moratory</p>
+                            <p className="item-name">Tape</p>
+                            <p className="sold-out">Sold Out</p>
+                            {soldOut && <p className="error">{soldOut}</p>}
+                        </div>
                     </div>
                 </div>
             </div>

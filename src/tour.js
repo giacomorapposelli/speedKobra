@@ -4,12 +4,17 @@ export default function Tour(props) {
     return (
         <div className="tour" id="tour" onMouseOver={props.onMouseOver}>
             <h1 className="tour-headline">UPCOMING TOURDATES</h1>
-
             <div className="show-container">
                 <p className="column-title">DATE</p>
                 <p className="column-title">LOCATION</p>
                 <p className="column-title">CITY</p>
                 <p className="column-title">FB EVENT</p>
+            </div>
+            <div className="show-container">
+                <p className="column">21.11.2020</p>
+                <p className="column">KULTURHAUS KILI</p>
+                <p className="column">BERLIN,DE</p>
+                <p className="column">SEE EVENT</p>
             </div>
             <div className="show-container">
                 <p className="column">16.11.2019</p>
@@ -44,12 +49,6 @@ export default function Tour(props) {
                 <p className="column">30.10.2019</p>
                 <p className="column">LA ZONE</p>
                 <p className="column">LIEGE,BE</p>
-                <p className="column">SEE EVENT</p>
-            </div>
-            <div className="show-container">
-                <p className="column">28.10.2019</p>
-                <p className="column">TEESTUBE</p>
-                <p className="column">SINGEN,DE</p>
                 <p className="column">SEE EVENT</p>
             </div>
         </div>
