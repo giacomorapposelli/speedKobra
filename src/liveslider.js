@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function LiveSlider() {
+export default function LiveSlider(props) {
     useEffect(() => {
         const slider = document.querySelector(".images-slide");
         const carouselImages = document.querySelectorAll(".images-slide img");
@@ -44,6 +44,9 @@ export default function LiveSlider() {
 
     return (
         <div className="live-modal">
+            <a id="x-gallery-modal" onClick={props.closeModal}>
+                X
+            </a>
             <img src="/back.png" alt="" className="prev-btn" />
             <img src="/next.png" alt="" className="next-btn" />
             <div className="images-slide">

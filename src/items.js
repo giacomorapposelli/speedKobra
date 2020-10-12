@@ -444,7 +444,9 @@ export default function Items(props) {
                     </button>
                 </div>
             )}
-            {vinylSlider == "visible" && <VinylSlider />}
+            {vinylSlider == "visible" && (
+                <VinylSlider closeModal={closeModal} />
+            )}
             {tapeModal == "visible" && (
                 <div className="tape-modal">
                     <a id="x-modal" onClick={closeModal}>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function VinylSlider() {
+export default function VinylSlider(props) {
     useEffect(() => {
         const slider = document.querySelector(".images-slide");
         const carouselImages = document.querySelectorAll(".images-slide img");
@@ -44,6 +44,9 @@ export default function VinylSlider() {
 
     return (
         <div className="vinyl-modal">
+            <a id="x-modal" onClick={props.closeModal}>
+                X
+            </a>
             <img src="/back.png" alt="" className="prev-btn" />
             <img src="/next.png" alt="" className="next-btn" />
             <div className="images-slide">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function OnTheRoadSlider() {
+export default function OnTheRoadSlider(props) {
     useEffect(() => {
         const slider = document.querySelector(".otr-slide");
         const carouselImages = document.querySelectorAll(".otr-slide img");
@@ -44,6 +44,9 @@ export default function OnTheRoadSlider() {
 
     return (
         <div className="otr-modal">
+            <a id="x-gallery-modal" onClick={props.closeModal}>
+                X
+            </a>
             <img src="/back.png" alt="" className="prev-btn" />
             <img src="/next.png" alt="" className="next-btn" />
             <div className="otr-slide">

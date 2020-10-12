@@ -21,7 +21,7 @@ export default function Gallery(props) {
         setClassName("overlay");
     };
 
-    const closeLiveModal = (event) => {
+    const closeModal = (event) => {
         event.preventDefault();
         document.body.style.overflow = "scroll";
         setLiveSlider(false);
@@ -32,11 +32,7 @@ export default function Gallery(props) {
 
     return (
         <div className="gallery" id="gallery" onMouseOver={props.onMouseOver}>
-            <div
-                className={className}
-                onClick={closeLiveModal}
-                id="galleria"
-            ></div>
+            <div className={className} onClick={closeModal} id="galleria"></div>
             <h1 className="headlines">IMAGE GALLERY</h1>
             <div className="card-container">
                 <div className="card">
@@ -62,8 +58,10 @@ export default function Gallery(props) {
                     </h3>
                 </div>
             </div>
-            {liveSlider && <LiveSlider />}
-            {ontTheRoadSlider && <OnTheRoadSlider />}{" "}
+            {liveSlider && <LiveSlider closeModal={closeModal} />}
+            {ontTheRoadSlider && (
+                <OnTheRoadSlider closeModal={closeModal} />
+            )}{" "}
         </div>
     );
 }

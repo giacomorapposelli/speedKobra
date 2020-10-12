@@ -483,6 +483,7 @@ p {
 }
 
 #x-modal,
+#x-gallery-modal,
 #x-conf-modal {
     position: fixed;
     top: 6%;
@@ -495,13 +496,19 @@ p {
     transition: color 0.3s ease-in-out;
 }
 
+#x-gallery-modal {
+    top: 11%;
+    right: 6%;
+}
+
 #x-conf-modal {
     font-size: 20px;
     top: 36%;
     right: 31%;
 }
 #x-conf-modal:hover,
-#x-modal:hover {
+#x-modal:hover,
+#x-gallery-modal:hover {
     color: rgb(77, 77, 77);
 }
 
@@ -518,7 +525,7 @@ p {
     justify-content: center; */
     z-index: 2;
     transition-property: background;
-    transition: 0.1s ease-in-out;
+    transition: 0.2s ease-in-out;
     background: rgba(90, 90, 90, 0.842);
 }
 

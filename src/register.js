@@ -418,7 +418,9 @@ export default class Register extends React.Component {
                         )}
                     </form>
                 </div>
-                {this.state.vinylSlider == "visible" && <VinylSlider />}
+                {this.state.vinylSlider == "visible" && (
+                    <VinylSlider closeModal={this.closeModal} />
+                )}
                 {this.state.tapeModal == "visible" && (
                     <div className="tape-modal">
                         <a id="x-modal" onClick={this.closeModal}>
