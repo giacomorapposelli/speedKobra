@@ -90,7 +90,7 @@ footer {
 
 .headlines {
     color: rgb(235, 235, 235);
-    padding-top: 6%;
+    padding-top: 5%;
     text-align: center;
     font-size: 320%;
 }
@@ -125,9 +125,8 @@ footer {
 
 .days {
     font-size: 320%;
-    margin-top: 1%;
-    padding-top: 1%;
-    margin-bottom: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .listen {
@@ -151,25 +150,15 @@ footer {
     border: 2px solid grey;
 }
 
-.tour-headline {
-    color: rgb(235, 235, 235);
-    padding-top: 3%;
-    text-align: center;
-    font-size: 320%;
-}
-
 /* TOUR /////////////////////////////////////////////// */
 
 .tour {
     width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
 }
 
 .show-container {
+    margin-left: 20%;
     height: 9%;
     width: 60%;
     border-bottom: 2px solid rgb(104, 104, 104);
@@ -181,7 +170,7 @@ footer {
 
 .column-title,
 .column {
-    width: 15%;
+    width: 20%;
     color: grey;
     text-align: center;
 }
@@ -194,8 +183,8 @@ footer {
 /* GALLERY ////////////////////////////////////// */
 
 .card {
-    height: 350px;
-    width: 300px;
+    height: 100%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -208,7 +197,7 @@ footer {
 }
 
 .img-view {
-    height: 80%;
+    height: 65%;
     border: 2px solid rgb(65, 65, 65);
     object-fit: cover;
     filter: grayscale();
@@ -236,7 +225,8 @@ footer {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 7%;
+    margin-top: 5%;
+    height: 50%;
 }
 
 .live-modal,
@@ -432,6 +422,7 @@ p {
 .longsleeve-modal,
 .tape-modal {
     width: 80%;
+    height: 90%;
     border: 3px solid black;
     background-image: url("image.jpg");
     background-size: cover;
@@ -462,6 +453,7 @@ p {
 
 .vinyl-modal {
     width: 80%;
+    height: 90%;
     border: 3px solid black;
     background-image: url("image.jpg");
     background-size: cover;
@@ -604,7 +596,7 @@ input:focus {
 .vinylphoto,
 .longsleevephoto {
     object-fit: cover;
-    height: auto;
+    min-height: 100%;
     width: 100%;
 }
 
@@ -758,11 +750,12 @@ button:active,
     .tour {
         padding-top: 1%;
     }
-    .vinyl-modal {
+    /* .vinyl-modal {
         width: 70%;
+        height: 60%;
         left: 15%;
-        top: 13%;
-    }
+        top: 20%;
+    } */
 
     .card-container {
         justify-content: space-around;
@@ -772,7 +765,23 @@ button:active,
     }
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 1150px) {
+    .days {
+        font-size: 220%;
+    }
+    .album {
+        height: 40%;
+    }
+    .img-view: {
+        height: 60%;
+    }
+    .tour,
+    .gallery {
+        padding-top: 3%;
+    }
+}
+
+@media screen and (max-width: 780px) {
     .card {
         height: 175px;
         width: 150px;
@@ -784,13 +793,15 @@ button:active,
     }
 
     .card-container {
-        height: 600px;
+        height: 100%;
+        width: 60%;
         flex-direction: column;
         justify-content: space-evenly;
         margin-top: 0;
     }
 
     .gallery {
+        padding-top: 0;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -839,6 +850,7 @@ button:active,
         object-fit: cover;
     }
     .home {
+        padding-top: 10%;
         flex-direction: column-reverse;
         justify-content: space-evenly;
     }
@@ -852,6 +864,7 @@ button:active,
         width: 100%;
         justify-content: flex-start;
         height: 40%;
+        padding-bottom: 10%;
     }
     .days {
         font-size: 220%;
@@ -859,13 +872,6 @@ button:active,
     }
 
     .headlines {
-        font-size: 220%;
-        margin-top: 13%;
-    }
-
-    .tour-headline,
-    .store-healine {
-        margin-top: 15%;
         font-size: 220%;
     }
 
@@ -893,17 +899,25 @@ button:active,
         margin-top: 2px;
     }
 
+    .tour,
+    .gallery {
+        padding-top: 6%;
+    }
+
     .show-container {
         width: 90%;
         height: 9%;
+        margin-left: 5%;
     }
 
-    .column {
+    .column,
+    .column-title {
         font-size: 10px;
+        width: 25%;
     }
 
     .column-title {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .store {

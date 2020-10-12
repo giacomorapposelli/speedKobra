@@ -147,13 +147,13 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-// app.get("*", function (req, res) {
-//     res.redirect("/");
-// });
+app.get("*", function (req, res) {
+    res.redirect("/");
+});
 
 app.post("/register", (req, res) => {
     let password = req.body.password1 == req.body.password2;

@@ -264,6 +264,10 @@ export default class ResetPassword extends React.Component {
     render() {
         return (
             <div className="shop-general">
+                <div
+                    className={this.state.overlay}
+                    onClick={this.closeModal}
+                ></div>
                 <div className="products">
                     <div className="row">
                         <div className="item-wrapper">
