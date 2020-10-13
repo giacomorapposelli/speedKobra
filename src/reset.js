@@ -161,8 +161,8 @@ export default class ResetPassword extends React.Component {
         if (this.state.count === 0) {
             return (
                 <div className="reset">
+                    <h2 className="login-title">ENTER YOUR EMAIL:</h2>
                     <div className="reset-form">
-                        <h2 className="login-title">ENTER YOUR EMAIL:</h2>
                         <form
                             onSubmit={this.handleSubmitEmail}
                             className="login-form"

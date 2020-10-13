@@ -343,6 +343,9 @@ p {
 .reset,
 .cart,
 .edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
     width: 50%;
 }
@@ -354,28 +357,18 @@ p {
 
 .login-title,
 .cart-title {
-    text-align: center;
     color: rgb(235, 235, 235);
-}
-
-.login-form {
-    width: 40%;
-    margin-left: 30%;
 }
 
 .reg-form,
 .edit-form,
-.login-form {
-    margin-left: 25%;
+.login-form,
+.reset-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    width: 50%;
-}
-
-.edit-form {
-    margin-left: 25%;
+    width: 100%;
 }
 
 .shop-general {
@@ -560,7 +553,7 @@ input {
     border: none;
     border-bottom: 2px solid rgb(82, 82, 82);
     background-color: transparent;
-    width: 100%;
+    width: 50%;
     height: 30px;
     font-size: 20px;
     outline: none;
@@ -583,9 +576,6 @@ input:focus {
 
 .reg-title {
     color: rgb(235, 235, 235);
-    width: 90%;
-    margin-left: 5%;
-    text-align: center;
 }
 
 .empty-cart {
@@ -753,16 +743,10 @@ button:active,
     margin: 0 auto;
 }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1500px) {
     .tour {
         padding-top: 1%;
     }
-    /* .vinyl-modal {
-        width: 70%;
-        height: 60%;
-        left: 15%;
-        top: 20%;
-    } */
 
     .card-container {
         justify-content: space-around;
@@ -779,7 +763,7 @@ button:active,
     .album {
         height: 40%;
     }
-    .img-view: {
+    .img-view {
         height: 60%;
     }
     .tour,
@@ -788,7 +772,7 @@ button:active,
     }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 720px) {
     .card {
         height: 175px;
         width: 150px;
@@ -867,6 +851,15 @@ button:active,
     .album {
         height: 33%;
     }
+
+    .registration,
+    .login,
+    .reset,
+    .cart,
+    .edit {
+        width: 100%;
+    }
+
     .message {
         width: 100%;
         justify-content: flex-start;
@@ -880,6 +873,13 @@ button:active,
 
     .headlines {
         font-size: 220%;
+    }
+    .shop-general {
+        flex-direction: column;
+    }
+
+    .registration {
+        width: 100%;
     }
 
     .img-view {
@@ -929,24 +929,13 @@ button:active,
 
     .store {
         height: 155vh;
-    }
-    #store-headline {
-        visibility: hidden;
+        padding-top: 6%;
     }
 
-    .reg-title,
-    .login-title {
-        font-size: 20px;
-        text-align: left;
-    }
-
-    .login-title {
-        margin-left: 20px;
-    }
-
-    .reg-form,
-    .login-form {
-        margin-left: 20px;
+    .products {
+        width: 100%;
+        overflow: hidden;
+        padding-bottom: 10%;
     }
 
     input {
@@ -959,10 +948,11 @@ button:active,
         width: 80px;
     }
 
-    .item-name {
+    .item-name,
+    .sold-out {
         width: 100px;
         font-size: 10px;
-        margin-left: 10px;
+        margin-left: 5px;
     }
 
     .item-desc {
