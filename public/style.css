@@ -843,6 +843,11 @@ button:active,
         height: 20px;
     }
 
+    .prev-btn:hover,
+    .next-btn:hover {
+        color: rgb(235, 235, 235);
+    }
+
     .images-slide,
     .otr-slide {
         width: 100%;
