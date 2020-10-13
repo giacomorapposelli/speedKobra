@@ -789,7 +789,7 @@ button:active,
     }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 780px) {
     .card {
         height: 175px;
         width: 150px;
@@ -818,8 +818,8 @@ button:active,
     .live-modal,
     .otr-modal,
     .vinyl-modal {
-        height: 30%;
-        top: 35%;
+        height: auto;
+        top: 30%;
         left: 5%;
     }
 
