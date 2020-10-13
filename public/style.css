@@ -779,8 +779,13 @@ button:active,
         height: 60%;
     }
     .tour,
-    .gallery {
+    .gallery,
+    .store {
         padding-top: 3%;
+    }
+    .addtocart {
+        width: 80%;
+        margin-left: 5%;
     }
 }
 
@@ -811,34 +816,15 @@ button:active,
     }
 
     .live-modal,
-    .otr-modal {
-        object-fit: cover;
-        height: 80%;
-        width: 90%;
-        position: fixed;
-        border: 3px solid black;
-        border-radius: 5px;
-        overflow: hidden;
-        top: 10%;
+    .otr-modal,
+    .vinyl-modal {
+        height: 30%;
+        top: 35%;
         left: 5%;
-        z-index: 3;
-        box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.58);
     }
 
-    .images-slide,
-    .otr-slide {
-        width: 100%;
-        display: flex;
-        object-fit: cover;
-    }
-    .live-modal,
-    .otr-modal {
-        object-fit: cover;
-        height: 80%;
-        width: 90%;
-        overflow: hidden;
-        top: 10%;
-        left: 5%;
+    .vinyl-modal {
+        left: 10%;
     }
 
     .confirm-modal {
@@ -846,8 +832,15 @@ button:active,
         left: 10%;
     }
 
-    #x-conf-modal {
+    #x-conf-modal,
+    #x-modal,
+    #x-gallery-modal {
         display: none;
+    }
+
+    .prev-btn,
+    .next-btn {
+        height: 20px;
     }
 
     .images-slide,
