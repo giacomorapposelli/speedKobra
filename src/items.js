@@ -323,7 +323,7 @@ export default function Items(props) {
                 <h2 className="cart-title">YOUR CART:</h2>
                 {!currentCart.length && (
                     <div className="empty-cart">
-                        <h2 className="sold-out ">Your Cart is now empty</h2>
+                        <h2 className="empty">Your Cart is now empty</h2>
                         <img
                             src="/empty-cart.png"
                             alt=""
@@ -393,7 +393,7 @@ export default function Items(props) {
                             in a few days about shipment and payment methods
                         </h3>
                         <div className="order-container">
-                            <h2 className="success">Order Code: {code}</h2>
+                            <h2 className="code">Order Code: {code}</h2>
                             {order.map((each) => (
                                 <div
                                     key={each.order_id}
@@ -403,11 +403,11 @@ export default function Items(props) {
                                         src={each.imgurl}
                                         className="small-pic"
                                     />
-                                    <p className="success">
+                                    <p className="item-name">
                                         {each.vinyl || each.tshirt}
                                     </p>
 
-                                    <p className="success">
+                                    <p className="item-desc">
                                         {each.size
                                             ? "Size: " + each.size
                                             : "Color: " + each.color}

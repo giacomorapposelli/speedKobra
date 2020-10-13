@@ -325,6 +325,8 @@ footer {
 }
 
 .success {
+    width: 15%;
+    text-align: center;
     color: rgb(235, 235, 235);
 }
 
@@ -353,13 +355,17 @@ p {
     width: 50%;
 }
 
+.empty {
+    color: grey;
+}
+
 .cart-container {
     width: 90%;
     margin: 0 auto;
     max-height: 45vh;
     overflow-y: scroll;
 }
-
+.code,
 .login-title,
 .cart-title {
     text-align: center;
@@ -469,7 +475,6 @@ p {
 
 .total {
     float: right;
-    margin-right: 10%;
 }
 
 .thanks {
@@ -478,7 +483,8 @@ p {
 }
 
 .order-container {
-    margin-left: 9%;
+    margin: 0 auto;
+    width: 90%;
 }
 
 #x-modal,
@@ -542,7 +548,7 @@ p {
 }
 
 .item-name {
-    /* width: 100%; */
+    width: 40%;
 }
 
 .reg-error,
@@ -708,7 +714,7 @@ button:active,
 }
 
 .item-desc {
-    width: 150px;
+    width: 15%;
 }
 
 .already {
@@ -830,14 +836,18 @@ button:active,
         object-fit: cover;
         height: 80%;
         width: 90%;
-        position: fixed;
-        border: 3px solid black;
-        border-radius: 5px;
         overflow: hidden;
         top: 10%;
         left: 5%;
-        z-index: 3;
-        box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.58);
+    }
+
+    .confirm-modal {
+        width: 80%;
+        left: 10%;
+    }
+
+    #x-conf-modal {
+        display: none;
     }
 
     .images-slide,
@@ -995,10 +1005,6 @@ button:active,
     .edit-link,
     .logout-link {
         font-size: 12px;
-    }
-
-    .empty-icon {
-        height: 20px;
     }
 
     .temp-total {
