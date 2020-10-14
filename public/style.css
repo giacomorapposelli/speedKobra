@@ -3,7 +3,6 @@ body {
     font-family: AA_typewriter;
     min-height: 100vh;
     box-sizing: border-box;
-    overflow-y: scroll;
 }
 @font-face {
     font-family: AA_typewriter;
@@ -278,7 +277,6 @@ footer {
     flex-direction: row;
     width: 100%;
     min-height: 100vh;
-    overflow-y: scroll;
 }
 
 .item-wrapper {
@@ -288,7 +286,7 @@ footer {
 
 .products {
     width: 50%;
-    overflow: scroll;
+
     height: 100%;
 }
 
@@ -789,7 +787,7 @@ button:active,
     }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 780px) and (orientation: portrait) {
     .card {
         height: 175px;
         width: 150px;
