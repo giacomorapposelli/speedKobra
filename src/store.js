@@ -8,6 +8,7 @@ import axios from "./axios";
 
 export default function Store(props) {
     const [counter, setCounter] = useState(0);
+    const isLoggedIn = false;
 
     const setRegister = () => {
         setCounter(0);
@@ -28,12 +29,7 @@ export default function Store(props) {
     };
 
     useEffect(() => {
-        axios.get("*").then((response) => {
-            if (response.data.isLoggedIn) {
-                setCounter(4);
-                console.log(counter);
-            }
-        });
+        if (isLoggedIn) setCounter(3);
     });
 
     return (
@@ -47,6 +43,8 @@ export default function Store(props) {
                 )}
                 {counter == 1 && (
                     <Login
+                        isLoggedIn={isLoggedIn}
+                        setCounter={setCounter}
                         setRegister={setRegister}
                         setReset={setReset}
                         setItems={setItems}

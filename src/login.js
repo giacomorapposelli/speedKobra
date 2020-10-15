@@ -38,6 +38,7 @@ export default class Login extends React.Component {
         axios
             .post("/login", this.state)
             .then((response) => {
+                props.isLoggedIn = true;
                 this.props.setItems();
             })
             .catch((err) => {

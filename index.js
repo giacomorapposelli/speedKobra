@@ -198,7 +198,7 @@ app.post("/login", (req, res) => {
                         console.log("CHECK PASSED: ", result.rows[0]);
                         req.session.userId = result.rows[0].id;
                         console.log("USER ID: ", req.session.userId);
-                        res.json();
+                        res.json(req.session.userId);
                     } else {
                         res.sendStatus(500);
                     }
