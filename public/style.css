@@ -157,7 +157,7 @@ footer {
 }
 
 .show-container {
-    margin-left: 20%;
+    margin: 0 auto;
     height: 9%;
     width: 60%;
     border-bottom: 2px solid rgb(104, 104, 104);
@@ -428,6 +428,7 @@ p {
     height: 90%;
     border: 3px solid black;
     background-image: url("image.jpg");
+    /* background-attachment: fixed; */
     background-size: cover;
     border-radius: 15px;
     position: fixed;
@@ -436,8 +437,10 @@ p {
     z-index: 3;
     max-height: 90%;
     overflow-y: scroll;
-    overflow-x: scroll;
     box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.58);
+}
+.tape-modal {
+    overflow-x: scroll;
 }
 
 .confirm-modal {
@@ -770,7 +773,7 @@ button:active,
     }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1150px) and (orientation: portrait) {
     .days {
         font-size: 220%;
     }
@@ -778,16 +781,114 @@ button:active,
         height: 40%;
     }
     .img-view {
-        height: 60%;
+        height: 40%;
     }
+
     .tour,
     .gallery,
     .store {
-        padding-top: 3%;
+        padding-top: 5%;
     }
     .addtocart {
         width: 80%;
         margin-left: 5%;
+    }
+}
+
+@media screen and (max-width: 820px) and (orientation: landscape) {
+    .our {
+        font-size: 175%;
+    }
+
+    .days {
+        font-size: 200%;
+    }
+
+    .listen {
+        width: 90px;
+        height: 30px;
+        font-size: 15px;
+    }
+    .album {
+        height: 55%;
+    }
+    header {
+        height: 15%;
+    }
+    footer {
+        height: 9%;
+    }
+    .social-logo {
+        height: 20px;
+    }
+    .headlines {
+        font-size: 220%;
+        padding-top: 2%;
+    }
+    .show-container {
+        width: 90%;
+        height: 8%;
+    }
+    .column-title,
+    .column {
+        width: 25%;
+        font-size: 12px;
+    }
+    .img-view {
+        height: 70%;
+    }
+    .card-desc {
+        font-size: 15px;
+    }
+    .next-btn,
+    .prev-btn {
+        height: 20px;
+    }
+    #x-modal,
+    #x-gallery-modal,
+    #x-conf-modal {
+        font-size: 20px;
+    }
+    #x-conf-modal {
+        visibility: hidden;
+    }
+    .shop-general {
+        flex-direction: column;
+    }
+    .products {
+        width: 90%;
+    }
+    .row {
+        margin-left: 0;
+    }
+    .registration,
+    .login,
+    .reset,
+    .edit {
+        padding-bottom: 5%;
+        width: 90%;
+    }
+    .cart {
+        min-height: 100vh;
+        width: 100%;
+    }
+    input {
+        width: 40%;
+    }
+    .empty-cart {
+        margin: 0;
+    }
+    .cart-container {
+        max-height: 40vh;
+    }
+    .confirm-modal {
+        width: 50%;
+        height: 35%;
+        left: 25%;
+        top: 32.5%;
+    }
+    h3 .thanks {
+        font-size: 18px;
     }
 }
 
@@ -930,7 +1031,6 @@ button:active,
     .show-container {
         width: 90%;
         height: 9%;
-        margin-left: 5%;
     }
 
     .column,

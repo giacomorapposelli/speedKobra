@@ -8,7 +8,7 @@ import axios from "./axios";
 
 export default function Store(props) {
     const [counter, setCounter] = useState(0);
-    const isLoggedIn = false;
+    let userId = false;
 
     const setRegister = () => {
         setCounter(0);
@@ -29,7 +29,7 @@ export default function Store(props) {
     };
 
     useEffect(() => {
-        if (isLoggedIn) setCounter(3);
+        if (userId) setCounter(3);
     });
 
     return (
@@ -43,7 +43,7 @@ export default function Store(props) {
                 )}
                 {counter == 1 && (
                     <Login
-                        isLoggedIn={isLoggedIn}
+                        userId={userId}
                         setCounter={setCounter}
                         setRegister={setRegister}
                         setReset={setReset}

@@ -15,6 +15,7 @@ export default class Login extends React.Component {
             tshirtModal: "hidden",
             longsleeveModal: "hidden",
             error: false,
+            userId: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
