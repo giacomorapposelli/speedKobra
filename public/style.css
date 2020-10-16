@@ -783,6 +783,9 @@ button:active,
     h2 {
         font-size: 32px;
     }
+    .submit-btn {
+        width: 150px;
+    }
     select,
     button {
         height: 35px;

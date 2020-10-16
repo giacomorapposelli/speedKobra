@@ -23,6 +23,8 @@ export default function Items(props) {
     let sum = 0;
     let tempSum = 0;
 
+    currentCart.map((item) => (tempSum += item.price));
+
     const addTshirt = (event) => {
         event.preventDefault();
         axios
