@@ -260,6 +260,7 @@ footer {
 
 .images-slide,
 .otr-slide {
+    height: 100%;
     width: 100%;
     display: flex;
     object-fit: cover;
@@ -761,15 +762,34 @@ button:active,
 }
 
 @media screen and (min-width: 1500px) {
-    .tour {
-        padding-top: 1%;
-    }
-
     .card-container {
         justify-content: space-around;
     }
     .card-desc {
         font-size: 30px;
+    }
+    .headlines {
+        padding-top: 7%;
+    }
+    .item-img {
+        height: 220px;
+    }
+    p {
+        font-size: 24px;
+    }
+    h1 {
+        font-size: 60px;
+    }
+    h2 {
+        font-size: 32px;
+    }
+    select,
+    button {
+        height: 35px;
+        font-size: 18px;
+    }
+    .album {
+        height: 45%;
     }
 }
 
