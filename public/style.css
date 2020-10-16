@@ -823,7 +823,8 @@ button:active,
     }
     .headlines {
         font-size: 220%;
-        padding-top: 2%;
+        padding-top: 9%;
+        margin-bottom: 1%;
     }
     .show-container {
         width: 90%;
