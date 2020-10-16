@@ -31,6 +31,7 @@ export default function Items(props) {
             .post("/addthsirt", { size })
             .then((response) => {
                 setCurrentCart([...currentCart, response.data]);
+                console.log("curr", currentCart);
             })
             .catch((err) => {
                 setError(true);
@@ -147,6 +148,15 @@ export default function Items(props) {
     };
 
     useEffect(() => {
+        axios
+            .get("/currentcart")
+            .then((response) => {
+                setCurrentCart(response.data);
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
         axios
             .get("/firstname")
             .then((response) => {
@@ -340,10 +350,10 @@ export default function Items(props) {
                 <div className="cart-container">
                     {currentCart &&
                         currentCart.length > 0 &&
-                        currentCart.map((each) => {
+                        currentCart.map((each, index) => {
                             return (
                                 <div
-                                    key={each.id}
+                                    key={index}
                                     className="resume-container"
                                     id={each.id}
                                 >

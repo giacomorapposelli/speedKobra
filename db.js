@@ -82,7 +82,7 @@ exports.submitOrder = (userId) => {
         `
         SELECT users.id, orders.id AS order_id, first, last, email,address,zip,city,country,vinyl,color,price,tshirt,size,imgurl, orders.created_at
         FROM users
-        JOIN orders ON (user_id = users.id AND user_id = $1 AND CURRENT_TIMESTAMP - orders.created_at < INTERVAL '1 minute');
+        JOIN orders ON (user_id = users.id AND user_id = $1);
         `,
         [userId]
     );
@@ -130,6 +130,24 @@ exports.getDataToEdit = (userId) => {
     );
 };
 
+exports.getCurrentCart = (userId) => {
+    return db.query(
+        `
+        SELECT * FROM orders WHERE user_id=$1;
+        `,
+        [userId]
+    );
+};
+
+exports.deleteOrder = (userId) => {
+    return db.query(
+        `
+        DELETE from orders WHERE user_id=$1
+        `,
+        [userId]
+    );
+};
+
 exports.updateAddress = (
     userId,
     firstname,
@@ -143,8 +161,4 @@ exports.updateAddress = (
         `UPDATE users SET first=$2, last=$3, address=$4, zip=$5, city=$6, country=$7 WHERE id=$1;`,
         [userId, firstname, lastname, address, zip, city, country]
     );
-};
-
-exports.getId = (userId) => {
-    return db.query(`SELECT id FROM users WHERE id = $1;`, [userId]);
 };

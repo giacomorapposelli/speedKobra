@@ -15,7 +15,8 @@ const {
     getFirstName,
     getDataToEdit,
     updateAddress,
-    getId,
+    getCurrentCart,
+    deleteOrder,
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
@@ -59,14 +60,6 @@ if (process.env.NODE_ENV != "production") {
 } else {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
-
-app.get("/#/store", (req, res) => {
-    if (req.session.userId) {
-        res.redirect("/#/cart");
-    } else {
-        res.redirect("/#/store");
-    }
-});
 
 app.get("/order", (req, res) => {
     submitOrder(req.session.userId)
@@ -113,7 +106,20 @@ app.get("/order", (req, res) => {
             console.log("ORDER: ", result.rows);
             res.json(result.rows);
         })
+        .then(() => deleteOrder(req.session.userId))
         .catch((err) => console.log("ERR IN ORDER: ", err));
+});
+
+app.get("/currentcart", (req, res) => {
+    if (req.session.userId) {
+        getCurrentCart(req.session.userId)
+            .then((result) => {
+                res.json(result.rows);
+                console.log("BOOM", result.rows);
+            })
+            .catch((err) => console.log(err))
+            .catch((err) => console.log("no current cart", err));
+    }
 });
 
 app.get("/firstname", (req, res) => {
@@ -136,7 +142,6 @@ app.get("/code", (req, res) => {
 app.get("/datatoedit", (req, res) => {
     getDataToEdit(req.session.userId)
         .then((result) => {
-            console.log("DATA TO EDIT: ", result.rows[0]);
             res.json(result.rows[0]);
         })
         .catch((err) => console.log("Error: ", err));
@@ -195,9 +200,8 @@ app.post("/login", (req, res) => {
             compare(req.body.password, result.rows[0].password)
                 .then((checked) => {
                     if (checked) {
-                        console.log("CHECK PASSED: ", result.rows[0]);
                         req.session.userId = result.rows[0].id;
-                        console.log("USER ID: ", req.session.userId);
+
                         res.json(req.session.userId);
                     } else {
                         res.sendStatus(500);
@@ -219,7 +223,6 @@ app.post("/addthsirt", (req, res) => {
     addTshirt(req.body.size, req.session.userId)
         .then((result) => {
             res.json(result.rows[0]);
-            console.log("TSHIRT: ", result.rows);
         })
         .catch((err) => {
             console.log("TSHIRT NON INSEITA: ", err);
@@ -230,7 +233,6 @@ app.post("/addlongsleeve", (req, res) => {
     console.log("REQ BODY: ", req.body);
     addLongsleeve(req.body.size, req.session.userId)
         .then((result) => {
-            console.log("LONGSLEEVE: ", result.rows);
             res.json(result.rows[0]);
         })
         .catch((err) => {
@@ -251,7 +253,6 @@ app.post("/addvinyl", (req, res) => {
     }
     addVinyl(req.body.color, req.body.imgurl, req.session.userId)
         .then((result) => {
-            console.log("VINYL: ", result.rows);
             res.json(result.rows[0]);
         })
         .catch((err) => {
@@ -263,7 +264,6 @@ app.post("/removeitem", (req, res) => {
     console.log("IDDDDD: ", req.body.itemId);
     removeItem(req.body.itemId)
         .then((result) => {
-            console.log("RESULT SHOULD BE EMPTY: ", result.rows);
             res.json();
         })
         .catch((err) => {
@@ -274,7 +274,6 @@ app.post("/removeitem", (req, res) => {
 app.post("/removelongsleeve", (req, res) => {
     removeLongsleeve(req.session.userId)
         .then((result) => {
-            console.log("RESULT SHOULD BE EMPTY: ", result.rows);
             res.json();
         })
         .catch((err) => {
@@ -285,7 +284,6 @@ app.post("/removelongsleeve", (req, res) => {
 app.post("/removevinyl", (req, res) => {
     removeVinyl(req.session.userId)
         .then((result) => {
-            console.log("RESULT SHOULD BE EMPTY: ", result.rows);
             res.json();
         })
         .catch((err) => {
