@@ -23,10 +23,6 @@ export default function Items(props) {
     let sum = 0;
     let tempSum = 0;
 
-    currentCart.map((each) => {
-        tempSum += each.price;
-    });
-
     const addTshirt = (event) => {
         event.preventDefault();
         axios
@@ -142,6 +138,10 @@ export default function Items(props) {
         event.preventDefault();
         setConfirmModal("visible");
         setClassName("overlay");
+    };
+    const handleLogout = () => {
+        setCurrentCart([]);
+        localStorage.clear();
     };
 
     useEffect(() => {
@@ -313,7 +313,11 @@ export default function Items(props) {
             <div className="cart">
                 <div className="user-info">
                     <p className="hello">Hello, {name}!</p>
-                    <a href="/logout" className="logout-link">
+                    <a
+                        href="/logout"
+                        className="logout-link"
+                        onClick={handleLogout}
+                    >
                         Log Out
                     </a>
                     <a className="edit-link" onClick={props.setEdit}>

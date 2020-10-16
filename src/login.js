@@ -39,6 +39,7 @@ export default class Login extends React.Component {
         axios
             .post("/login", this.state)
             .then((response) => {
+                localStorage.setItem("user", response.data);
                 this.props.setItems();
             })
             .catch((err) => {

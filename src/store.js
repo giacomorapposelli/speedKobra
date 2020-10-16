@@ -29,8 +29,14 @@ export default function Store(props) {
     };
 
     useEffect(() => {
-        if (userId) setCounter(3);
-    });
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            const foundUser = JSON.parse(loggedInUser);
+            console.log(loggedInUser);
+            setCounter(3);
+            console.log(foundUser);
+        }
+    }, []);
 
     return (
         <div className="store" id="store" onMouseOver={props.onMouseOver}>
