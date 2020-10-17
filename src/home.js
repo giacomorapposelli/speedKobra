@@ -2,7 +2,7 @@ import React from "react";
 
 export default function App(props) {
     return (
-        <div className="home" id="home" onMouseOver={props.onMouseOver}>
+        <div className="section home" id="home" onMouseOver={props.onMouseOver}>
             <div className="message">
                 <h1 className="our">Our New Album</h1>
                 <h1 className="days">DAYS OF MADNESS</h1>

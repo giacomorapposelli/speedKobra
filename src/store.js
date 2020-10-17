@@ -39,7 +39,11 @@ export default function Store(props) {
     }, []);
 
     return (
-        <div className="store" id="store" onMouseOver={props.onMouseOver}>
+        <div
+            className="section store"
+            id="store"
+            onMouseOver={props.onMouseOver}
+        >
             <h1 className="headlines" id="store-headline">
                 OUR MERCHSTORE
             </h1>

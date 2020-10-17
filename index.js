@@ -190,7 +190,7 @@ app.post("/register", (req, res) => {
                 console.log("CHE SUCCEDE? :", err);
             });
     } else {
-        res.json({ noMatch: true });
+        res.json({ shortPW: true });
     }
 });
 

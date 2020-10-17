@@ -391,6 +391,7 @@ export default class Register extends React.Component {
                             required
                             onChange={this.handleChange}
                             onFocus={this.resetError}
+                            minlength="6"
                         />
                         <input
                             type="password"
@@ -399,6 +400,7 @@ export default class Register extends React.Component {
                             required
                             onChange={this.handleChange}
                             onFocus={this.resetError}
+                            minlength="6"
                         />
                         <button className="reg-btn">Register</button>
                         <p className="already">

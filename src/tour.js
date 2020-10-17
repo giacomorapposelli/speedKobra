@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Tour(props) {
     return (
-        <div className="tour" id="tour" onMouseOver={props.onMouseOver}>
+        <div className="section tour" id="tour" onMouseOver={props.onMouseOver}>
             <h1 className="headlines">UPCOMING TOURDATES</h1>
 
             <div className="show-container">

@@ -31,7 +31,11 @@ export default function Gallery(props) {
     };
 
     return (
-        <div className="gallery" id="gallery" onMouseOver={props.onMouseOver}>
+        <div
+            className="section gallery"
+            id="gallery"
+            onMouseOver={props.onMouseOver}
+        >
             <div className={className} onClick={closeModal} id="galleria"></div>
             <h1 className="headlines">IMAGE GALLERY</h1>
             <div className="card-container">
