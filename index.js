@@ -17,6 +17,7 @@ const {
     updateAddress,
     getCurrentCart,
     deleteOrder,
+    addTshirtFantozzi
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
@@ -226,6 +227,17 @@ app.post("/addthsirt", (req, res) => {
         })
         .catch((err) => {
             console.log("TSHIRT NON INSEITA: ", err);
+        });
+});
+
+app.post("/addtshirtfantozzi", (req, res) => {
+    console.log("REQ BODY: ", req.body);
+    addTshirtFantozzi(req.body.size, req.session.userId)
+        .then((result) => {
+            res.json(result.rows[0]);
+        })
+        .catch((err) => {
+            console.log("TSHIRT NON INSERITA: ", err);
         });
 });
 

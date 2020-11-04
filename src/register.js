@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "./axios";
-// import { Link } from "react-router-dom";
+import TshirtSlider from "./tshirtslider";
 import VinylSlider from "./vinylslider";
+
 
 export default class Register extends React.Component {
     constructor(props) {
@@ -154,7 +155,7 @@ export default class Register extends React.Component {
 
     closeModal(event) {
         event.preventDefault();
-        document.body.style.overflow = "scroll";
+        document.body.style.overflow = "";
         this.setState({
             vinylSlider: "hidden",
             tapeModal: "hidden",
@@ -176,7 +177,7 @@ export default class Register extends React.Component {
                         <div className="item-wrapper">
                             <div className="merch-card">
                                 <img
-                                    src="tshirt.jpg"
+                                    src="tshirt-white.jpg"
                                     className="item-img"
                                     onClick={this.setTshirtModal}
                                 />
@@ -214,7 +215,7 @@ export default class Register extends React.Component {
                         <div className="item-wrapper">
                             <div className="merch-card">
                                 <img
-                                    src="longsleeve.jpg"
+                                    src="tshirt-edu.jpg"
                                     className="item-img"
                                     onClick={this.setLongsleeveModal}
                                 />
@@ -226,7 +227,6 @@ export default class Register extends React.Component {
                                         <option value="S">S</option>
                                         <option value="M">M</option>
                                         <option value="L">L</option>
-                                        <option value="XL">XL</option>
                                     </select>
                                     <button
                                         onClick={this.setError2}
@@ -238,8 +238,8 @@ export default class Register extends React.Component {
                             </div>
                             <div className="description">
                                 <p className="item-name">"Dehumanized"</p>
-                                <p className="item-name">Longsleeve</p>
-                                <p className="item-name">Price: 15€</p>
+                                <p className="item-name">T-shirt</p>
+                                <p className="item-name">Price: 10€</p>
                                 {this.state.error2 && (
                                     <p className="error">
                                         You need to be registered in order to
@@ -250,6 +250,41 @@ export default class Register extends React.Component {
                         </div>
                     </div>
                     <div className="row">
+                    <div className="item-wrapper">
+                            <div className="merch-card">
+                                <img
+                                    src="tshirt-fantozzi.jpg"
+                                    className="item-img"
+                                    onClick={this.setTapeModal}
+                                />
+                                <form>
+                                    <select>
+                                        <option value="-">
+                                            Choose a size:
+                                        </option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                    </select>
+                                    <button
+                                        onClick={this.setError4}
+                                        className="addtocart"
+                                    >
+                                        Add to cart
+                                    </button>
+                                </form>
+                            </div>
+                            <div className="description">
+                                <p className="item-name">"Fantozzi MetalCrust"</p>
+                                <p className="item-name">T-Shirt</p>
+                                <p className="item-name">Price: 10€</p>
+                                {this.state.error4 && (
+                                    <p className="error">
+                                        You need to be registered in order to
+                                        buy something
+                                    </p>
+                                )}
+                            </div>
+                        </div>
                         <div className="item-wrapper">
                             <div className="merch-card">
                                 <img
@@ -291,37 +326,7 @@ export default class Register extends React.Component {
                                 )}
                             </div>
                         </div>
-                        <div className="item-wrapper">
-                            <div className="merch-card">
-                                <img
-                                    src="tape2.jpg"
-                                    className="item-img"
-                                    onClick={this.setTapeModal}
-                                />
-                                <form>
-                                    <select>
-                                        <option value="-">--</option>
-                                    </select>
-                                    <button
-                                        onClick={this.setError4}
-                                        className="addtocart"
-                                    >
-                                        Add to cart
-                                    </button>
-                                </form>
-                            </div>
-                            <div className="description">
-                                <p className="item-name">Split w/ Moratory</p>
-                                <p className="item-name">Tape</p>
-                                <p className="sold-out">Sold Out</p>
-                                {this.state.error4 && (
-                                    <p className="error">
-                                        You need to be registered in order to
-                                        buy something
-                                    </p>
-                                )}
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -391,7 +396,7 @@ export default class Register extends React.Component {
                             required
                             onChange={this.handleChange}
                             onFocus={this.resetError}
-                            minlength="6"
+                            minLength="6"
                         />
                         <input
                             type="password"
@@ -400,7 +405,7 @@ export default class Register extends React.Component {
                             required
                             onChange={this.handleChange}
                             onFocus={this.resetError}
-                            minlength="6"
+                            minLength="6"
                         />
                         <button className="reg-btn">Register</button>
                         <p className="already">
@@ -428,7 +433,7 @@ export default class Register extends React.Component {
                         <a id="x-modal" onClick={this.closeModal}>
                             X
                         </a>
-                        <img src="/tape.jpg" className="tapephoto" />
+                        <img src="tshirt-fantozzi.jpg" className="tshirtphoto" />
                     </div>
                 )}
                 {this.state.tshirtModal == "visible" && (
@@ -436,7 +441,7 @@ export default class Register extends React.Component {
                         <a id="x-modal" onClick={this.closeModal}>
                             X
                         </a>
-                        <img src="/tshirt.jpg" className="tshirtphoto" />
+                        <img src="/tshirt-white.jpg" className="tshirtphoto" />
                     </div>
                 )}
                 {this.state.longsleeveModal == "visible" && (
@@ -445,7 +450,7 @@ export default class Register extends React.Component {
                             X
                         </a>
                         <img
-                            src="/longsleeve.jpg"
+                            src="/tshirt-edu.jpg"
                             className="longsleevephoto"
                         />
                     </div>

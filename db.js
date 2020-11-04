@@ -49,14 +49,22 @@ exports.getEmail = (email) => {
 
 exports.addTshirt = (size, userId) => {
     return db.query(
-        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Harvester of Hate T-shirt',$1,10,'tshirt.jpg',$2) RETURNING id,tshirt,size,price,imgurl,user_id`,
+        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Harvester of Hate T-shirt',$1,10,'tshirt-white.jpg',$2) RETURNING id,tshirt,size,price,imgurl,user_id`,
         [size, userId]
     );
 };
 
+exports.addTshirtFantozzi = (size, userId) => {
+    return db.query(
+        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Fantozzi MetalCrust T-shirt',$1,10,'tshirt-fantozzi.jpg',$2) RETURNING id,tshirt,size,price,imgurl,user_id`,
+        [size, userId]
+    );
+};
+
+
 exports.addLongsleeve = (size, userId) => {
     return db.query(
-        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Dehumanized Longsleeve',$1,15,'longsleeve.jpg',$2) RETURNING id,tshirt,size,price,imgurl,user_id`,
+        `INSERT INTO orders (tshirt,size,price,imgurl,user_id) VALUES ('Dehumanized T-Shirt',$1,10,'tshirt-edu.jpg',$2) RETURNING id,tshirt,size,price,imgurl,user_id`,
         [size, userId]
     );
 };
