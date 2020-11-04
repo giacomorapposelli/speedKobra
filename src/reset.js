@@ -334,7 +334,7 @@ export default class ResetPassword extends React.Component {
                             </div>
                             <div className="description">
                                 <p className="item-name">"Dehumanized"</p>
-                                <p className="item-name">T-shirt</p>
+                                <p className="item-name">T-Shirt</p>
                                 <p className="item-name">Price: 10€</p>
                                 {this.state.error2 && (
                                     <p className="error">
