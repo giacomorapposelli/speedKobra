@@ -992,7 +992,7 @@ button:active,
         object-fit: cover;
     }
     .home {
-        padding-top: 10%;
+        padding-top: 7%;
         flex-direction: column-reverse;
         justify-content: space-evenly;
     }

@@ -30,7 +30,7 @@ export default function Items(props) {
             .post("/addthsirt", { size })
             .then((response) => {
                 setCurrentCart([...currentCart, response.data]);
-                console.log("curr", currentCart);
+          
             })
             .catch((err) => {
                 setError(true);
@@ -157,7 +157,7 @@ export default function Items(props) {
             .get("/currentcart")
             .then((response) => {
                 setCurrentCart(response.data);
-                console.log(response.data);
+               
             })
             .catch((err) => {
                 console.log(err);
