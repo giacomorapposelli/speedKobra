@@ -856,7 +856,7 @@ button:active,
     }
     .headlines {
         font-size: 220%;
-        padding-top: 9%;
+        padding-top: 0;
         margin-bottom: 1%;
     }
     .show-container {
@@ -990,6 +990,14 @@ button:active,
         width: 100%;
         display: flex;
         object-fit: cover;
+    }
+
+    .thankyou-modal,
+    .tshirt-modal,
+    .longsleeve-modal,
+    .tape-modal {
+        max-height: 80%;
+        top: 10%;
     }
     .home {
         padding-top: 6%;
