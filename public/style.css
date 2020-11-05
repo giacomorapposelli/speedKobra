@@ -972,7 +972,10 @@ button:active,
     #x-conf-modal,
     #x-modal,
     #x-gallery-modal {
-        display: none;
+        top: 1%;
+        right: 3%;
+        color: black;
+        font-size: 25px;
     }
 
     .prev-btn,
