@@ -170,3 +170,8 @@ exports.updateAddress = (
         [userId, firstname, lastname, address, zip, city, country]
     );
 };
+
+exports.test = (str) => {
+    return db.query('INSERT INTO test (value) VALUES ($1)',[str]);
+};
+

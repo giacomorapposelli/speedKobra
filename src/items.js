@@ -30,10 +30,11 @@ export default function Items(props) {
             .post("/addthsirt", { size })
             .then((response) => {
                 setCurrentCart([...currentCart, response.data]);
-          
+
             })
             .catch((err) => {
                 setError(true);
+                console.log(err);
             });
     };
 
@@ -59,10 +60,10 @@ export default function Items(props) {
                 setCurrentCart([...currentCart, response.data]);
             })
             .catch((err) => {
-                console.log("error: ",err)
+                console.log("error: ", err)
             });
     };
-    
+
 
     const addVinyl = (event) => {
         event.preventDefault();
@@ -157,7 +158,7 @@ export default function Items(props) {
             .get("/currentcart")
             .then((response) => {
                 setCurrentCart(response.data);
-               
+
             })
             .catch((err) => {
                 console.log(err);
@@ -179,7 +180,7 @@ export default function Items(props) {
             .catch((err) => console.log(err));
 
         order.map((each) => {
-            sum += each.price;
+            sum += each.price
         });
 
         setTotal(sum);
@@ -243,7 +244,7 @@ export default function Items(props) {
                                     <option value="S">S</option>
                                     <option value="M">M</option>
                                     <option value="L">L</option>
-                        
+
                                 </select>
                                 <button
                                     onClick={addLongsleeve}
@@ -262,7 +263,7 @@ export default function Items(props) {
                     </div>
                 </div>
                 <div className="row">
-                    
+
                     <div className="item-wrapper">
                         <div className="merch-card">
                             <img
@@ -271,7 +272,7 @@ export default function Items(props) {
                                 onClick={openTapeModal}
                             />
                             <form>
-                            <select
+                                <select
                                     name="size"
                                     onChange={(event) =>
                                         setSize(event.target.value)
@@ -280,7 +281,7 @@ export default function Items(props) {
                                     <option value="">Choose a size:</option>
                                     <option value="M">M</option>
                                     <option value="L">L</option>
-                        
+
                                 </select>
                                 <button
                                     onClick={addTshirtFantozzi}
@@ -294,7 +295,7 @@ export default function Items(props) {
                             <p className="item-name">"Fantozzi MetalCrust"</p>
                             <p className="item-name">T-Shirt</p>
                             <p className="item-name">Price: 10€</p>
-                           
+
                         </div>
                     </div>
                     <div className="item-wrapper">

@@ -17,7 +17,8 @@ const {
     updateAddress,
     getCurrentCart,
     deleteOrder,
-    addTshirtFantozzi
+    addTshirtFantozzi,
+    test
 } = require("./db");
 const { hash, compare } = require("./bc.js");
 const cookieSession = require("cookie-session");
@@ -179,7 +180,7 @@ app.post("/register", (req, res) => {
                     .then((result) => {
                         console.log("RESULT: ", result);
                         req.session.userId = result.rows[0].id;
-                        res.json();
+                        res.json({success: true});
                     })
                     .catch((err) => {
                         res.sendStatus(500);
@@ -382,5 +383,15 @@ app.post("/updateaddress", (req, res) => {
         })
         .catch((err) => console.log("ADDRESS NOT UPDATED: ", err));
 });
+
+
+
+const insertValues = async () => {
+    const values = ['a','b','c',4,true];
+    const data = await Promise.all(values.map(value => test(value))).catch(err => console.log("error: ",err));
+    console.log(data);
+};
+
+insertValues();
 
 app.listen(process.env.PORT || 8080, () => console.log("server listening"));
